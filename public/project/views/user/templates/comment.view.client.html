@@ -39,12 +39,16 @@
 <div class="clearfix grid">
 
 <div id="works" class="container-fluid proj-background-black no-scroll-div">
+    <h2 class="proj-text-color-white"><strong>Following</strong></h2>
     <ul class="list-group">
         <br>
-        <li class="proj-background-black list-group-item" ng-repeat="comment in model.comments">
+        <li class="proj-text-color-white proj-background-black list-group-item" ng-repeat="comment in model.comments">
+            <div class="proj-edit">
+                <a ng-href="#!/user/{{model.userId}}/edit-comment/{{comment._id}}" class="btn btn-danger">Edit</a>
+            </div>
             <h2>You commented on <b><a ng-href="">{{comment.seriesName}}</a></b></h2>
-            <em><h3></h3><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
-                <i class="fa fa-quote-right" aria-hidden="true"></i><h3></h3></em>
+            <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
+                <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
         </li>
     </ul>
 

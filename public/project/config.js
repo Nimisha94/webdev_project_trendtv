@@ -51,8 +51,13 @@
                 controllerAs: 'model'
             })
             .when('/user/:userId/comments', {
-                templateUrl: 'views/user/templates/comments.view.client.html',
+                templateUrl: 'views/user/templates/comment.view.client.html',
                 controller: 'CommentsController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/edit-comment/:commentId', {
+                templateUrl: 'views/user/templates/comment-edit.view.client.html',
+                controller: 'EditCommentController',
                 controllerAs: 'model'
             })
     }

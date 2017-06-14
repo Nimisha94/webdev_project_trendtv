@@ -6,6 +6,7 @@ var comments = [
 ];
 
 app.get('/api/project/comment/:commentId', getCommentById);
+app.put('/api/project/comment/:commentId', updateComment);
 
 function getCommentById(req, res) {
     var commentId=req.params.commentId;
@@ -18,4 +19,19 @@ function getCommentById(req, res) {
         }
     }
     res.json(null);
+}
+
+function updateComment(req, res) {
+    var commentId=req.params.commentId;
+    var comment=req.body;
+    for(var c in comments)
+    {
+        if(comments[c]._id===commentId)
+        {
+            comments[c]=comment;
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
 }
