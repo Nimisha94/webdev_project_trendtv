@@ -42,8 +42,13 @@
             })
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
-                //controller: 'RegisterController',
-                //controllerAs: 'model'
+                controller: 'ProfileController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/following', {
+                templateUrl: 'views/user/templates/following.view.client.html',
+                controller: 'FollowingController',
+                controllerAs: 'model'
             })
     }
 }) ();

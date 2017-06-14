@@ -1,0 +1,24 @@
+(function () {
+    angular
+        .module('TrendTv')
+        .controller('ProfileController', ProfileController);
+
+    function ProfileController(userService, $location, $routeParams) {
+
+        var model = this;
+
+        model.userId = $routeParams['userId'];
+
+        userService.findUserById(model.userId)
+            .then(renderUser, errorUser);
+
+        function renderUser(user) {
+
+            model.user=user;
+        }
+
+        function errorUser(user) {
+            model.message="Oops! Something went wrong :("
+        }
+    }
+})();

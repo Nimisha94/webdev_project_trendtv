@@ -9,7 +9,7 @@
             findUserByCredentials : findUserByCredentials,
             findUserByUsername : findUserByUsername,
             createUser : createUser,
-            findUserById : findUserById,
+            findUserById : findUserById
         };
         return api;
 
