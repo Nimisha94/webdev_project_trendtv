@@ -42,8 +42,9 @@
     <ul class="list-group">
         <br>
         <li class="proj-background-black list-group-item" ng-repeat="comment in model.comments">
-            <p>You commented on <h2>{{comment.seriesName}}</h2><p>
-            <h3>"{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}" </h3>
+            <h2>You commented on <b><a ng-href="">{{comment.seriesName}}</a></b></h2>
+            <em><h3></h3><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
+                <i class="fa fa-quote-right" aria-hidden="true"></i><h3></h3></em>
         </li>
     </ul>
 
