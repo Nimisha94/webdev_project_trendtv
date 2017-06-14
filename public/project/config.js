@@ -50,5 +50,10 @@
                 controller: 'FollowingController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/comments', {
+                templateUrl: 'views/user/templates/comments.view.client.html',
+                controller: 'CommentsController',
+                controllerAs: 'model'
+            })
     }
 }) ();
