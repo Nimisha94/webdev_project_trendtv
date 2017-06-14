@@ -19,6 +19,8 @@
             for(var i =0; i<model.user.following.length;i++) {
                 userService.findUserById(model.user.following[i])
                     .then(function (user) {
+                         user.followingCount = user.following.length;
+                        user.followerCount = user.followers.length;
                         following.push(user);
                     },errorUser);
             }
