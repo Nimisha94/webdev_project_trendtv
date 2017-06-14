@@ -36,33 +36,29 @@
     </div>
 </div>
 
-<div id="works"  class=" clearfix grid">
-    <div class="container-fluid proj-background-black" >
-        <br/><br/>
-        <div class="row">
-            {{model.user.following}}
-            <div ng-repeat="u in model.user.following">
-                {{u.firstName}}
+<div  class=" clearfix grid">
+        <div id = "works" class="container-fluid proj-background-black " >
+        <!--<br/><br/>-->
+        <div class="row proj-background-black">
+            <h2 class="proj-text-color-white"><strong>Following</strong></h2>
+            <div ng-repeat="f in model.followingList">
+
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail proj-background-black">
                         <div class="row">
                             <a ng-click="model.getSeriesDetailsbyId($index)">
                                 <div class="col-lg-6" align="center">
-                                    <img class="img-responsive"
-                                         ng-src="https://image.tmdb.org/t/p/w185/{{u.imageUrl}}"
-                                         class="img-circle"
+                                    <img class="img-responsive img-circle"
+                                         ng-src="https://image.tmdb123.org/t/p/w185/{{f.imageUrl}}"
                                          err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
                                 </div>
                                 <div class="col-lg-6" align="left">
-                                    <h3>{{u.firstName | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3>
+                                    <h3>{{f.firstName }} {{f.lastName}}</h3>
+                                    <h4 class="proj-text-color-white">Following : {{model.user.following.length}}</h4>
+                                    <h4 class="proj-text-color-white">Followers : {{model.user.followers.length}}</h4>
 
                                 </div>
                             </a>
-                            <div class="caption">
-                                <h5 class="proj-text-color-white">{{result.description | limitTo:100}}{{result.description.length > 100 ? "..." :
-                                    ""}}</h5>
-                            </div>
-
                         </div>
                     </div>
                 </div>

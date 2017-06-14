@@ -269,7 +269,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 .right-addon input { padding-right: 30px; }
 
 .no-scroll-div {
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	left: 0;
@@ -285,4 +285,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 .proj-background-black{
 	background-color: black;
 }
-
+html,body {
+	height:100%;
+	background-color: black;
+}

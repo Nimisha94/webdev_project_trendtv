@@ -14,6 +14,15 @@
         function renderUser(user) {
 
             model.user=user;
+            var following = [];
+
+            for(var i =0; i<model.user.following.length;i++) {
+                userService.findUserById(model.user.following[i])
+                    .then(function (user) {
+                        following.push(user);
+                    },errorUser);
+            }
+             model.followingList = following;
         }
 
         function errorUser(user) {
