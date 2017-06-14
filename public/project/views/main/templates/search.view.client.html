@@ -1,0 +1,68 @@
+<div class="topbar animated fadeInLeftBig"></div>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Logo Starts -->
+                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
+                    <!-- #Logo Ends -->
+                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
+
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+                <!-- Nav Starts -->
+                <div class="navbar-collapse  collapse">
+
+                    <ul class="nav navbar-nav navbar-right scroll">
+                        <li class="active"><a href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" href="#works">Trending</a></li>
+                        <li ><a class="navbarhover" href="#!/register">Register</a></li>
+                        <li ><a class="navbarhover" href="#!/login">Login</a></li>
+                        <li ><a class="navbarhover" href="#contact">Contact</a></li>
+                    </ul>
+                    <!--<form class="navbar-form navbar-right" style="padding-top: 15px; padding-right: 150px">
+                        <div class="form-group">
+                            <input ng-model="searchText"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Friends">
+                        </div>
+                        <button ng-click="model.getSeriesbyName(searchText)"
+                                type="submit"
+                                class="btn btn-default"
+                                ng-href="#!/search">Search</button>
+                    </form>-->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id= "works" style="background-color: black;" class=" no-scroll-div container-fluid">
+    <div class="container">
+        <div class="input-group loginmargins">
+            <input type="text" ng-model="searchText" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                <a id="searchbutton" class="btn btn-default" ng-click="model.redirectToSearchResults(searchText)" type="button"><i class="fa fa-search"></i></a>
+      </span>
+        </div><!-- /input-group -->
+    </div>
+</div>
+
+<!-- Footer Starts -->
+<!--<div class="navbar-fixed-bottom footer text-center spacer">
+    <p class="wowload flipInX"><a href="#"><i class="fa fa-facebook fa-2x"></i></a> <a href="#"><i class="fa fa-instagram fa-2x"></i></a> <a href="#"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i class="fa fa-flickr fa-2x"></i></a> </p>
+    Project for Web Development at Northeastern University.
+</div>-->

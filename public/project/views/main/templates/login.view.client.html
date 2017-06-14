@@ -1,0 +1,27 @@
+
+<div class="login-view container-fluid">
+
+
+    <div class="logindiv container">
+        <h4 style="color: #00a9c6; margin-top: 20px">Trend TV</h4>
+        <div ng-show="model.message" class="alert alert-danger">{{model.message}}</div>
+        <label for="username" class="usernamelabel">Username</label>
+        <input ng-model="username" id="username" class="form-control">
+
+        <label for="password" class="loginmargins">Password</label>
+        <input ng-model="password" id="password" class="form-control">
+
+        <a class="loginbutton btn btn-primary btn-block"
+           ng-click="model.login(username, password)">
+            Login
+            <i class = "fa fa-user"></i>
+        </a>
+
+        <a class="btn btn-success btn-block"
+           href="#!/register">
+            Register
+        </a>
+
+    </div>
+
+</div>

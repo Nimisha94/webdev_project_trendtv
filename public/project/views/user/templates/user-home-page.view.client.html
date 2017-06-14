@@ -1,0 +1,60 @@
+
+<div class="topbar animated fadeInLeftBig"></div>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Logo Starts -->
+                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
+                    <!-- #Logo Ends -->
+                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
+
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+                <!-- Nav Starts -->
+                <div class="navbar-collapse  collapse">
+
+                    <ul class="nav navbar-nav navbar-right scroll">
+                        <li><a href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li class="active"><a href="#!/user/{{model.userId}}">Trending</a></li>
+                        <li><a class="navbarhover" href="#works">Profile</a></li>
+                        <li><a class="navbarhover" href="">Logout {{model.user.username}}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="works"  class=" clearfix grid">
+    <figure class="effect-oscar  wowload fadeIn" ng-repeat="image in model.images">
+        <img ng-src="https://image.tmdb.org/t/p/w500{{image.poster_path}}" alt="img01">
+        <figcaption>
+
+            <p><b>{{image.name}}</b><br><br>
+            <p>{{image.description}}</p><br><br>
+            <p><b>Rating: {{image.rating}}</b></p><br>
+            <a href="https://image.tmdb.org/t/p/w500{{image.poster_path}}" title="1" data-gallery>View more</a></p>
+        </figcaption>
+    </figure>
+</div>
+
+<!-- Footer Starts -->
+<div class="footer text-center spacer">
+    <p class="wowload flipInX"><a href="#"><i class="fa fa-facebook fa-2x"></i></a> <a href="#"><i class="fa fa-instagram fa-2x"></i></a> <a href="#"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i class="fa fa-flickr fa-2x"></i></a> </p>
+    Project for Web Development at Northeastern University.
+</div>
+<!-- # Footer Ends -->
+
