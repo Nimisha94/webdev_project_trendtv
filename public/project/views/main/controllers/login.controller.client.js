@@ -18,7 +18,7 @@
                     model.message = 'Invalid Credentials'
                 }
                 else {
-                    $location.url('/user/' + user._id)
+                    $location.url('/home/user/' + user._id)
                 }
 
 

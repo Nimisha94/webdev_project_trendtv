@@ -85,9 +85,51 @@
                     <p><b>{{model.users[$index]}}:</b></p>
                     <h5><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment}}
                         <i class="fa fa-quote-right" aria-hidden="true"></i></em></h5>
-                </li>l
+                </li>
             </ul>
         </p>
+
+
+        <div ng-repeat="c in model.comments">
+            <div class="panel-body">
+                <div ng-if="c.userId===model.userId">
+                    <form>
+                        <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Please enter the comment"
+                                  ng-model="detailsControllerModel.editReview.description"></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading" ng-show="detailsControllerModel.user">
+                            <small>By
+                                <a ui-sref="profile.reviews({userId: review._user})">{{review.userFirstName}}</a>
+                                on
+                                {{review.timestamp | date : 'mediumDate'}}
+                            </small>
+                        </h4>
+                        <h4 class="media-heading" ng-show="!detailsControllerModel.user">
+                            <small>By
+                                <a href=""
+                                   data-toggle="tooltip"
+                                   data-placement="top"
+                                   title="Please login to view user profile!">
+                                    {{review.userFirstName}}
+                                </a>
+                                on
+                                {{review.timestamp | date : 'mediumDate'}}
+                            </small>
+                        </h4>
+                        <p class="text-justify">
+                            {{review.description}}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
     <!--</li>-->
     <!--</ul>-->

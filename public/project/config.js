@@ -10,7 +10,7 @@
                 controller: 'HomeController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId', {
+            .when('/home/user/:userId', {
                 templateUrl: 'views/user/templates/user-home-page.view.client.html',
                 controller: 'UserHomeController',
                 controllerAs: 'model'
@@ -63,6 +63,16 @@
             .when('/user/:userId/series/:seriesId', {
                 templateUrl: 'views/user/templates/user-series-details.view.client.html',
                 controller: 'ViewSeriesController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/search', {
+                templateUrl: 'views/user/templates/user-search.view.client.html',
+                controller: 'UserSearchController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/search/:searchText', {
+                templateUrl: 'views/user/templates/user-search-results.view.client.html',
+                controller: 'UserSearchResultsController',
                 controllerAs: 'model'
             })
     }
