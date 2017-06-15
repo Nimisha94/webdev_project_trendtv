@@ -10,6 +10,7 @@
             findUserByUsername : findUserByUsername,
             createUser : createUser,
             findUserById : findUserById
+
         };
         return api;
 
@@ -54,4 +55,5 @@
         }
 
     }
+
 })();

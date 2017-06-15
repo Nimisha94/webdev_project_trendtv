@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="col-lg-6" align="left">
-                                    <button ng-click="model.unfollow(f._id)" class="btn btn-default">Unfollow</button>
+                                    <a ng-click="model.unfollow(f._id)" class="btn btn-default">Unfollow</a>
                                     <a ng-click="model.getSeriesDetailsbyId($index)"><h3>{{f.firstName }} {{f.lastName}}</h3></a>
                                     <h4 class="proj-text-color-white">Following : {{f.followingCount}}</h4>
                                     <h4 class="proj-text-color-white">Followers : {{f.followerCount}}</h4>
