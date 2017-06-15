@@ -13,7 +13,8 @@
             addToWishList : addToWishList,
             addToWatchedList : addToWatchedList,
             getWishListByUserId :getWishListByUserId,
-            getWatchedListByUserId : getWatchedListByUserId
+            getWatchedListByUserId : getWatchedListByUserId,
+            deleteFollowingById : deleteFollowingById
         };
         return api;
 
@@ -93,5 +94,14 @@
                 })
         }
 
+        function deleteFollowingById(userId, fid) {
+            var url = '/api/project/user/'+userId+'/following/'+fid;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
     }
+
 })();

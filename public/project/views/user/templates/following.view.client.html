@@ -43,21 +43,22 @@
             <h2 class="proj-text-color-white"><strong>Following</strong></h2>
             <div ng-repeat="f in model.followingList">
 
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4" id="x">
                     <div class="thumbnail proj-background-black">
                         <div class="row">
 
-                                <div class="col-lg-6" align="center">
+                                <div class="col-lg-6" align="center" >
                                     <img class="img-responsive img-circle"
                                          ng-src="https://image.tmdb123.org/t/p/w185/{{f.imageUrl}}"
                                          err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
                                 </div>
 
-                                <div class="col-lg-6" align="left">
-                                    <a ng-click="model.unfollow(f._id)" class="btn btn-default">Unfollow</a>
-                                    <a ng-click="model.getSeriesDetailsbyId($index)"><h3>{{f.firstName }} {{f.lastName}}</h3></a>
+                                <div class="col-lg-6"  align="left">
+                                    <a ng-click="model.redirectUser(f._id)" ><h3>{{f.firstName }} {{f.lastName}}</h3></a>
+                                    <a ng-click="model.unfollow(f._id)" class="btn btn-default" >Unfollow</a>
                                     <h4 class="proj-text-color-white">Following : {{f.followingCount}}</h4>
                                     <h4 class="proj-text-color-white">Followers : {{f.followerCount}}</h4>
+
 
                                 </div>
 

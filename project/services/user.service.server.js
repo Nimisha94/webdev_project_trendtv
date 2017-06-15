@@ -18,6 +18,7 @@ app.put('/api/project/user/:userId/wishlist/series/:seriesId', addToWishList);
 app.put('/api/project/user/:userId/watchedlist/series/:seriesId', addToWatchedList);
 app.get('/api/project/user/:userId/wishlist', getWishListByUserId );
 app.get('/api/project/user/:userId/watchedlist', getWatchedListByUserId );
+app.delete('/api/project/user/:userId/following/:fId', deleteFollowingById);
 
 function getWatchedListByUserId(req, res) {
     var userId=req.params.userId;
@@ -142,3 +143,22 @@ function createUser(req, res) {
     users.push(user);
     res.json(user);
 }
+
+function deleteFollowingById(req, res) {
+
+    var userId = req.params['userId'];
+    var fId = parseInt(req.params['fId']);
+    for(var i =0; i<users.length;i++){
+        if(users[i]._id === userId){
+                var index = users[i].following.indexOf(fId);
+                console.log(index);
+                if(index > -1){
+                    users[i].following.splice(index,1);
+                    res.sendStatus(200);
+                    return
+                }
+        }
+    }
+    res.sendStatus(404);
+}
+

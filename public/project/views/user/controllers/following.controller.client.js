@@ -6,7 +6,8 @@
     function FollowingController(userService, $location, $routeParams) {
 
         var model = this;
-        model.unfollow=unfollow;
+        model.unfollow = unfollow;
+        model.redirectUser = redirectUser;
 
         model.userId = $routeParams['userId'];
         userService.findUserById(model.userId)
@@ -14,11 +15,12 @@
 
         function unfollow(fid){
             var index = model.user.following.indexOf(fid);
-            console.log(fid);
-            console.log(model.user.following);
+
             for(var i=0;i<model.user.following.length;i++){
-                if(model.user.following[i]===fid){
-                    userService.deleteFollowingById(fid);
+                if(model.user.following[i]===parseInt(fid)){
+
+                    userService.deleteFollowingById(model.userId,fid)
+                        .then(reRenderUser, errorUser);
                 }
             }
         }
@@ -42,10 +44,21 @@
         function errorUser(user) {
             model.message="Oops! Something went wrong :("
         }
+        
+        function reRenderUser() {
+            //var url = '/user/'+model.userId+'/following';
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
+
+        }
+
+        function redirectUser(fId) {
+            //userService.findUserById(fId)
+            //    .then(renderUser, errorUser);
+            var url = '/user/'+fId;
+            $location.url(url);
+        }
+
 
     }
-
-
-
-
 })();
