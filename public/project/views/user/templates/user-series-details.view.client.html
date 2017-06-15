@@ -42,11 +42,21 @@
     <!--<li class="list-group-item">-->
 
     <div id ="works" class="container-fluid proj-text-color-white proj-background-black" style="padding-top: 6em">
+        <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
         <br/><br/>
         <div align="middle">
+            <div class="proj-edit">
+                <!--<a ng-href="#!/user/{{model.userId}}/edit-comment/{{comment._id}}" class="btn btn-danger">Edit</a>-->
+                <a ng-show="!model.wishlistflag" ng-click="model.addToWishList()" ><i class="proj-wishlist fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                <a ng-show="model.wishlistflag" ng-click="model.addedToWishList()" ><i class="proj-wishlist-star fa fa-star fa-2x" aria-hidden="true"></i></a>
+                <a ng-show="!model.watchedlistflag" ng-click="model.addToWatchedList()" ><i class="proj-watchedlist fa fa-list fa-2x" aria-hidden="true"></i></a>
+                <a ng-show="model.watchedlistflag" ng-click="model.addedToWatchedList()" ><i class="proj-check fa fa-check-square-o fa-2x" aria-hidden="true"></i></a>
+            </div>
             <img ng-src="https://image.tmdb.org/t/p/w300/{{model.details.poster_path}}" err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
         </div>
         <h3 align="center"><b>{{model.details.name}}</b></h3>
+
+
         <p><b>Genre:</b>
         <span ng-repeat="genre in model.details.genres">
                     {{genre.name}},
@@ -75,7 +85,7 @@
                     <p><b>{{model.users[$index]}}:</b></p>
                     <h5><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment}}
                         <i class="fa fa-quote-right" aria-hidden="true"></i></em></h5>
-                </li>
+                </li>l
             </ul>
         </p>
     </div>

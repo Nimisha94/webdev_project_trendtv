@@ -296,3 +296,23 @@ html,body {
 	padding: 2px;
 	right:30px;
 }
+
+.proj-wishlist
+{
+	color: red;
+}
+
+.proj-watchedlist
+{
+	color:wheat;
+}
+
+.proj-wishlist-star
+{
+	color:yellow;
+}
+
+.proj-check
+{
+	color:whitesmoke;
+}

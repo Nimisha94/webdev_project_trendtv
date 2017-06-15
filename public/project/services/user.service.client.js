@@ -9,10 +9,49 @@
             findUserByCredentials : findUserByCredentials,
             findUserByUsername : findUserByUsername,
             createUser : createUser,
-            findUserById : findUserById
-
+            findUserById : findUserById,
+            addToWishList : addToWishList,
+            addToWatchedList : addToWatchedList,
+            getWishListByUserId :getWishListByUserId,
+            getWatchedListByUserId : getWatchedListByUserId
         };
         return api;
+
+        function getWatchedListByUserId(userId) {
+            var url = '/api/project/user/'+userId+'/watchedlist';
+
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function getWishListByUserId(userId) {
+            var url = '/api/project/user/'+userId+'/wishlist';
+
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function addToWatchedList(userId, seriesId) {
+            var url = '/api/project/user/'+userId+'/watchedlist/series/'+seriesId;
+
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function addToWishList(userId, seriesId) {
+            var url = '/api/project/user/'+userId+'/wishlist/series/'+seriesId;
+
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
 
         function findUserById(userId) {
 
@@ -55,5 +94,4 @@
         }
 
     }
-
 })();
