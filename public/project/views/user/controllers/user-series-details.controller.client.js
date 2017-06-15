@@ -21,6 +21,62 @@
         CommentsService.getCommentsBySeriesId(model.seriesId)
             .then(renderComments);
 
+        userService.getWishListByUserId(model.userId)
+            .then(function (wishlist) {
+                console.log(wishlist);
+                if(wishlist.indexOf(model.seriesId)>=0)
+                {
+                    model.wishlistflag=true;
+                }
+            });
+
+        userService.getWatchedListByUserId(model.userId)
+            .then(function (watchedlist) {
+                console.log(watchedlist);
+                if(watchedlist.indexOf(model.seriesId)>=0)
+                {
+                    model.watchedlistflag=true;
+                }
+            });
+
+        //event handlers
+        model.addToWishList=addToWishList;
+        model.addToWatchedList=addToWatchedList;
+        model.addedToWishList=addedToWishList;
+        model.addedToWatchedList=addedToWatchedList;
+
+        function addedToWatchedList() {
+            model.message="Already present in WatchedList";
+        }
+
+        function addedToWishList() {
+            model.message="Already present in WishList";
+        }
+
+        function addToWatchedList() {
+            userService.addToWatchedList(model.userId, model.seriesId)
+                .then(function () {
+                    model.message="Added to WatchedList";
+                    // to be redirected to watchedlist page
+                    $location.url="";
+                }, function () {
+                    model.message="Oops! Something went wrong :("
+                })
+
+        }
+
+        function addToWishList() {
+            userService.addToWishList(model.userId, model.seriesId)
+                .then(function () {
+                    model.message="Added to WishList";
+                    // to be redirected to wishlist page
+                    $location.url="";
+                }, function () {
+                    model.message="Oops! Something went wrong :("
+                })
+
+        }
+
         function renderComments(comments) {
             model.comments=comments;
             for(var c in comments)
