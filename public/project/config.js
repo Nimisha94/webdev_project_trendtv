@@ -60,5 +60,10 @@
                 controller: 'EditCommentController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/series/:seriesId', {
+                templateUrl: 'views/user/templates/user-series-details.view.client.html',
+                controller: 'ViewSeriesController',
+                controllerAs: 'model'
+            })
     }
 }) ();

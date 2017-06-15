@@ -1,0 +1,84 @@
+<div class="topbar animated fadeInLeftBig"></div>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Logo Starts -->
+                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
+                    <!-- #Logo Ends -->
+                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
+
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+                <!-- Nav Starts -->
+                <div class="navbar-collapse  collapse">
+
+                    <ul class="nav navbar-nav navbar-right scroll">
+                        <li><a href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" href="#!/user/{{model.userId}}">Trending</a></li>
+                        <li class="active"><a href="#works">Profile</a></li>
+                        <li><a class="navbarhover" href="">Logout {{model.user.username}}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  class="">
+
+    <!--<ul class="list-group">-->
+    <!--<li class="list-group-item">-->
+
+    <div id ="works" class="container-fluid proj-text-color-white proj-background-black" style="padding-top: 6em">
+        <br/><br/>
+        <div align="middle">
+            <img ng-src="https://image.tmdb.org/t/p/w300/{{model.details.poster_path}}" err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
+        </div>
+        <h3 align="center"><b>{{model.details.name}}</b></h3>
+        <p><b>Genre:</b>
+        <span ng-repeat="genre in model.details.genres">
+                    {{genre.name}},
+                </span>
+        </p>
+        <p><b>Seasons:</b>
+            <span>{{model.details.number_of_seasons}}</span>
+        </p>
+        <p><b>First Air Date:</b>
+            <span>{{model.details.first_air_date}}</span>
+        </p>
+        <p><b>Last Air Date:</b>
+            <span>{{model.details.last_air_date}}</span>
+        </p>
+        <b>Overview:</b>
+        <p>{{model.details.overview}}</p>
+
+        <p>
+            <b>Comments</b>
+            <ul class="list-group">
+                <li class="proj-background-black list-group-item" ng-repeat="c in model.comments">
+                    <div ng-if="c.userId===model.userId" class="proj-edit">
+                        <!--<a ng-href="#!/user/{{model.userId}}/edit-comment/{{comment._id}}" class="btn btn-danger">Edit</a>-->
+                        <a href="#!/user/{{model.userId}}/edit-comment/{{c._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                    <p><b>{{model.users[$index]}}:</b></p>
+                    <h5><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment}}
+                        <i class="fa fa-quote-right" aria-hidden="true"></i></em></h5>
+                </li>
+            </ul>
+        </p>
+    </div>
+    <!--</li>-->
+    <!--</ul>-->
+</div>

@@ -8,7 +8,6 @@
         var model = this;
         model.seriesId = $routeParams['seriesId'];
 
-
         SeriesService.getSearchDetailsById(model.seriesId)
             .then(successSearchDetails, failSearchDetails);
 

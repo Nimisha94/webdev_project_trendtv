@@ -7,7 +7,8 @@
 
         var api ={
             getCommentById : getCommentById,
-            updateComment : updateComment
+            updateComment : updateComment,
+            getCommentsBySeriesId : getCommentsBySeriesId
         };
 
         return api;
@@ -28,6 +29,15 @@
                .then(function (response) {
                    var comment = response.data;
                    return comment;
+               });
+       }
+
+       function getCommentsBySeriesId(seriesId) {
+           var url = '/api/project/comment/series/'+seriesId;
+           return $http.get(url)
+               .then(function (response) {
+                   var comments = response.data;
+                   return comments;
                });
        }
     }
