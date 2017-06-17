@@ -78,7 +78,7 @@
         function redirectUser(fId) {
             //userService.findUserById(fId)
             //    .then(renderUser, errorUser);
-            var url = '/user/'+model.userId+'/findUser/'+fId;
+            var url = '/user/'+model.userId+'/finduser/'+fId;
             $location.url(url);
         }
 
