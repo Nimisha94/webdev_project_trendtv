@@ -8,6 +8,7 @@
         var model=this;
         model.userId=$routeParams['userId'];
 
+
         userService.findUserById(model.userId)
             .then(renderUser);
 
@@ -19,9 +20,16 @@
         }
 
         function redirectToSearchResults(searchText) {
-            $location.url('/user/'+model.userId+'/search/'+searchText);
-        }
+            console.log(model.search);
+            if(model.search === 'user'){
+                $location.url('/user/' + model.userId + '/searchUser/' + searchText);
+            }
+            else {
+                $location.url('/user/' + model.userId + '/search/' + searchText);
+            }
 
     }
 
+
+    }
 })();

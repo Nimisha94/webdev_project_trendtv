@@ -20,6 +20,11 @@
                 controller: 'SearchController',
                 controllerAs: 'model'
             })
+            .when('/searchUser/:searchText', {
+                templateUrl: 'views/main/templates/user-search-users-results.view.client.html',
+                //controller: 'SearchUserController',
+                //controllerAs: 'model'
+            })
             .when('/search', {
                 templateUrl: 'views/main/templates/search.view.client.html',
                 controller: 'SearchPageController',

@@ -43,12 +43,12 @@
             <span class="input-group-btn">
                 <a id="searchbutton" class="btn btn-default" ng-click="model.redirectToSearchResults(searchText)" type="button"><i class="fa fa-search"></i></a>
             </span>
-            {{search}}
+
         </div><!-- /input-group -->
         <br>
-        <div class="row">
-            <label class="radio-inline"><input ng-model="search" ng-value="'tvseries'" type="radio" name="searchtype"><h4>TV Series</h4></label>
-            <label class="radio-inline"><input ng-model="search" ng-value="'user'" type="radio" name="searchtype"><h4>User</h4></label>
+        <div class="row" ng-init="model.search='tvseries'">
+            <label class="radio-inline"><input ng-model="model.search" ng-value="'tvseries'" type="radio" name="searchtype"><h4>TV Series</h4></label>
+            <label class="radio-inline"><input ng-model="model.search" ng-value="'user'" type="radio" name="searchtype"><h4>User</h4></label>
         </div>
     </div>
 </div>
