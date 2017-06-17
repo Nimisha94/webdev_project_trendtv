@@ -15,10 +15,26 @@ app.get('/api/project/user', findUser );
 app.post('/api/project/user', createUser);
 app.get('/api/project/user/:userId', findUserById );
 app.put('/api/project/user/:userId/wishlist/series/:seriesId', addToWishList);
+app.put('/api/project/user/:userId/comment/:commentId', addComment);
 app.put('/api/project/user/:userId/watchedlist/series/:seriesId', addToWatchedList);
 app.get('/api/project/user/:userId/wishlist', getWishListByUserId );
 app.get('/api/project/user/:userId/watchedlist', getWatchedListByUserId );
 app.delete('/api/project/user/:userId/following/:fId', deleteFollowingById);
+
+function addComment(req, res) {
+    var commentId=req.params.commentId;
+    var userId=req.params.userId;
+    for(var u in users)
+    {
+        if(users[u]._id===userId)
+        {
+            users[u].comments.push(commentId);
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
 
 function getWatchedListByUserId(req, res) {
     var userId=req.params.userId;

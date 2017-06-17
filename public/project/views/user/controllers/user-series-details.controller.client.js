@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('ViewSeriesController', ViewSeriesController);
 
-    function ViewSeriesController(userService, SeriesService, CommentsService, $routeParams, $location) {
+    function ViewSeriesController(userService, SeriesService, CommentsService, $routeParams, $location, $route) {
 
         var model = this;
         model.userId = $routeParams['userId'];
@@ -44,6 +44,20 @@
         model.addToWatchedList=addToWatchedList;
         model.addedToWishList=addedToWishList;
         model.addedToWatchedList=addedToWatchedList;
+        model.insertComment=insertComment;
+
+        function insertComment(comment) {
+            var c={
+                userId : model.userId,
+                seriesId : model.seriesId,
+                comment: comment
+            }
+            CommentsService.createComment(c)
+                .then(function (comment) {
+                    userService.addComment(model.userId,comment._id)
+                    $route.reload();
+                })
+        }
 
         function addedToWatchedList() {
             model.message="Already present in WatchedList";

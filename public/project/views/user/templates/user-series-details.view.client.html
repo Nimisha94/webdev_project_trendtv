@@ -87,49 +87,140 @@
                         <i class="fa fa-quote-right" aria-hidden="true"></i></em></h5>
                 </li>
             </ul>
+            <form>
+                <div class="form-group">
+                                <textarea class="form-control" rows="3" placeholder="Please enter the comment"
+                                          ng-model="comment"></textarea>
+                </div>
+                <a href="" class="btn btn-success"
+                   ng-click="model.insertComment(comment)"
+                   role="button">Submit</a>
+            </form>
         </p>
 
+<!--        <p>
+            <b>Comments</b>
+        </p>
 
         <div ng-repeat="c in model.comments">
-            <div class="panel-body">
-                <div ng-if="c.userId===model.userId">
-                    <form>
-                        <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="Please enter the comment"
-                                  ng-model="detailsControllerModel.editReview.description"></textarea>
-                        </div>
-                    </form>
-                </div>
+                <div class="panel-body">
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            {{model.users[$index]}}
+                        </h5>
+                        <p class="text-justify">
+                            {{c.comment}}
+                        </p>
+                    </div>
 
                 <div class="media">
-                    <div class="media-body">
-                        <h4 class="media-heading" ng-show="detailsControllerModel.user">
-                            <small>By
-                                <a ui-sref="profile.reviews({userId: review._user})">{{review.userFirstName}}</a>
-                                on
-                                {{review.timestamp | date : 'mediumDate'}}
-                            </small>
-                        </h4>
-                        <h4 class="media-heading" ng-show="!detailsControllerModel.user">
-                            <small>By
-                                <a href=""
-                                   data-toggle="tooltip"
-                                   data-placement="top"
-                                   title="Please login to view user profile!">
-                                    {{review.userFirstName}}
-                                </a>
-                                on
-                                {{review.timestamp | date : 'mediumDate'}}
-                            </small>
-                        </h4>
-                        <p class="text-justify">
-                            {{review.description}}
-                        </p>
+                    <div ng-if="c.userId===model.userId">
+                        <form>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" placeholder="Please enter the comment"
+                                          ng-model=""></textarea>
+                            </div>
+                            <a class="btn btn-success">Submit</a>
+                        </form>
+                    </div>
+                </div>
+        </div>
+
+        </div>-->
+
+        <!--<div>
+            <hr>
+            <div class="panel-heading">
+                <h4>Comments</h4>
+            </div>
+
+            <div ng-repeat="c in model.comments">
+                <div class="panel-body">
+                    <div ng-if="c.userId===model.userId">
+                        <form>
+                            <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Please enter the comment"
+                                  ng-model=""></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="media" ng-hide="c.userId===model.userId">
+                        <div class="media-body">
+                            <h4 class="media-heading" ng-show="model.user">
+                                <small>By
+                                    <a ui-sref="">{{c.username}}</a>
+                                </small>
+                            </h4>
+                            <h4 class="media-heading" ng-show="!model.user">
+                                <small>By
+                                    <a href=""
+                                       data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Please login to view user profile!">
+                                        {{c.username}}
+                                    </a>
+                                </small>
+                            </h4>
+                            <p class="text-justify">
+                                {{c.comment}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="btn-group-md pull-right">
+                        <a href="" class="btn btn-success" role="button"
+                           ng-if="c.userId===model.userId"
+                           ng-click="">&lt;!&ndash;model.updateReview(detailsControllerModel.editReview)&ndash;&gt;
+                            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                            Update
+                        </a>
+                        <a href="" class="btn btn-danger" role="button"
+                           ng-if="c.userId===model.userId"
+                           ng-click="">&lt;!&ndash;detailsControllerModel.cancelReview()&ndash;&gt;
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            Cancel
+                        </a>
+                    </div>
+
+                    <div class="btn-group-md pull-right">
+                        <a href="" class="btn btn-warning" role="button"
+                           ng-if="model.userId===c.userId"
+                           ng-click="">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            Edit
+                        </a>
+                        <a href="" class="btn btn-danger" role="button"
+                           ng-if="model.userId===c.userId"
+                           ng-click="">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            Delete
+                        </a>
                     </div>
                 </div>
 
+                <hr class="nomargin">
             </div>
-        </div>
+
+            <div class="panel-body">
+                <div class="well">
+                    <h4>Write a Comment:</h4>
+                    <form>
+                        <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Please enter the comment"
+                                  ng-model=""></textarea>
+                        </div>
+                        <a href="" class="btn btn-success" ng-show="model.userId"
+                           ng-click=""
+                           role="button">Submit</a>
+                        <a href="" class="btn btn-warning" ng-show="!model.userId" ng-disabled="!model.userId"
+                           role="button">Please login to review!</a>
+                    </form>
+                </div>
+            </div>
+        </div>-->
+
+
     </div>
     <!--</li>-->
     <!--</ul>-->
