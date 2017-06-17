@@ -75,8 +75,8 @@
                     $location.url="";
                 }, function () {
                     model.message="Oops! Something went wrong :("
-                })
-
+                });
+            $route.reload();
         }
 
         function addToWishList() {
@@ -88,7 +88,7 @@
                 }, function () {
                     model.message="Oops! Something went wrong :("
                 })
-
+            $route.reload();
         }
 
         function renderComments(comments) {

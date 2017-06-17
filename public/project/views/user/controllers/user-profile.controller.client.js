@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('UserProfileController', UserProfileController);
 
-    function UserProfileController(userService, SeriesService, $location, $routeParams) {
+    function UserProfileController(userService, SeriesService, $route, $routeParams) {
 
         var model = this;
 
@@ -11,6 +11,10 @@
         model.fId = $routeParams['fid'];
         model.wishlistshows=[];
         model.watchedlistshows=[];
+
+        //event handlers
+        model.unfollow=unfollow;
+        model.follow=follow;
 
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
@@ -47,6 +51,7 @@
         function renderUser(user) {
 
             model.user=user;
+            model.FollowingFlag=model.user.following.indexOf(model.fId);
         }
 
         function renderOtherUser(user) {
@@ -55,6 +60,26 @@
 
         function errorUser(user) {
             model.message="Oops! Something went wrong :("
+        }
+
+        function unfollow() {
+            userService.deleteFromFollower(model.fId,model.userId)
+                .then(function () {
+                    userService.deleteFollowingById(model.userId,model.fId)
+                        .then(function () {
+                            $route.reload();
+                        });
+                });
+        }
+
+        function follow() {
+            userService.addToFollower(model.fId, model.userId)
+                .then(function () {
+                    userService.addToFollowingById(model.userId,model.fId)
+                        .then(function () {
+                            $route.reload();
+                        });
+                });
         }
     }
 })();

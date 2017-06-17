@@ -43,6 +43,8 @@
             <img align="center" class="img-circle" ng-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
         </div>
         <h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.otheruser.username}}</h4>
+        <a ng-if="model.FollowingFlag!=-1" ng-click="model.unfollow()" class="btn btn-danger">Unfollow</a>
+        <a ng-if="model.FollowingFlag==-1" ng-click="model.follow()" class="btn btn-primary">Follow</a>
         <br>
         <div class="row">
             <div class="col-xs-6">
