@@ -46,8 +46,8 @@
                 controllerAs: 'model'
             })
             .when('/user/:userId/finduser/:fid', {
-                templateUrl: 'views/user/templates/profile.view.client.html',
-                controller: 'ProfileController',
+                templateUrl: 'views/user/templates/user-profile.view.client.html',
+                controller: 'UserProfileController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/following', {
