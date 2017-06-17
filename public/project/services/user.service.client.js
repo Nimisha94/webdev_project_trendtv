@@ -18,7 +18,7 @@
             deleteFollowingById : deleteFollowingById,
             addComment : addComment,
             deleteFromFollower : deleteFromFollower,
-            addToFollower : addToFollower
+            addToFollower : addToFollower,
         };
         return api;
 
@@ -138,7 +138,6 @@
                     return response.data;
                 })
         }
-
 
     }
 })();
