@@ -19,6 +19,8 @@
             addComment : addComment,
             deleteFromFollower : deleteFromFollower,
             addToFollower : addToFollower,
+            deleteWishlistById : deleteWishlistById,
+            deleteWatchlistById : deleteWatchlistById
         };
         return api;
 
@@ -139,5 +141,20 @@
                 })
         }
 
+        function deleteWishlistById(userId, seriesId) {
+            var url = '/api/project/user/'+userId+'/wishlist/'+seriesId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function deleteWatchlistById(userId, seriesId) {
+            var url = '/api/project/user/'+userId+'/watchlist/'+seriesId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
     }
 })();

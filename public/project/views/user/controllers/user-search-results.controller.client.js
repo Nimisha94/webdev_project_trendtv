@@ -22,8 +22,8 @@
 
         function getSeriesDetailsbyId(index) {
             //var seriesId =
-            console.log(index);
-            console.log(model.searchResults[index].id);
+            //console.log(index);
+            //console.log(model.searchResults[index].id);
             $location.url('/user/'+model.userId+'/series/'+model.searchResults[index].id);
         }
         function successSearch(searchResultsArr) {

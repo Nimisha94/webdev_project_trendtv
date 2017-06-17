@@ -92,8 +92,8 @@
             })
             .when('/user/:userId/wishList', {
                 templateUrl: 'views/user/templates/wishList.view.client.html',
-                //controller: 'WishListController',
-                //controllerAs: 'model'
+                controller: 'WishListController',
+                controllerAs: 'model'
             })
     }
 }) ();

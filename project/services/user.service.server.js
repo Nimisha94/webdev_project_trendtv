@@ -4,7 +4,7 @@ var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "",
         imageUrl:"", watchedList:['1668'], wishList: ['1425','1424', '1423'], followers: [], following: ['234'], comments:[] },
     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "",
-        imageUrl:"", watchedList:['1668','1399','1400'], wishList: [], followers: ['123','456','345'], following: ['456','345'], comments:["989","656"]},
+        imageUrl:"", watchedList:['1668','1399','1400'], wishList: ["1425","1668","1668","1668"], followers: ['123','456','345'], following: ['456','345'], comments:["989","656"]},
     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "",
         imageUrl:"", watchedList:[], wishList: [], followers: ['234'], following: ['234'], comments:[]},
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email: "",
@@ -23,6 +23,8 @@ app.put('/api/project/user/:userId/following/:fId', addToFollowingById);
 app.put('/api/project/user/:userId/comment/:commentId', addComment);
 app.delete('/api/project/user/:userId/follower/:followerId', deleteFromFollower);
 app.put('/api/project/user/:userId/follower/:followerId', addToFollower);
+app.delete('/api/project/user/:userId/wishlist/:wishlistId', deleteWishlistById);
+app.delete('/api/project/user/:userId/watchlist/:watchlistId', deleteWatchlistById);
 
 function getWatchedListByUserId(req, res) {
     var userId=req.params.userId;
@@ -223,6 +225,42 @@ function addToFollower(req, res) {
             users[u].followers.push(followerId);
             res.sendStatus(200);
             return;
+        }
+    }
+    res.sendStatus(404);
+}
+
+function deleteWishlistById(req, res) {
+    var userId=req.params.userId;
+    var wishListId=req.params.wishlistId;
+
+    for(var u in users){
+        if(users[u]._id===userId)
+        {
+            var index = users[u].wishList.indexOf(wishListId);
+            if(index > -1){
+                users[u].wishList.splice(index,1);
+                res.sendStatus(200);
+                return;
+        }
+    }
+}
+    res.sendStatus(404);
+}
+
+function deleteWatchlistById(req, res) {
+    var userId=req.params.userId;
+    var watchListId=req.params.watchlistId;
+
+    for(var u in users){
+        if(users[u]._id===userId)
+        {
+            var index = users[u].watchedList.indexOf(watchListId);
+            if(index > -1){
+                users[u].watchedList.splice(index,1);
+                res.sendStatus(200);
+                return;
+            }
         }
     }
     res.sendStatus(404);

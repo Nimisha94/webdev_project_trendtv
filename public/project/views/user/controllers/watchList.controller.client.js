@@ -3,11 +3,11 @@
         .module('TrendTv')
         .controller('WatchListController', WatchListController);
 
-    function WatchListController(userService,SeriesService, $location, $routeParams) {
+    function WatchListController(userService,SeriesService, $location, $routeParams,$route) {
 
         var model = this;
         var tmdbId = null;
-        model.searchText = $routeParams['searchText'];
+        //model.searchText = $routeParams['searchText'];
         model.userId = $routeParams['userId'];
         model.watchedlistshows =[];
 
@@ -33,10 +33,23 @@
         //event handlers
         model.searchSeries = searchSeries;
         model.getSeriesDetailsById=getSeriesDetailsById;
+        model.deleteWatchlistById = deleteWatchlistById;
+
+
+        function deleteWatchlistById(seriesId) {
+            userService.deleteWatchlistById(model.userId,seriesId)
+                .then(redirectUser, errorUser);
+        }
 
         function renderUser(user) {
 
             model.user=user;
+        }
+
+        function redirectUser(status) {
+            //var url = "/user/"+model.userId+"/wishList";
+            //$location.url(url);
+            $route.reload();
         }
 
         function errorUser(user) {
@@ -49,16 +62,8 @@
         }
 
 
-        function getSeriesDetailsById(watchListArr){
-            var resultsArr = [];
-            for(var i in watchListArr){
-                SeriesService.getSeriesDetailsById(watchListArr[i])
-                    .then(function (seriesDetail) {
-                        console.log(seriesDetail);
-                        resultsArr.push(seriesDetail);
-                    }, failSearch)
-                    .then(successSearch(resultsArr),failSearch());
-            }
+        function getSeriesDetailsById(index){
+            $location.url('/user/'+model.userId+'/series/'+model.watchedlistshows[index].id);
 
         }
 
