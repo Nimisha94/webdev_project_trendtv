@@ -1,15 +1,15 @@
 var app = require("../../express");
 
 var users = [
- {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "",
-     imageUrl:"", watchedList:[], wishList: [], followers: [], following: [], comments:[] },
- {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "",
-     imageUrl:"", watchedList:[], wishList: [], followers: [], following: [234,345], comments:["989","656"]},
- {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "",
-     imageUrl:"", watchedList:[], wishList: [], followers: [], following: [], comments:[]},
- {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email: "",
-     imageUrl:"", watchedList:[], wishList: [], followers: [], following: [], comments:[]}
- ];
+    {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "",
+        imageUrl:"", watchedList:[], wishList: [], followers: [], following: [], comments:[] },
+    {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "",
+        imageUrl:"", watchedList:[], wishList: [], followers: [], following: [234,345], comments:["989","656"]},
+    {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "",
+        imageUrl:"", watchedList:[], wishList: [], followers: [], following: [], comments:[]},
+    {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email: "",
+        imageUrl:"", watchedList:[], wishList: [], followers: [], following: [], comments:[]}
+];
 
 app.get('/api/project/user', findUser );
 app.post('/api/project/user', createUser);
@@ -20,6 +20,7 @@ app.put('/api/project/user/:userId/watchedlist/series/:seriesId', addToWatchedLi
 app.get('/api/project/user/:userId/wishlist', getWishListByUserId );
 app.get('/api/project/user/:userId/watchedlist', getWatchedListByUserId );
 app.delete('/api/project/user/:userId/following/:fId', deleteFollowingById);
+app.put('/api/project/user/:userId/following/:fId', addToFollowingById);
 
 function addComment(req, res) {
     var commentId=req.params.commentId;
@@ -97,14 +98,14 @@ function findUserById(req, res) {
     var userId = req.params['userId'];
     for (var u in users)
     {
-         if(users[u]._id === userId)
-         {
-             res.json(users[u]);
-             console.log(users[u]);
-             return;
-         }
-     }
-     res.json(null);
+        if(users[u]._id === userId)
+        {
+            res.json(users[u]);
+            console.log(users[u]);
+            return;
+        }
+    }
+    res.json(null);
 
 }
 
@@ -114,13 +115,13 @@ function findUserByUsername(req, res) {
 
     for(var u in users)
     {
-         if(users[u].username === username)
-         {
-             res.json(users[u]);
-             return;
-         }
-     }
-     res.json(null);
+        if(users[u].username === username)
+        {
+            res.json(users[u]);
+            return;
+        }
+    }
+    res.json(null);
 }
 
 function findUserByCredentials(req, res) {
@@ -129,15 +130,15 @@ function findUserByCredentials(req, res) {
 
     for(u in users)
     {
-         var found=null;
-         if(users[u].username === username && users[u].password === password)
-         {
-             res.json(users[u]);
-             return;
-         }
+        var found=null;
+        if(users[u].username === username && users[u].password === password)
+        {
+            res.json(users[u]);
+            return;
+        }
 
-     }
-     res.json(null);
+    }
+    res.json(null);
 
 }
 
@@ -166,15 +167,27 @@ function deleteFollowingById(req, res) {
     var fId = parseInt(req.params['fId']);
     for(var i =0; i<users.length;i++){
         if(users[i]._id === userId){
-                var index = users[i].following.indexOf(fId);
-                console.log(index);
-                if(index > -1){
-                    users[i].following.splice(index,1);
-                    res.sendStatus(200);
-                    return
-                }
+            var index = users[i].following.indexOf(fId);
+            console.log(index);
+            if(index > -1){
+                users[i].following.splice(index,1);
+                res.sendStatus(200);
+                return
+            }
         }
     }
     res.sendStatus(404);
 }
 
+function addToFollowingById(req, res) {
+    var userId = req.params['userId'];
+    var fId = req.params['fId'];
+    for(var i=0;i<users.length;i++){
+        if(users[i]._id===userId){
+            users[i].following.push(fId);
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
+}
