@@ -14,12 +14,9 @@
             addToWatchedList : addToWatchedList,
             getWishListByUserId :getWishListByUserId,
             getWatchedListByUserId : getWatchedListByUserId,
+            addToFollowingById : addToFollowingById,
             deleteFollowingById : deleteFollowingById,
-<<<<<<< HEAD
-            addToFollowingById : addToFollowingById
-=======
             addComment : addComment
->>>>>>> 2ba850748b9110f1a110c825900b12cc4315a646
         };
         return api;
 
