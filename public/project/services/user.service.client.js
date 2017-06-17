@@ -15,9 +15,22 @@
             getWishListByUserId :getWishListByUserId,
             getWatchedListByUserId : getWatchedListByUserId,
             deleteFollowingById : deleteFollowingById,
+<<<<<<< HEAD
             addToFollowingById : addToFollowingById
+=======
+            addComment : addComment
+>>>>>>> 2ba850748b9110f1a110c825900b12cc4315a646
         };
         return api;
+
+        function addComment(userId, commentId) {
+            var url = '/api/project/user/'+userId+'/comment/'+commentId;
+
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
 
         function getWatchedListByUserId(userId) {
             var url = '/api/project/user/'+userId+'/watchedlist';

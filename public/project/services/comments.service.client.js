@@ -8,10 +8,20 @@
         var api ={
             getCommentById : getCommentById,
             updateComment : updateComment,
-            getCommentsBySeriesId : getCommentsBySeriesId
+            getCommentsBySeriesId : getCommentsBySeriesId,
+            createComment:createComment
         };
 
         return api;
+
+       function createComment(comment) {
+           var url = '/api/project/comment';
+           return $http.post(url, comment)
+               .then(function (response) {
+                   var comment = response.data;
+                   return comment;
+               });
+       }
 
        function getCommentById(commentId) {
 

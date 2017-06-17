@@ -8,6 +8,14 @@ var comments = [
 app.get('/api/project/comment/:commentId', getCommentById);
 app.put('/api/project/comment/:commentId', updateComment);
 app.get('/api/project/comment/series/:seriesId', getCommentsBySeriesId);
+app.post('/api/project/comment', createComment);
+
+function createComment(req, res) {
+    var comment = req.body;
+    comment._id = (new Date().getTime())+"";
+    comments.push(comment);
+    res.json(comment);
+}
 
 function getCommentById(req, res) {
     var commentId=req.params.commentId;
