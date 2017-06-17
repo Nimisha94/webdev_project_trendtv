@@ -16,7 +16,9 @@
             getWatchedListByUserId : getWatchedListByUserId,
             addToFollowingById : addToFollowingById,
             deleteFollowingById : deleteFollowingById,
-            addComment : addComment
+            addComment : addComment,
+            deleteFromFollower : deleteFromFollower,
+            addToFollower : addToFollower
         };
         return api;
 
@@ -121,9 +123,21 @@
                 })
         }
 
+        function deleteFromFollower(userId, followerId) {
+            var url = '/api/project/user/'+userId+'/follower/'+followerId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
 
-
-
+        function addToFollower(userId, followerId) {
+            var url = '/api/project/user/'+userId+'/follower/'+followerId;
+            return $http.put(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
 
 
     }

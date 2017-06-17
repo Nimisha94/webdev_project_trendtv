@@ -18,9 +18,11 @@
 
             for(var i=0;i<model.user.following.length;i++){
                 if(model.user.following[i]===fid){
-
-                    userService.deleteFollowingById(model.userId,fid)
-                        .then(reRenderUser, errorUser);
+                    userService.deleteFromFollower(fid,model.userId)
+                        .then(function () {
+                            userService.deleteFollowingById(model.userId,fid)
+                                .then(reRenderUser, errorUser);
+                        })
                 }
             }
         }
