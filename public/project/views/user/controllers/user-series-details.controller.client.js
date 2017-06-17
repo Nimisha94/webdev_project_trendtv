@@ -10,6 +10,8 @@
         model.seriesId = $routeParams['seriesId'];
         model.comments=[];
         model.users=[];
+        model.wishlistflag=false;
+        model.watchedlistflag=false;
 
         userService.findUserById(model.userId)
             .then(renderUser);
@@ -71,24 +73,21 @@
             userService.addToWatchedList(model.userId, model.seriesId)
                 .then(function () {
                     model.message="Added to WatchedList";
-                    // to be redirected to watchedlist page
-                    $location.url="";
+                    $route.reload();
                 }, function () {
                     model.message="Oops! Something went wrong :("
                 });
-            $route.reload();
         }
 
         function addToWishList() {
             userService.addToWishList(model.userId, model.seriesId)
                 .then(function () {
                     model.message="Added to WishList";
-                    // to be redirected to wishlist page
-                    $location.url="";
+                    $route.reload();
                 }, function () {
                     model.message="Oops! Something went wrong :("
+
                 })
-            $route.reload();
         }
 
         function renderComments(comments) {
