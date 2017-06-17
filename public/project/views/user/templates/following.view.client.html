@@ -54,13 +54,13 @@
                                 </div>
 
                                 <div class="col-lg-6"  align="left">
-                                    <a ng-click="model.redirectUser(f._id)" ><h3>{{f.firstName }} {{f.lastName}}</h3></a>
-                                    <a ng-click="model.unfollow(f._id)" class="btn btn-default" >Unfollow</a>
-                                    <h4 class="proj-text-color-white">Following : {{f.followingCount}}</h4>
-                                    <h4 class="proj-text-color-white">Followers : {{f.followerCount}}</h4>
 
+                                    <a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                                    <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
+                                    <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
 
-                                </div>
+                                    <a ng-click="model.unfollow(f._id)" class="btn btn-primary" >Unfollow</a>
+                            </div>
 
                         </div>
                     </div>

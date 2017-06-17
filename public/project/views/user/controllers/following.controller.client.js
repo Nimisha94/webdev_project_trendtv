@@ -17,7 +17,7 @@
             var index = model.user.following.indexOf(fid);
 
             for(var i=0;i<model.user.following.length;i++){
-                if(model.user.following[i]===parseInt(fid)){
+                if(model.user.following[i]===fid){
 
                     userService.deleteFollowingById(model.userId,fid)
                         .then(reRenderUser, errorUser);
