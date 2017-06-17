@@ -2,9 +2,9 @@ var app = require("../../express");
 
 var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "",
-        imageUrl:"", watchedList:[], wishList: [], followers: [], following: ['234'], comments:[] },
+        imageUrl:"", watchedList:[1668], wishList: [], followers: [], following: ['234'], comments:[] },
     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "",
-        imageUrl:"", watchedList:[], wishList: [], followers: ['123','456','345'], following: ['456','345'], comments:["989","656"]},
+        imageUrl:"", watchedList:[1668,1668,1668,1668], wishList: [], followers: ['123','456','345'], following: ['456','345'], comments:["989","656"]},
     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "",
         imageUrl:"", watchedList:[], wishList: [], followers: ['234'], following: ['234'], comments:[]},
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email: "",

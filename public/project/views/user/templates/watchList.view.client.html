@@ -40,14 +40,14 @@
     <div class="container-fluid proj-background-black" >
         <br/><br/>
         <div class="row">
-            <div ng-repeat="result in model.searchResults">
+            <div ng-repeat="result in model.watchedlistshows">
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail proj-background-black">
                         <div class="row">
                             <a ng-click="model.getSeriesDetailsbyId($index)">
                                 <div class="col-lg-6" align="center">
                                     <img class="img-responsive"
-                                         ng-src="https://image.tmdb.org/t/p/w185/{{result.posterPath}}"
+                                         ng-src="https://image.tmdb.org/t/p/w150/{{result.poster_path}}"
                                          err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
                                 </div>
                                 <div class="col-lg-6" align="left">
@@ -57,7 +57,7 @@
                                 </div>
                             </a>
                             <div class="caption">
-                                <h5 class="proj-text-color-white">{{result.description | limitTo:100}}{{result.description.length > 100 ? "..." :
+                                <h5 class="proj-text-color-white">{{result.overview | limitTo:100}}{{result.overview.length > 100 ? "..." :
                                     ""}}</h5>
                             </div>
 

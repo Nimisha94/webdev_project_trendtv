@@ -85,5 +85,15 @@
                 controller: 'UserSearchResultsController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/watchList', {
+                templateUrl: 'views/user/templates/watchList.view.client.html',
+                controller: 'WatchListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/wishList', {
+                templateUrl: 'views/user/templates/wishList.view.client.html',
+                //controller: 'WishListController',
+                //controllerAs: 'model'
+            })
     }
 }) ();

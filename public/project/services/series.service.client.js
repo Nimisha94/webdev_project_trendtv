@@ -9,8 +9,9 @@
             searchSeries: searchSeries,
             getSearchDetailsById:getSearchDetailsById,
             getTrendingSeriesIds : getTrendingSeriesIds,
-            getTrendingImages : getTrendingImages
+            getTrendingImages : getTrendingImages,
             //getTracktIdbySeriesName: getTracktIdbySeriesName
+            getSeriesDetailsById :getSeriesDetailsById
         };
 
         return api;
@@ -77,6 +78,13 @@
                 })*/
         }
 
+        function getSeriesDetailsById(tmdbId) {
+            var url = "https://api.themoviedb.org/3/tv/"+tmdbId+"?api_key=5a57d87cef01b95a12c3ca8862bf24f7&language=en-US";
+            console.log('jj');
+            return $http.get(url)
+                .then(renderSearch);
+        }
+
         function getSeriesbyName(searchText) {
 
             /*var url = 'https://api.trakt.tv/search/show?query='+searchText;
@@ -92,9 +100,10 @@
         function renderSearch(response) {
 
             var searchObj = response.data;
+            console.log(searchObj);
             var results = [];
             var resultsLength = searchObj.results.length;
-            console.log(searchObj);
+
             for(var i=0; i<resultsLength; i++)
             {
                 var obj = {
@@ -107,7 +116,6 @@
                 results.push(obj);
             }
             console.log(results);
-            console.log('hi'+results);
             return results;
         }
 
