@@ -1,0 +1,78 @@
+<div class="topbar animated fadeInLeftBig"></div>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Logo Starts -->
+                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
+                    <!-- #Logo Ends -->
+                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
+
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+                <!-- Nav Starts -->
+                <div class="navbar-collapse  collapse">
+
+                    <ul class="nav navbar-nav navbar-right scroll">
+                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" ng-href="#!/home/user/{{model.userId}}">Trending</a></li>
+                        <li class="active"><a ng-href="#!/user/{{model.userId}}">Profile</a></li>
+                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.user.username}}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix grid">
+
+    <div id="works" class="container-fluid proj-background-black no-scroll-div">
+        <h2 class="proj-text-color-white"><strong>Posts</strong></h2>
+        <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+        <form>
+            <div class="form-group">
+                <input ng-model="title" class="form-control" placeholder="First Post">
+                <br>
+                <textarea class="form-control" rows="3" placeholder="Please enter the post"
+                          ng-model="post"></textarea>
+            </div>
+            <a href="" class="btn btn-success"
+               ng-click="model.createPost(title, post)"
+               role="button">Post!</a>
+        </form>
+
+        <ul class="list-group">
+            <br>
+            <li class="proj-text-color-white proj-background-black list-group-item" ng-repeat="post in model.posts">
+                <div class="proj-edit">
+                    <a ng-click="model.showLikes(post._id)"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a>
+                    <a ng-click="model.showDislikes(post._id)"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a>
+                    <a href="#!/user/{{model.userId}}/edit-post/{{post._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                </div>
+                <h2>{{post.title}}</h2>
+                <h4><em>{{post.body}}</em></h4>
+            </li>
+            <br>
+        </ul>
+        <!--<div style="background-color: white; color: black" ng-repeat="post in model.posts">
+            <div class="proj-edit">
+                <a href="#!/user/{{model.userId}}/edit-post/{{post._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+            </div>
+            <h2>{{post.title}}</h2>
+            <h4><em>{{post.body}}</em></h4>
+        </div>-->
+    </div>
+
+</div>

@@ -47,7 +47,7 @@
         <div class="col-lg-2">
             <br><br>
             <a ng-click="model.showUsers()" class="btn btn-block btn-primary">Users</a>
-            <a class="btn btn-block btn-primary">Actors</a>
+            <a ng-click="model.showPosts()" class="btn btn-block btn-primary">Posts</a>
             <a ng-click="model.showComments()" class="btn btn-block btn-primary">Comments</a>
 
         </div>
@@ -63,6 +63,7 @@
                             <th>Username</th>
                             <th class="hidden-xs hidden-sm ">Email</th>
                             <th class="hidden-xs hidden-sm ">Password</th>
+                            <th class="hidden-xs hidden-sm ">Role</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -73,6 +74,7 @@
                             <td class="hidden-xs hidden-sm "><input  ng-model="model.user.username"placeholder="Username"></td>
                             <td class="hidden-xs hidden-sm "><input ng-model="model.user.email" placeholder="Email"></td>
                             <td class="hidden-xs hidden-sm "><input type="password" ng-model="model.user.password" placeholder="Password"></td>
+                            <td class="hidden-xs hidden-sm "><input ng-model="model.user.role" placeholder="Role(user, actor)"></td>
                             <td class="hidden-xs hidden-sm "><a ng-click="model.updateUser()"><i ng-if="model.flag" class="fa fa-check" aria-hidden="true"></i></a></td>
                             <td class="hidden-xs hidden-sm "><a ng-click="model.createUser()"><i ng-if="!model.flag" class="fa fa-plus" aria-hidden="true"></i></a></td>
                             <td></td>
@@ -83,6 +85,7 @@
                             <td>{{user.username}}</td>
                             <td class="hidden-xs hidden-sm ">{{user.email}}</td>
                             <td class="hidden-xs hidden-sm ">&nbsp;</td>
+                            <td class="hidden-xs hidden-sm ">{{user.role}}</td>
                             <td class="hidden-xs hidden-sm "><a ng-click="model.getUser(user._id)"><i class="fa fa-cog" aria-hidden="true"></i></a></td>
                             <td><a ng-click="model.deleteUser(user._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                         </tr>
@@ -123,6 +126,36 @@
             </table>
         </div>
 
+        <!--Manage Posts-->
+        <div ng-if="model.postsflag" class="col-lg-10"><br>
+            <h4><b>Posts</b></h4>
+            <table style="color:black" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Actor name</th>
+                    <th class="hidden-xs hidden-sm ">Post Title</th>
+                    <th class="hidden-xs hidden-sm ">Post</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="hidden-xs hidden-sm ">
+                    <td class="hidden-xs hidden-sm "><input readonly ng-model="model.actorname" placeholder="Actor name"></td>
+                    <td class="hidden-xs hidden-sm "><input readonly ng-model="model.ptitle" placeholder="Post Title"></td>
+                    <td class="hidden-xs hidden-sm "><input  ng-model="model.postText"placeholder="Post"></td>
+                    <td class="hidden-xs hidden-sm "><a ng-click="model.updatePost()"><i ng-if="model.pflag" class="fa fa-check" aria-hidden="true"></i></a></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="post in model.posts">
+                    <td>{{model.postactorsArr[$index]}}</td>
+                    <td>{{post.title}}</td>
+                    <td class="hidden-xs hidden-sm ">{{post.body}}</td>
+                    <td class="hidden-xs hidden-sm "><a ng-click="model.getPost(post, model.postactorsArr[$index], post.title, post.body)"><i class="fa fa-cog" aria-hidden="true"></i></a></td>
+                    <td><a ng-click="model.deletePost(post._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>

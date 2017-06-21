@@ -110,5 +110,20 @@
                 controller: 'AdminController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/posts',{
+                templateUrl: 'views/user/templates/posts.view.client.html',
+                controller: 'PostsController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/edit-post/:postId', {
+                templateUrl: 'views/user/templates/post-edit.view.client.html',
+                controller: 'EditPostController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/activityfeed',{
+                templateUrl: 'views/user/templates/user-activityfeed.view.client.html',
+                controller: 'ActivityFeedController',
+                controllerAs: 'model'
+            })
     }
 }) ();

@@ -3,15 +3,17 @@
         .module('TrendTv')
         .controller('AdminController', AdminController);
 
-    function AdminController(userService, CommentsService, SeriesService, $route) {
+    function AdminController(userService, CommentsService, SeriesService, PostsService, $route) {
 
         var model=this;
         model.flag=false;
         model.cflag=false;
         model.usersflag=true;
         model.commentsflag=false;
+        model.postsflag=false;
         model.commentusersArr=[];
         model.commentseriesArr=[];
+        model.postactorsArr=[];
 
         model.username='admin';
 
@@ -45,6 +47,22 @@
                 }, function (err) {
                     model.err = 'Error fetching all the comments';
                 });
+
+            PostsService.findAllPosts()
+                .then(function (posts) {
+                    model.posts = posts;
+                    for(var c in posts)
+                    {
+                        userService.findUserById(posts[c].actorId)
+                            .then(function (user) {
+                                model.postactorsArr.push(user.username);
+                            }, function (err) {
+                                model.err = 'Error!!';
+                            });
+                    }
+                }, function (err) {
+                    model.err = 'Error fetching all the comments';
+                });
         }
 
         init();
@@ -55,13 +73,29 @@
         model.updateUser = updateUser;
         model.createUser = createUser;
         model.showUsers = showUsers;
+
         model.showComments = showComments;
         model.getComment = getComment;
         model.updateComment = updateComment;
         model.deleteComment = deleteComment;
 
+        model.showPosts = showPosts;
+        model.getPost = getPost;
+        model.updatePost = updatePost;
+        model.deletePost = deletePost;
+
         function deleteComment(commentId) {
             CommentsService.deleteComment(commentId)
+                .then(function (status) {
+                    init();
+                    // $route.reload();
+                }, function (err) {
+                    model.err = 'Error deleting comment';
+                });
+        }
+
+        function deletePost(postId) {
+            PostsService.deletePost(postId)
                 .then(function (status) {
                     init();
                     // $route.reload();
@@ -80,6 +114,24 @@
             };
             CommentsService.updateComment(c)
                 .then(function (status) {
+                    //init();
+                    $route.reload();
+                }, function (err) {
+                    model.err = 'Error updating comment';
+                })
+        }
+
+        function updatePost() {
+            var c = {
+                _id: model.post._id,
+                actorId : model.post.actorId,
+                actorName : model.actorname,
+                title: model.ptitle,
+                body: model.postText
+            };
+            PostsService.updatePost(c)
+                .then(function (status) {
+                    //init();
                     $route.reload();
                 }, function (err) {
                     model.err = 'Error updating comment';
@@ -94,14 +146,31 @@
             model.commentText=commentText;
         }
 
+        function getPost(post, actorname, title, body) {
+            model.pflag = true;
+            model.post = post;
+            model.actorname=actorname;
+            model.ptitle=title;
+            model.postText=body;
+        }
+
+
         function showUsers() {
             model.usersflag=true;
             model.commentsflag=false;
+            model.postsflag=false;
         }
 
         function showComments() {
             model.commentsflag = true;
             model.usersflag = false;
+            model.postsflag=false;
+        }
+
+        function showPosts() {
+            model.postsflag = true;
+            model.usersflag = false;
+            model.commentsflag=false;
         }
 
         function deleteUser(userId) {

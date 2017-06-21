@@ -1,0 +1,62 @@
+<div class="topbar animated fadeInLeftBig"></div>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Logo Starts -->
+                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
+                    <!-- #Logo Ends -->
+                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
+
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+                <!-- Nav Starts -->
+                <div class="navbar-collapse  collapse">
+
+                    <ul class="nav navbar-nav navbar-right scroll">
+                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" ng-href="#!/home/user/{{model.userId}}">Trending</a></li>
+                        <li class="active"><a ng-href="#!/user/{{model.userId}}">Profile</a></li>
+                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.user.username}}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="login-view container-fluid">
+
+    <div class="proj-text-color-white logindiv container">
+        <br>
+        <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+
+        <label for="name">Post Title</label>
+        <input class="form-control"
+               ng-model="model.post.title"
+               placeholder="Friends"
+               id="name"/>
+
+        <br>
+        <label for="text">Post</label>
+        <textarea rows="5" class="form-control"
+                  ng-model="model.post.body"
+                  placeholder="Good"
+                  id="text"></textarea>
+        <br>
+        <a ng-click="model.updatePost()" class="btn btn-block btn-success">Submit</a>
+        <a ng-href="#!/user/{{model.userId}}/posts" class="btn btn-block btn-danger">Cancel</a>
+    </div>
+
+</div>

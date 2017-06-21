@@ -45,7 +45,7 @@
         <div align="center" class="row">
             <img align="center" class="img-circle" ng-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
         </div>
-        <a ng-href="#!/user/{{model.userId}}/profile-edit"><h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.user.username}}</h4></a>
+        <a ng-href="#!/user/{{model.userId}}/profile-edit"><h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.user.username}}    <i class="fa fa-pencil " aria-hidden="true"></i></h4></a>
         <br>
         <div class="row">
             <div align="right" class="col-xs-5">
@@ -85,6 +85,22 @@
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
                 <a ng-href="#!/user/{{model.userId}}/following"><h4>Following</h4></a>
+            </div>
+        </div>
+        <div ng-if="!(model.user.role==='actor')" class="row">
+            <div align="right" class="col-xs-5">
+                <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
+            </div>
+            <div align="left" style="padding-top: 20px" class="col-xs-7">
+                <a ng-href="#!/user/{{model.userId}}/activityfeed"><h4>Activity Feed</h4></a>
+            </div>
+        </div>
+        <div ng-if="model.user.role==='actor'" class="row">
+            <div align="right" class="col-xs-5">
+                <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
+            </div>
+            <div align="left" style="padding-top: 20px" class="col-xs-7">
+                <a ng-href="#!/user/{{model.userId}}/posts"><h4>Posts</h4></a>
             </div>
         </div>
         <br>
