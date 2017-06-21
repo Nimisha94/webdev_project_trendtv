@@ -1,0 +1,128 @@
+
+<div class="topbar animated fadeInLeftBig"></div>
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Logo Starts -->
+                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
+                    <!-- #Logo Ends -->
+                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
+
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+
+                <!-- Nav Starts -->
+                <div class="navbar-collapse  collapse">
+
+                    <ul class="nav navbar-nav navbar-right scroll">
+                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li class="active"><a ng-href="#!/">Admin Dashboard</a></li>
+                        <li><a class="navbarhover" ng-href="#!/user/{{model.userId}}/profile-edit">Profile</a></li>
+                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.username}}</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="login-view container-fluid">
+
+
+    <div class="admindiv container">
+
+        <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+
+        <div class="col-lg-2">
+            <br><br>
+            <a ng-click="model.showUsers()" class="btn btn-block btn-primary">Users</a>
+            <a class="btn btn-block btn-primary">Actors</a>
+            <a ng-click="model.showComments()" class="btn btn-block btn-primary">Comments</a>
+
+        </div>
+
+        <!--Manage Users-->
+        <div ng-if="model.usersflag" class="col-lg-10"><br>
+            <h4><b>Users</b></h4>
+                <table style="color:black" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="hidden-xs hidden-sm ">First Name</th>
+                            <th class="hidden-xs hidden-sm ">Last Name</th>
+                            <th>Username</th>
+                            <th class="hidden-xs hidden-sm ">Email</th>
+                            <th class="hidden-xs hidden-sm ">Password</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="hidden-xs hidden-sm ">
+                            <td class="hidden-xs hidden-sm "><input ng-model="model.user.firstName" placeholder="First Name"></td>
+                            <td class="hidden-xs hidden-sm "><input ng-model="model.user.lastName" placeholder="Last Name"></td>
+                            <td class="hidden-xs hidden-sm "><input  ng-model="model.user.username"placeholder="Username"></td>
+                            <td class="hidden-xs hidden-sm "><input ng-model="model.user.email" placeholder="Email"></td>
+                            <td class="hidden-xs hidden-sm "><input type="password" ng-model="model.user.password" placeholder="Password"></td>
+                            <td class="hidden-xs hidden-sm "><a ng-click="model.updateUser()"><i ng-if="model.flag" class="fa fa-check" aria-hidden="true"></i></a></td>
+                            <td class="hidden-xs hidden-sm "><a ng-click="model.createUser()"><i ng-if="!model.flag" class="fa fa-plus" aria-hidden="true"></i></a></td>
+                            <td></td>
+                        </tr>
+                        <tr ng-repeat="user in model.users">
+                            <td class="hidden-xs hidden-sm ">{{user.firstName}}</td>
+                            <td class="hidden-xs hidden-sm ">{{user.lastName}}</td>
+                            <td>{{user.username}}</td>
+                            <td class="hidden-xs hidden-sm ">{{user.email}}</td>
+                            <td class="hidden-xs hidden-sm ">&nbsp;</td>
+                            <td class="hidden-xs hidden-sm "><a ng-click="model.getUser(user._id)"><i class="fa fa-cog" aria-hidden="true"></i></a></td>
+                            <td><a ng-click="model.deleteUser(user._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+        </div>
+
+        <!--Manage Comments-->
+        <div ng-if="model.commentsflag" class="col-lg-10"><br>
+            <h4><b>Comments</b></h4>
+            <table style="color:black" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th class="hidden-xs hidden-sm ">Series Name</th>
+                    <th class="hidden-xs hidden-sm ">Comment</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="hidden-xs hidden-sm ">
+                    <td class="hidden-xs hidden-sm "><input readonly ng-model="model.cusername" placeholder="Username"></td>
+                    <td class="hidden-xs hidden-sm "><input readonly ng-model="model.seriesname" placeholder="Series name"></td>
+                    <td class="hidden-xs hidden-sm "><input  ng-model="model.commentText"placeholder="Comment"></td>
+                    <td class="hidden-xs hidden-sm "><a ng-click="model.updateComment()"><i ng-if="model.cflag" class="fa fa-check" aria-hidden="true"></i></a></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="comment in model.comments">
+                    <td>{{model.commentusersArr[$index]}}</td>
+                    <td class="hidden-xs hidden-sm ">{{model.commentseriesArr[$index]}}</td>
+                    <td class="hidden-xs hidden-sm ">{{comment.comment}}</td>
+                    <td class="hidden-xs hidden-sm "><a ng-click="model.getComment(comment, model.commentusersArr[$index], model.commentseriesArr[$index], comment.comment)"><i class="fa fa-cog" aria-hidden="true"></i></a></td>
+                    <td><a ng-click="model.deleteComment(comment._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

@@ -17,8 +17,14 @@
                 if (user === null) {
                     model.message = 'Invalid Credentials'
                 }
-                else {
-                    $location.url('/home/user/' + user._id)
+                else if(user.role === 'user') {
+                    $location.url('/home/user/' + user._id);
+                }
+                else if(user.role === 'admin') {
+                    $location.url('/admin');
+                }
+                else if(user.role === 'actor'){
+                    $location.url('/home/user/' + user._id);
                 }
 
 

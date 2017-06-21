@@ -20,7 +20,11 @@
             deleteFromFollower : deleteFromFollower,
             addToFollower : addToFollower,
             deleteWishlistById : deleteWishlistById,
-            deleteWatchlistById : deleteWatchlistById
+            deleteWatchlistById : deleteWatchlistById,
+            findUsersByText :findUsersByText,
+            updateUser: updateUser,
+            findAllUsers: findAllUsers,
+            deleteUser: deleteUser
         };
         return api;
 
@@ -155,6 +159,38 @@
                 .then(function (response) {
                     return response.data;
                 })
+        }
+        
+        function findUsersByText(searchText) {
+            var url = '/api/project/user/search/'+searchText;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
+        function updateUser(user) {
+            var url = '/api/project/user/'+user._id;
+            return $http.put(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllUsers() {
+            var url = '/api/project/users';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function deleteUser(userId) {
+            var url = '/api/project/user/'+userId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

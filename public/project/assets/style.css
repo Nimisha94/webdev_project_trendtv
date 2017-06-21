@@ -74,6 +74,17 @@ outline: none !important;
 	background-color: black;
 }
 
+.admindiv
+{
+	margin-top:100px;
+	margin-bottom:100px;
+	min-height:500px;
+	/*max-width: 1000px;*/
+	/*background-image: url("http://faceitformobile.com/wp-content/uploads/2014/06/Face-It-black.jpg");*/
+	background-color: white;
+	overflow: auto;
+}
+
 .usernamelabel
 {
 	margin-top: 10px;
@@ -316,4 +327,12 @@ html,body {
 {
 	color:whitesmoke;
 }
-
+.tabsdemoDynamicHeight md-content {
+	background-color: transparent !important; }
+.tabsdemoDynamicHeight md-content md-tabs {
+	background: #f6f6f6;
+	border: 1px solid #e1e1e1; }
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+	background: white; }
+.tabsdemoDynamicHeight md-content h1:first-child {
+	margin-top: 0; }

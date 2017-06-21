@@ -58,7 +58,7 @@
                                 <a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
                                 <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
                                 <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
-                                <a ng-if="model.user.following.indexOf(f._id)>-1" ng-click="model.unfollow(f._id)" class="btn btn-primary" >Unfollow</a>
+                                <a ng-if="model.user.following.indexOf(f._id)>-1" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
                                 <a ng-if="!(model.user.following.indexOf(f._id)>-1)" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>
                             </div>
 

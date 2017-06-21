@@ -9,8 +9,8 @@
         model.unfollow = unfollow;
         model.follow = follow;
         model.redirectUser = redirectUser;
-
         model.userId = $routeParams['userId'];
+
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
 

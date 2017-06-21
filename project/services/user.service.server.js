@@ -1,19 +1,21 @@
 var app = require("../../express");
+var userModel=require("../model/user/user.model.server");
 
-var users = [
+/*var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "",
         imageUrl:"", watchedList:['1668'], wishList: ['1425','1424', '1423'], followers: [], following: ['234'], comments:[] },
-    {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "",
+    {_id: "234", username: "bob", password: "bob", firstName: "Bobli", lastName: "Marley", email: "",
         imageUrl:"", watchedList:['1668','1399','1400'], wishList: ["1425","1668","1668","1668"], followers: ['123','456','345'], following: ['456','345'], comments:["989","656"]},
     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "",
         imageUrl:"", watchedList:[], wishList: [], followers: ['234'], following: ['234'], comments:[]},
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi", email: "",
         imageUrl:"", watchedList:[], wishList: [], followers: ['234'], following: ['234'], comments:[]}
-];
+];*/
 
 app.get('/api/project/user', findUser );
 app.post('/api/project/user', createUser);
 app.get('/api/project/user/:userId', findUserById );
+app.put('/api/project/user/:userId', updateUser);
 app.put('/api/project/user/:userId/wishlist/series/:seriesId', addToWishList);
 app.put('/api/project/user/:userId/watchedlist/series/:seriesId', addToWatchedList);
 app.get('/api/project/user/:userId/wishlist', getWishListByUserId );
@@ -25,10 +27,49 @@ app.delete('/api/project/user/:userId/follower/:followerId', deleteFromFollower)
 app.put('/api/project/user/:userId/follower/:followerId', addToFollower);
 app.delete('/api/project/user/:userId/wishlist/:wishlistId', deleteWishlistById);
 app.delete('/api/project/user/:userId/watchlist/:watchlistId', deleteWatchlistById);
+app.get('/api/project/user/search/:searchText', findUsersByText);
+app.get('/api/project/users', findAllUsers);
+app.delete('/api/project/user/:userId', deleteUser);
+
+function deleteUser(req, res) {
+    var userId = req.params['userId'];
+    userModel.deleteUser(userId)
+        .then(function (st) {
+            res.sendStatus(200);
+        }, function (err) {
+            res.sendStatus(404);
+        });
+}
+
+function findAllUsers(req, res) {
+    userModel.findAllUsers()
+        .then(function (users) {
+            res.json(users);
+        }, function (err) {
+            res.json([]);
+        });
+}
+
+function updateUser(req, res) {
+    var userId=req.params.userId;
+    var user=req.body;
+    userModel.updateUser(userId, user)
+        .then(function (status) {
+            res.sendStatus(200);
+        }, function (err) {
+            res.sendStatus(404);
+        });
+}
 
 function getWatchedListByUserId(req, res) {
     var userId=req.params.userId;
-    for(var u in users)
+    userModel.getWatchedListByUserId(userId)
+        .then(function (watchedList) {
+            res.json(watchedList);
+        }, function (err) {
+            res.json(null);
+        })
+    /*for(var u in users)
     {
         if(users[u]._id===userId)
         {
@@ -36,12 +77,18 @@ function getWatchedListByUserId(req, res) {
             return;
         }
     }
-    res.json(null);
+    res.json(null);*/
 }
 
 function getWishListByUserId(req, res) {
     var userId=req.params.userId;
-    for(var u in users)
+    userModel.getWishListByUserId(userId)
+        .then(function (wishList) {
+            res.json(wishList);
+        }, function (err) {
+            res.json(null);
+        });
+    /*for(var u in users)
     {
         if(users[u]._id===userId)
         {
@@ -49,13 +96,19 @@ function getWishListByUserId(req, res) {
             return;
         }
     }
-    res.json(null);
+    res.json(null);*/
 }
 
 function addToWatchedList(req, res) {
     var userId=req.params.userId;
     var seriesId=req.params.seriesId;
-    for(var u in users)
+    userModel.addToWatchedList(userId,seriesId)
+        .then(function (status) {
+            res.sendStatus(200);
+        }, function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var u in users)
     {
         if(users[u]._id===userId)
         {
@@ -64,13 +117,19 @@ function addToWatchedList(req, res) {
             return;
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function addToWishList(req, res) {
     var userId=req.params.userId;
     var seriesId=req.params.seriesId;
-    for(var u in users)
+    userModel.addToWishList(userId,seriesId)
+        .then(function (status) {
+            res.sendStatus(200);
+        }, function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var u in users)
     {
         if(users[u]._id===userId)
         {
@@ -79,13 +138,19 @@ function addToWishList(req, res) {
             return;
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function findUserById(req, res) {
 
     var userId = req.params['userId'];
-    for (var u in users)
+    userModel.findUserById(userId)
+        .then(function (user) {
+            res.json(user);
+        }, function (err) {
+            res.json(null);
+        });
+    /*for (var u in users)
     {
         if(users[u]._id === userId)
         {
@@ -95,14 +160,19 @@ function findUserById(req, res) {
         }
     }
     res.json(null);
-
+*/
 }
 
 function findUserByUsername(req, res) {
 
     var username = req.query.username;
-
-    for(var u in users)
+    userModel.findUserByUsername(username)
+        .then(function (user) {
+            res.json(user);
+        },function (err) {
+            res.json(null);
+        });
+    /*for(var u in users)
     {
         if(users[u].username === username)
         {
@@ -110,14 +180,19 @@ function findUserByUsername(req, res) {
             return;
         }
     }
-    res.json(null);
+    res.json(null);*/
 }
 
 function findUserByCredentials(req, res) {
     var username = req.query.username;
     var password = req.query.password;
-
-    for(u in users)
+    userModel.findUserByCredentials(username,password)
+        .then(function (user) {
+            res.json(user);
+        },function (err) {
+            res.json(null);
+        });
+    /*for(u in users)
     {
         var found=null;
         if(users[u].username === username && users[u].password === password)
@@ -127,7 +202,7 @@ function findUserByCredentials(req, res) {
         }
 
     }
-    res.json(null);
+    res.json(null);*/
 
 }
 
@@ -145,16 +220,29 @@ function findUser(req, res) {
 
 function createUser(req, res) {
     var user = req.body;
-    user._id = (new Date().getTime())+"";
+    userModel.createUser(user)
+        .then(function (user) {
+            res.json(user);
+        }, function (err) {
+            res.send(err);
+        });
+    
+    /*user._id = (new Date().getTime())+"";
     users.push(user);
-    res.json(user);
+    res.json(user);*/
 }
 
 function deleteFollowingById(req, res) {
 
     var userId = req.params['userId'];
     var fId = req.params['fId'];
-    for(var i =0; i<users.length;i++){
+    userModel.deleteFollowingById(userId,fId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var i =0; i<users.length;i++){
         if(users[i]._id === userId){
             var index = users[i].following.indexOf(fId);
             console.log(index);
@@ -165,26 +253,38 @@ function deleteFollowingById(req, res) {
             }
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function addToFollowingById(req, res) {
     var userId = req.params['userId'];
     var fId = req.params['fId'];
-    for(var i=0;i<users.length;i++){
+    userModel.addToFollowingById(userId,fId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var i=0;i<users.length;i++){
         if(users[i]._id===userId){
             users[i].following.push(fId);
             res.sendStatus(200);
             return;
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function addComment(req, res) {
     var commentId=req.params.commentId;
     var userId=req.params.userId;
-    for(var u in users)
+    userModel.addComment(userId,commentId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var u in users)
     {
         if(users[u]._id===userId)
         {
@@ -193,13 +293,19 @@ function addComment(req, res) {
             return;
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function deleteFromFollower(req, res) {
     var userId=req.params.userId;
     var followerId=req.params.followerId;
-    for(var u in users)
+    userModel.deleteFromFollower(userId,followerId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var u in users)
     {
         if(users[u]._id===userId)
         {
@@ -212,13 +318,19 @@ function deleteFromFollower(req, res) {
             }
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function addToFollower(req, res) {
     var userId=req.params.userId;
     var followerId=req.params.followerId;
-    for(var u in users)
+    userModel.addToFollower(userId, followerId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var u in users)
     {
         if(users[u]._id===userId)
         {
@@ -227,14 +339,19 @@ function addToFollower(req, res) {
             return;
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function deleteWishlistById(req, res) {
     var userId=req.params.userId;
     var wishListId=req.params.wishlistId;
-
-    for(var u in users){
+    userModel.deleteWishlistById(userId,wishListId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var u in users){
         if(users[u]._id===userId)
         {
             var index = users[u].wishList.indexOf(wishListId);
@@ -245,14 +362,19 @@ function deleteWishlistById(req, res) {
         }
     }
 }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
 }
 
 function deleteWatchlistById(req, res) {
     var userId=req.params.userId;
     var watchListId=req.params.watchlistId;
-
-    for(var u in users){
+    userModel.deleteWatchlistById(userId,watchListId)
+        .then(function (status) {
+            res.sendStatus(200);
+        },function (err) {
+            res.sendStatus(404);
+        });
+    /*for(var u in users){
         if(users[u]._id===userId)
         {
             var index = users[u].watchedList.indexOf(watchListId);
@@ -263,5 +385,22 @@ function deleteWatchlistById(req, res) {
             }
         }
     }
-    res.sendStatus(404);
+    res.sendStatus(404);*/
+}
+
+function findUsersByText(req, res) {
+    var searchText = req.params['searchText'].toLowerCase();
+    userModel.findUsersByText(searchText)
+        .then(function (users) {
+            res.json(users);
+        },function (err) {
+            res.json([]);
+        });
+    /*var usersArr =[];
+    for(var u in users){
+        if(users[u].firstName.toLowerCase().indexOf(searchText) !== -1 || users[u].lastName.toLowerCase().indexOf(searchText) !== -1 || users[u].username.toLowerCase().indexOf(searchText) !== -1){
+            usersArr.push(users[u]);
+        }
+    }
+    res.json(usersArr);*/
 }

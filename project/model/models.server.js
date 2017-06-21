@@ -1,7 +1,6 @@
-/*
 var mongoose = require("mongoose");
 
-var connectionString = 'mongodb://127.0.0.1:27017/webdev-project-trendtv-db';
+var connectionString = 'mongodb://127.0.0.1:27017/webdev_project_trendtv';
 
 if(process.env.MLAB_USERNAME) {
     connectionString = process.env.MLAB_USERNAME + ":" +
@@ -13,8 +12,3 @@ if(process.env.MLAB_USERNAME) {
 
 mongoose.connect(connectionString);
 mongoose.Promise = require('q').Promise;
-*/
-
-require('./services/user.service.server');
-require('./services/comments.service.server');
-require('./model/models.server');

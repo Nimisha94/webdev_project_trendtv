@@ -1,0 +1,34 @@
+
+<div class="login-view container-fluid">
+
+
+    <div class="logindiv container">
+        <br>
+        <h4 style="color: #00a9c6;">Trend TV</h4>
+        <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+
+        <label for="username" class="usernamelabelregister">Username</label>
+        <input ng-model="model.user.username" id="username" class="form-control">
+
+        <label for="password" class="loginmargins">Change Password</label>
+        <input ng-model="model.password" type="password" id="password" class="form-control">
+
+        <label for="firstname" class="loginmargins">First Name</label>
+        <input ng-model="model.user.firstName" id="firstname" class="form-control">
+
+        <label for="lastname" class="loginmargins">Last Name</label>
+        <input ng-model="model.user.lastName" id="lastname" class="form-control">
+
+        <label for="emailid" class="loginmargins">Email address</label>
+        <input ng-model="model.user.email" type="email" id="emailid" class="form-control">
+
+        <a ng-click = "model.update()"
+           class="loginmargins btn btn-primary btn-block">
+            Update</a>
+
+        <a class="loginmargins btn btn-danger  btn-block"
+           href="#!/user/{{model.userId}}">Cancel</a>
+
+    </div>
+
+</div>

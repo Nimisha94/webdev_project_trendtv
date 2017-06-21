@@ -20,11 +20,6 @@
                 controller: 'SearchController',
                 controllerAs: 'model'
             })
-            .when('/searchUser/:searchText', {
-                templateUrl: 'views/main/templates/user-search-users-results.view.client.html',
-                //controller: 'SearchUserController',
-                //controllerAs: 'model'
-            })
             .when('/search', {
                 templateUrl: 'views/main/templates/search.view.client.html',
                 controller: 'SearchPageController',
@@ -90,6 +85,11 @@
                 controller: 'UserSearchResultsController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/searchUser/:searchText', {
+                templateUrl: 'views/user/templates/user-search-users-results.view.client.html',
+                controller: 'UserSearchUserResultsController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId/watchList', {
                 templateUrl: 'views/user/templates/watchList.view.client.html',
                 controller: 'WatchListController',
@@ -98,6 +98,16 @@
             .when('/user/:userId/wishList', {
                 templateUrl: 'views/user/templates/wishList.view.client.html',
                 controller: 'WishListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/profile-edit',{
+                templateUrl: 'views/user/templates/profile-edit.view.client.html',
+                controller: 'ProfileEditController',
+                controllerAs: 'model'
+            })
+            .when('/admin',{
+                templateUrl: 'views/admin/templates/admin.view.client.html',
+                controller: 'AdminController',
                 controllerAs: 'model'
             })
     }

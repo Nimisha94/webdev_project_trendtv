@@ -25,7 +25,7 @@
 
         userService.getWishListByUserId(model.userId)
             .then(function (wishlist) {
-                console.log(wishlist);
+                //console.log(wishlist);
                 if(wishlist.indexOf(model.seriesId)>=0)
                 {
                     model.wishlistflag=true;
@@ -34,7 +34,7 @@
 
         userService.getWatchedListByUserId(model.userId)
             .then(function (watchedlist) {
-                console.log(watchedlist);
+                //console.log(watchedlist);
                 if(watchedlist.indexOf(model.seriesId)>=0)
                 {
                     model.watchedlistflag=true;
@@ -53,12 +53,14 @@
                 userId : model.userId,
                 seriesId : model.seriesId,
                 comment: comment
-            }
+            };
             CommentsService.createComment(c)
                 .then(function (comment) {
                     userService.addComment(model.userId,comment._id)
-                    $route.reload();
-                })
+                        .then(function (c) {
+                            $route.reload();
+                        });
+                });
         }
 
         function addedToWatchedList() {
@@ -94,8 +96,11 @@
             model.comments=comments;
             for(var c in comments)
             {
+                console.log(comments[c].userId);
                 userService.findUserById(comments[c].userId)
                     .then(function (user) {
+                        console.log('lll');
+                        console.log(user);
                         model.users.push(user.username);
                     });
             }
@@ -107,11 +112,11 @@
 
         function successSearchDetails(details) {
             model.details = details;
-            console.log(model.details);
+            ///console.log(model.details);
         }
 
         function failSearchDetails() {
-            console.log('Failed search details')
+            //console.log('Failed search details')
         }
     }
 })();
