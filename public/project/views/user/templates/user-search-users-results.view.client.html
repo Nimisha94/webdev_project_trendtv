@@ -56,11 +56,14 @@
 
                             <div class="col-lg-6"  align="left">
 
-                                <a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                                <a ng-if="f.role === 'user'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                                <a ng-if="f.role === 'actor'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}&nbsp&nbsp&nbsp&nbsp<i class="fa fa-check-circle" aria-hidden="true"></i></h4></a>
                                 <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
                                 <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
-                                <a ng-if="model.user.following.indexOf(f._id)>-1" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
-                                <a ng-if="!(model.user.following.indexOf(f._id)>-1)" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>
+                                <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='user'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
+                                <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='user'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>
+                                <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='actor'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow  <i class="fa fa-star" aria-hidden="true"></i></a>
+                                <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='actor'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow  <i class="fa fa-star" aria-hidden="true"></i></a>
                             </div>
 
                         </div>

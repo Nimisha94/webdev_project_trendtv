@@ -3,11 +3,12 @@
         .module('TrendTv')
         .controller('UserProfileController', UserProfileController);
 
-    function UserProfileController(userService, SeriesService, $route, $routeParams) {
+    function UserProfileController(userService, SeriesService, $route, $routeParams, currentUser) {
 
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.fId = $routeParams['fid'];
         model.wishlistshows=[];
         model.watchedlistshows=[];

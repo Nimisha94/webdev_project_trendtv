@@ -3,13 +3,14 @@
         .module('TrendTv')
         .controller('FollowingController', FollowingController);
 
-    function FollowingController(userService, $location, $routeParams) {
+    function FollowingController(userService, $location, $routeParams, currentUser) {
 
         var model = this;
         model.unfollow = unfollow;
         model.redirectUser = redirectUser;
 
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
 
@@ -57,7 +58,7 @@
         function redirectUser(fId) {
             //userService.findUserById(fId)
             //    .then(renderUser, errorUser);
-            var url = '/user/'+model.userId+'/finduser/'+fId;
+            var url = '/finduser/'+fId;
             $location.url(url);
         }
 

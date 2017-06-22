@@ -22,9 +22,14 @@
             deleteWishlistById : deleteWishlistById,
             deleteWatchlistById : deleteWatchlistById,
             findUsersByText :findUsersByText,
+            findActorsByText : findActorsByText,
             updateUser: updateUser,
             findAllUsers: findAllUsers,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login : login,
+            loggedIn : loggedIn,
+            logout : logout,
+            register : register
         };
         return api;
 
@@ -169,6 +174,14 @@
                 })
         }
 
+        function findActorsByText(searchText) {
+            var url = '/api/project/user/searchActor/'+searchText;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
+
         function updateUser(user) {
             var url = '/api/project/user/'+user._id;
             return $http.put(url, user)
@@ -191,6 +204,44 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function login(username, password) {
+            var url = '/api/login';
+            var credentials ={
+                username: username,
+                password: password
+            };
+            return $http.post(url,credentials)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function loggedIn(){
+            var url = '/api/loggedIn';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
+
+        function logout() {
+            var url = '/api/logout';
+            return $http.post(url    )
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function register(userObj) {
+            var url = '/api/register';
+            return $http.post(url,userObj)
+                .then(function (response) {
+                    return response.data;
+                })
+
         }
     }
 })();

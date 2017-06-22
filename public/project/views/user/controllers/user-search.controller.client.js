@@ -24,7 +24,10 @@
             if(model.search === 'user'){
                 $location.url('/user/' + model.userId + '/searchUser/' + searchText);
             }
-            else {
+            if(model.search === 'actor'){
+                $location.url('/user/' + model.userId + '/searchActor/' + searchText);
+            }
+            else if(model.search === 'tvseries') {
                 $location.url('/user/' + model.userId + '/search/' + searchText);
             }
 

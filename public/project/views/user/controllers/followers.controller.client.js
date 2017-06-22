@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('FollowersController', FollowersController);
 
-    function FollowersController(userService, $location, $routeParams) {
+    function FollowersController(userService, $location, $routeParams, currentUser) {
 
         var model = this;
         model.unfollow = unfollow;
@@ -78,7 +78,7 @@
         function redirectUser(fId) {
             //userService.findUserById(fId)
             //    .then(renderUser, errorUser);
-            var url = '/user/'+model.userId+'/finduser/'+fId;
+            var url = '/finduser/'+fId;
             $location.url(url);
         }
 

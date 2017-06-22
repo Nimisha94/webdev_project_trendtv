@@ -25,8 +25,8 @@
 
                     <ul class="nav navbar-nav navbar-right scroll">
                         <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li><a class="navbarhover" ng-href="#!/home/user/{{model.userId}}">Trending</a></li>
-                        <li class="active"><a ng-href="#!/user/{{model.userId}}">Profile</a></li>
+                        <li><a class="navbarhover" ng-href="#!/home">Trending</a></li>
+                        <li class="active"><a ng-href="#!/user/{{model.userId}}/profile-edit">Profile</a></li>
                         <li><a class="navbarhover" ng-href="#!/login">Logout {{model.user.username}}</a></li>
                     </ul>
                 </div>
@@ -82,7 +82,7 @@
                 <i class="fa fa-users fa-4x" aria-hidden="true"></i>
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/user/{{model.userId}}/following"><h4>Following</h4></a>
+                <a ng-href="#!/following"><h4>Following</h4></a>
             </div>
         </div>
         <div ng-if="!(model.user.role==='actor')" class="row">
@@ -124,11 +124,19 @@
 
                                 <div class="col-lg-6"  align="left">
 
-                                    <a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                                    <!--<a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
                                     <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
                                     <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
 
-                                    <a ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
+                                    <a ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>-->
+                                    <a ng-if="f.role === 'user'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                                    <a ng-if="f.role === 'actor'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}&nbsp&nbsp&nbsp&nbsp<i class="fa fa-check-circle" aria-hidden="true"></i></h4></a>
+                                    <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
+                                    <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
+                                    <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='user'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
+                                    <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='user'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>
+                                    <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='actor'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow  <i class="fa fa-star" aria-hidden="true"></i></a>
+                                    <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='actor'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow  <i class="fa fa-star" aria-hidden="true"></i></a>
                             </div>
 
                         </div>

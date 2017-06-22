@@ -1,5 +1,11 @@
 var app = require("../../express");
 var userModel=require("../model/user/user.model.server");
+var bcrypt = require("bcrypt-nodejs");
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(localStrategy));
+passport.serializeUser(serializeUser);
+passport.deserializeUser(deserializeUser);
 
 /*var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "",
@@ -28,8 +34,14 @@ app.put('/api/project/user/:userId/follower/:followerId', addToFollower);
 app.delete('/api/project/user/:userId/wishlist/:wishlistId', deleteWishlistById);
 app.delete('/api/project/user/:userId/watchlist/:watchlistId', deleteWatchlistById);
 app.get('/api/project/user/search/:searchText', findUsersByText);
+app.get('/api/project/user/searchActor/:searchText', findActorsByText);
 app.get('/api/project/users', findAllUsers);
 app.delete('/api/project/user/:userId', deleteUser);
+
+app.post('/api/login', passport.authenticate('local'),login);
+app.get('/api/loggedIn', loggedIn);
+app.post('/api/logout',logout);
+app.post('/api/register',register);
 
 function deleteUser(req, res) {
     var userId = req.params['userId'];
@@ -393,9 +405,10 @@ function findUsersByText(req, res) {
     userModel.findUsersByText(searchText)
         .then(function (users) {
             res.json(users);
-        },function (err) {
+        }, function (err) {
             res.json([]);
         });
+}
     /*var usersArr =[];
     for(var u in users){
         if(users[u].firstName.toLowerCase().indexOf(searchText) !== -1 || users[u].lastName.toLowerCase().indexOf(searchText) !== -1 || users[u].username.toLowerCase().indexOf(searchText) !== -1){
@@ -403,4 +416,72 @@ function findUsersByText(req, res) {
         }
     }
     res.json(usersArr);*/
+    function findActorsByText(req, res) {
+        var searchText = req.params['searchText'].toLowerCase();
+        userModel.findActorsByText(searchText)
+            .then(function (users) {
+                res.json(users);
+            },function (err) {
+                res.json([]);
+            });
+
+}
+function localStrategy(username, password, done) {
+    userModel.findUserByUsername(username)
+        .then(function (user) {
+            if(user && bcrypt.compareSync(password, user.password)){
+                done(null, user);
+            }
+            else{
+                done(null,false);
+            }
+        },function (error) {
+            done(null,false);
+        })
+}
+
+function login(req, res) {
+    res.json(req.user);
+}
+
+function serializeUser(user, done) {
+    done(null, user);
+}
+
+function deserializeUser(user, done) {
+    userModel
+        .findUserById(user._id)
+        .then(
+            function(user){
+                done(null, user);
+            },
+            function(err){
+                done(err, null);
+            }
+        );
+}
+
+function loggedIn(req, res) {
+    if(req.isAuthenticated()){
+        res.json(req.user);
+    }
+    else{
+        res.send('0');
+    }
+}
+
+function logout(req,res) {
+    req.logout();
+    res.sendStatus(200);
+}
+
+function register(req, res) {
+    var userObj = req.body;
+    userObj.password = bcrypt.hashSync(userObj.password);
+    userModel.createUser(userObj)
+        .then(function (user) {
+            req.login(user, function (status) {
+                res.send(status)
+            });
+        })
 }

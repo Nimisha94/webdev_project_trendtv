@@ -17,6 +17,7 @@ userModel.addToFollower = addToFollower;
 userModel.deleteWishlistById = deleteWishlistById;
 userModel.deleteWatchlistById = deleteWatchlistById;
 userModel.findUsersByText = findUsersByText;
+userModel.findActorsByText = findActorsByText;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
@@ -132,13 +133,32 @@ function findUsersByText(searchText) {
     return userModel.find()
         .then(function (users) {
             console.log(users);
-            for(var u in users){
-                if(users[u].firstName.toLowerCase().indexOf(searchText) !== -1 || users[u].lastName.toLowerCase().indexOf(searchText) !== -1 || users[u].username.toLowerCase().indexOf(searchText) !== -1){
-                    usersArr.push(users[u]);
+            for(var u in users) {
+                if (users[u].role === 'user') {
+                    if (users[u].firstName.toLowerCase().indexOf(searchText) !== -1 || users[u].lastName.toLowerCase().indexOf(searchText) !== -1 || users[u].username.toLowerCase().indexOf(searchText) !== -1) {
+                        usersArr.push(users[u]);
+                    }
                 }
             }
             console.log(usersArr);
            return usersArr;
+        });
+}
+
+function findActorsByText(searchText) {
+    var usersArr =[];
+    return userModel.find()
+        .then(function (users) {
+            console.log(users);
+            for(var u in users) {
+                if (users[u].role === 'actor') {
+                    if (users[u].firstName.toLowerCase().indexOf(searchText) !== -1 || users[u].lastName.toLowerCase().indexOf(searchText) !== -1 || users[u].username.toLowerCase().indexOf(searchText) !== -1) {
+                        usersArr.push(users[u]);
+                    }
+                }
+            }
+            console.log(usersArr);
+            return usersArr;
         });
 }
 

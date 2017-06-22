@@ -9,8 +9,15 @@
         var tmdbId = null;
         model.searchText = $routeParams['searchText'];
         model.userId = $routeParams['userId'];
-        searchUsers(model.searchText);
+        var role = $location.path().split('/')[3];
+        //console.log(role);
 
+        if(role === 'searchUser') {
+            searchUsers(model.searchText);
+        }
+        else if (role === 'searchActor'){
+            searchActors(model.searchText)
+        }
         //event handlers
         model.searchUsers = searchUsers;
         model.redirectUser=redirectUser;
@@ -27,12 +34,16 @@
         function redirectUser(fId) {
             //userService.findUserById(fId)
             //    .then(renderUser, errorUser);
-            var url = '/user/'+model.userId+'/finduser/'+fId;
+            var url = '/finduser/'+fId;
             $location.url(url);
         }
 
         function searchUsers(searchText) {
             userService.findUsersByText(searchText)
+                .then(successSearch, failSearch);
+        }
+        function searchActors(searchText) {
+            userService.findActorsByText(searchText)
                 .then(successSearch, failSearch);
         }
 
@@ -44,12 +55,23 @@
         }*/
         function successSearch(searchResultsArr) {
             console.log(searchResultsArr);
+            var index = -1;
             for(var u in searchResultsArr)
             {
+                if(searchResultsArr[u]._id ===model.userId ){
+                    index = u;
+                    console.log(index);
+                }
                 searchResultsArr[u].followingCount=searchResultsArr[u].following.length;
                 searchResultsArr[u].followerCount=searchResultsArr[u].followers.length;
+
+            }
+            if(index !== -1)
+            {
+                searchResultsArr.splice(index,1);
             }
             model.searchResults = searchResultsArr;
+            console.log(model.searchResults);
 
         }
         function failSearch() {

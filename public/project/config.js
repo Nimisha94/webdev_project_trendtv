@@ -10,10 +10,13 @@
                 controller: 'HomeController',
                 controllerAs: 'model'
             })
-            .when('/home/user/:userId', {
+            .when('/home', {
                 templateUrl: 'views/user/templates/user-home-page.view.client.html',
                 controller: 'UserHomeController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
             .when('/search/:searchText', {
                 templateUrl: 'views/main/templates/search-results.view.client.html',
@@ -40,25 +43,35 @@
                 controller: 'RegisterController',
                 controllerAs: 'model'
             })
+            //to be done
             .when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'ProfileController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId/finduser/:fid', {
+            .when('/finduser/:fid', {
                 templateUrl: 'views/user/templates/user-profile.view.client.html',
                 controller: 'UserProfileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/following', {
+            .when('/following', {
                 templateUrl: 'views/user/templates/following.view.client.html',
                 controller: 'FollowingController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/follower', {
+            .when('/follower', {
                 templateUrl: 'views/user/templates/followers.view.client.html',
                 controller: 'FollowersController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
             .when('/user/:userId/comments', {
                 templateUrl: 'views/user/templates/comment.view.client.html',
@@ -90,6 +103,11 @@
                 controller: 'UserSearchUserResultsController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/searchActor/:searchText', {
+                templateUrl: 'views/user/templates/user-search-users-results.view.client.html',
+                controller: 'UserSearchUserResultsController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId/watchList', {
                 templateUrl: 'views/user/templates/watchList.view.client.html',
                 controller: 'WatchListController',
@@ -105,7 +123,7 @@
                 controller: 'ProfileEditController',
                 controllerAs: 'model'
             })
-            .when('/admin',{
+            .when('/user/:userId/admin',{
                 templateUrl: 'views/admin/templates/admin.view.client.html',
                 controller: 'AdminController',
                 controllerAs: 'model'
@@ -125,5 +143,22 @@
                 controller: 'ActivityFeedController',
                 controllerAs: 'model'
             })
+    }
+
+    function checkLoggedIn(userService, $q,$location) {
+        var deffered = $q.defer();
+
+        userService.loggedIn()
+            .then(function (user) {
+                if(user ==='0'){
+                    deffered.reject();
+                    $location.url('/login')
+                }
+                else{
+                    deffered.resolve(user);
+                }
+            });
+
+        return deffered.promise;
     }
 }) ();

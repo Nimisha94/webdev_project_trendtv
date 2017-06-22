@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('AdminController', AdminController);
 
-    function AdminController(userService, CommentsService, SeriesService, PostsService, $route) {
+    function AdminController($routeParams, userService, CommentsService, SeriesService, PostsService, $route) {
 
         var model=this;
         model.flag=false;
@@ -14,7 +14,7 @@
         model.commentusersArr=[];
         model.commentseriesArr=[];
         model.postactorsArr=[];
-
+        model.userId = $routeParams['userId'];
         model.username='admin';
 
         function init() {
