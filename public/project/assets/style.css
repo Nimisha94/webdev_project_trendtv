@@ -301,6 +301,11 @@ html,body {
 	background-color: black;
 }
 
+#proj-whitesmoke-background {
+	height:100%;
+	background-color: whitesmoke;
+}
+
 .proj-edit
 {
 	position: absolute;
