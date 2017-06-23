@@ -5,50 +5,56 @@
 
     function Config($routeProvider) {
         $routeProvider
-            .when('/', {
+            /*.when('/', {
                 templateUrl: 'views/main/templates/home.view.client.html',
                 controller: 'HomeController',
                 controllerAs: 'model'
-            })
-            .when('/home', {
+            })*/
+            .when('/', {
                 templateUrl: 'views/user/templates/user-home-page.view.client.html',
                 controller: 'UserHomeController',
                 controllerAs: 'model',
                 resolve:{
-                    currentUser:checkLoggedIn
+                    currentUser:checkCurrentUser
                 }
             })
-            .when('/search/:searchText', {
+            /*.when('/search/:searchText', {
                 templateUrl: 'views/main/templates/search-results.view.client.html',
                 controller: 'SearchController',
                 controllerAs: 'model'
-            })
-            .when('/search', {
+            })*/
+            /*.when('/search', {
                 templateUrl: 'views/main/templates/search.view.client.html',
                 controller: 'SearchPageController',
                 controllerAs: 'model'
-            })
-            .when('/search/:searchText/:seriesId/details', {
+            })*/
+            /*.when('/search/:searchText/:seriesId/details', {
                 templateUrl: 'views/main/templates/search-results-details.view.client.html',
                 controller: 'SearchDetailsController',
                 controllerAs: 'model'
-            })
+            })*/
             .when('/login', {
                 templateUrl: 'views/main/templates/login.view.client.html',
                 controller: 'LoginController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    curentUser:check
+                }
             })
             .when('/register', {
                 templateUrl: 'views/main/templates/register.view.client.html',
                 controller: 'RegisterController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    curentUser:checkRegister
+                }
             })
             //to be done
-            .when('/user/:userId', {
+            /*.when('/user/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'ProfileController',
                 controllerAs: 'model'
-            })
+            })*/
             .when('/finduser/:fid', {
                 templateUrl: 'views/user/templates/user-profile.view.client.html',
                 controller: 'UserProfileController',
@@ -73,76 +79,137 @@
                     currentUser:checkLoggedIn
                 }
             })
-            .when('/user/:userId/comments', {
+            .when('/comments', {
                 templateUrl: 'views/user/templates/comment.view.client.html',
                 controller: 'CommentsController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/edit-comment/:commentId', {
+            .when('/edit-comment/:commentId', {
                 templateUrl: 'views/user/templates/comment-edit.view.client.html',
                 controller: 'EditCommentController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/series/:seriesId', {
+            .when('/series/:seriesId', {
                 templateUrl: 'views/user/templates/user-series-details.view.client.html',
                 controller: 'ViewSeriesController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkCurrentUser
+                }
             })
-            .when('/user/:userId/search', {
+            .when('/search', {
                 templateUrl: 'views/user/templates/user-search.view.client.html',
                 controller: 'UserSearchController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkCurrentUser
+                }
             })
-            .when('/user/:userId/search/:searchText', {
+            .when('/search/:searchText', {
                 templateUrl: 'views/user/templates/user-search-results.view.client.html',
                 controller: 'UserSearchResultsController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkCurrentUser
+                }
             })
-            .when('/user/:userId/searchUser/:searchText', {
+            .when('/search/:searchRole/:searchText', {
+                templateUrl: 'views/user/templates/user-search-users-results.view.client.html',
+                controller: 'UserSearchUserResultsController',
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+            })
+            /*.when('/user/:userId/searchActor/:searchText', {
                 templateUrl: 'views/user/templates/user-search-users-results.view.client.html',
                 controller: 'UserSearchUserResultsController',
                 controllerAs: 'model'
-            })
-            .when('/user/:userId/searchActor/:searchText', {
-                templateUrl: 'views/user/templates/user-search-users-results.view.client.html',
-                controller: 'UserSearchUserResultsController',
-                controllerAs: 'model'
-            })
-            .when('/user/:userId/watchList', {
+            })*/
+            .when('/watchList', {
                 templateUrl: 'views/user/templates/watchList.view.client.html',
                 controller: 'WatchListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/wishList', {
+            .when('/wishList', {
                 templateUrl: 'views/user/templates/wishList.view.client.html',
                 controller: 'WishListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/profile-edit',{
+            .when('/profileEdit',{
                 templateUrl: 'views/user/templates/profile-edit.view.client.html',
                 controller: 'ProfileEditController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkAdminLoggedIn //checkLoggedIn
+                }
             })
-            .when('/user/:userId/admin',{
+            .when('/admin',{
                 templateUrl: 'views/admin/templates/admin.view.client.html',
                 controller: 'AdminController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkAdmin
+                }
             })
-            .when('/user/:userId/posts',{
+            .when('/posts',{
                 templateUrl: 'views/user/templates/posts.view.client.html',
                 controller: 'PostsController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/edit-post/:postId', {
+            .when('/edit-post/:postId', {
                 templateUrl: 'views/user/templates/post-edit.view.client.html',
                 controller: 'EditPostController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
-            .when('/user/:userId/activityfeed',{
+            .when('/activityfeed',{
                 templateUrl: 'views/user/templates/user-activityfeed.view.client.html',
                 controller: 'ActivityFeedController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
+    }
+
+    function checkAdminLoggedIn(userService, $q,$location) {
+        var deffered = $q.defer();
+
+        userService.loggedIn()
+            .then(function (user) {
+                if(user ==='0'){
+                    console.log(user);
+                    deffered.reject();
+                    $location.url('/login');
+                }
+                else if(user.role === 'admin')
+                {
+                    deffered.resolve(user);
+                }
+                else{
+                    deffered.resolve(user);
+                }
+            });
+
+        return deffered.promise;
     }
 
     function checkLoggedIn(userService, $q,$location) {
@@ -151,8 +218,14 @@
         userService.loggedIn()
             .then(function (user) {
                 if(user ==='0'){
+                    console.log(user);
                     deffered.reject();
-                    $location.url('/login')
+                    $location.url('/login');
+                }
+                else if(user.role === 'admin')
+                {
+                    deffered.resolve(user);
+                    $location.url('/admin');
                 }
                 else{
                     deffered.resolve(user);
@@ -160,5 +233,102 @@
             });
 
         return deffered.promise;
+    }
+
+
+    function checkCurrentUser(userService, $q, $location) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedIn()
+            .then(function (user) {
+                if(user.role === 'admin')
+                {
+                    deferred.resolve(user);
+                    $location.url('/admin');
+                }
+                else if(user === '0') {
+                    deferred.resolve({});
+                } else {
+                    deferred.resolve(user);
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkAdmin(userService, $q,$location) {
+        var deffered = $q.defer();
+
+        userService.loggedIn()
+            .then(function (user) {
+                if(user ==='0'){
+                    deffered.reject();
+                    $location.url('/login')
+                }
+                else if (user.role === 'admin'){
+                    deffered.resolve(user);
+                }
+                else{
+                    deffered.reject();
+                    $location.url('/');
+                }
+            });
+
+        return deffered.promise;
+    }
+
+    function check(userService, $q, $location,$route) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedIn()
+            .then(function (user) {
+                console.log(user);
+                if(user.role === 'admin')
+                {
+                    deferred.resolve(user);
+                    $location.url('/admin');
+                }
+                else if(user.role === 'user' || user.role === 'actor') {
+                    deferred.resolve(user);
+                    $location.url('/');
+                }
+                else if(user === '0'){
+                    console.log(user);
+                    deferred.resolve({});
+                    //$location.url('/login')
+
+                }
+            });
+
+        return deferred.promise;
+    }
+
+    function checkRegister(userService, $q, $location,$route) {
+        var deferred = $q.defer();
+
+        userService
+            .loggedIn()
+            .then(function (user) {
+                console.log(user);
+                if(user.role === 'admin')
+                {
+                    deferred.resolve(user);
+                    $location.url('/admin');
+                }
+                else if(user.role === 'user' || user.role === 'actor') {
+                    deferred.resolve(user);
+                    $location.url('/');
+                }
+                else if(user === '0'){
+                    console.log(user);
+                    deferred.resolve({});
+                    //$location.url('/login')
+
+                }
+            });
+
+        return deferred.promise;
     }
 }) ();

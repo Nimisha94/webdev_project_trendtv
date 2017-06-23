@@ -53,7 +53,7 @@
         function retrieveTrendingIds(response) {
             var objarr=response.data;
             var ids=[];
-            for(var i=0;i<9;i++)
+            for(var i=0;i<10;i++)
             {
                 ids.push(objarr[i].show.ids.tmdb);
             }

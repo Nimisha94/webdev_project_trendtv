@@ -3,17 +3,19 @@
         .module('TrendTv')
         .controller('UserSearchResultsController', UserSearchResultsController);
 
-    function UserSearchResultsController($routeParams,SeriesService, $location) {
+    function UserSearchResultsController($routeParams,SeriesService, $location, currentUser) {
 
         var model = this;
         var tmdbId = null;
         model.searchText = $routeParams['searchText'];
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         searchSeries(model.searchText);
 
         //event handlers
         model.searchSeries = searchSeries;
         model.getSeriesDetailsbyId=getSeriesDetailsbyId;
+        model.logout = logout;
 
         function searchSeries(searchText) {
             SeriesService.searchSeries(searchText)
@@ -24,7 +26,7 @@
             //var seriesId =
             //console.log(index);
             //console.log(model.searchResults[index].id);
-            $location.url('/user/'+model.userId+'/series/'+model.searchResults[index].id);
+            $location.url('/series/'+model.searchResults[index].id);
         }
         function successSearch(searchResultsArr) {
             console.log(searchResultsArr);
@@ -36,8 +38,17 @@
             //var tmdbObj = parsedJson.results[0].original_name;
             //console.log(tmdbObj)
         }
+
         function failSearch() {
             console.log('search failure');
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
 
     }

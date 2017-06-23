@@ -13,8 +13,12 @@ var userSchema = mongoose.Schema(
         followers : [{type : mongoose.Schema.Types.ObjectId, ref : "UserModel"}],
         following : [{type : mongoose.Schema.Types.ObjectId, ref : "UserModel"}],
         role: {type:String, default:'user', enum: ["user", "admin", "actor"]},
-        comments :[{type: mongoose.Schema.Types.ObjectId, ref: "CommentModel"}]
-    }, {collection : 'user'}
+        comments :[{type: mongoose.Schema.Types.ObjectId, ref: "CommentModel"}],
+        facebook: {
+            id:    String,
+            token: String
+            }
+        }, {collection : 'user'}
 
 );
 

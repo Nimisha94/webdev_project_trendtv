@@ -6,8 +6,11 @@
     function FollowingController(userService, $location, $routeParams, currentUser) {
 
         var model = this;
+
+        //event handlers
         model.unfollow = unfollow;
         model.redirectUser = redirectUser;
+        model.logout = logout;
 
         //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
@@ -60,6 +63,14 @@
             //    .then(renderUser, errorUser);
             var url = '/finduser/'+fId;
             $location.url(url);
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
 
 

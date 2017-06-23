@@ -3,16 +3,19 @@
         .module('TrendTv')
         .controller('WishListController', WishListController);
 
-    function WishListController(userService,SeriesService, $location, $routeParams,$route) {
+    function WishListController(userService,SeriesService, $location, $routeParams,$route, currentUser) {
 
         var model = this;
         var tmdbId = null;
         model.searchText = $routeParams['searchText'];
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.watchedlistshows = [];
 
+        //event handlers
         model.getSeriesDetailsById = getSeriesDetailsById;
         model.deleteWishlistById = deleteWishlistById;
+        model.logout = logout;
 
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
@@ -38,7 +41,7 @@
         }
 
         function getSeriesDetailsById(index){
-            $location.url('/user/'+model.userId+'/series/'+model.watchedlistshows[index].id);
+            $location.url('/series/'+model.watchedlistshows[index].id);
 
         }
 
@@ -57,5 +60,12 @@
             model.message="Oops! Something went wrong :("
         }
 
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
+        }
 
     }})();

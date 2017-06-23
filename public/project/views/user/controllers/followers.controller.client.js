@@ -6,10 +6,13 @@
     function FollowersController(userService, $location, $routeParams, currentUser) {
 
         var model = this;
+        model.userId = currentUser._id;
+
+        //event handlers
         model.unfollow = unfollow;
+        model.logout = logout;
         model.follow = follow;
         model.redirectUser = redirectUser;
-        model.userId = $routeParams['userId'];
 
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
@@ -82,6 +85,13 @@
             $location.url(url);
         }
 
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
+        }
 
     }
 })();

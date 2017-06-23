@@ -24,10 +24,10 @@
                 <div class="navbar-collapse  collapse">
 
                     <ul class="nav navbar-nav navbar-right scroll">
-                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li><a class="navbarhover" ng-href="#!/home/user/{{model.userId}}">Trending</a></li>
-                        <li class="active"><a ng-href="#!/user/{{model.userId}}">Profile</a></li>
-                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.user.username}}</a></li>
+                        <li><a ng-href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" ng-href="#!/">Trending</a></li>
+                        <li class="active"><a ng-href="#!/profileEdit">Profile</a></li>
+                        <li><a class="navbarhover" ng-click="model.logout()">Logout {{model.user.username}}</a></li>
                     </ul>
                 </div>
 

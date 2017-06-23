@@ -24,10 +24,10 @@
                 <div class="navbar-collapse  collapse">
 
                     <ul class="nav navbar-nav navbar-right scroll">
-                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li><a class="navbarhover" ng-href="#!/home">Trending</a></li>
-                        <li class="active"><a ng-href="#!/user/{{model.userId}}/profile-edit">Profile</a></li>
-                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.user.username}}</a></li>
+                        <li><a ng-href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" ng-href="#!/">Trending</a></li>
+                        <li class="active"><a ng-href="#!/profileEdit">Profile</a></li>
+                        <li><a class="navbarhover" ng-click="model.logout()">Logout {{model.user.username}}</a></li>
                     </ul>
                 </div>
 
@@ -43,14 +43,14 @@
         <div align="center" class="row">
             <img align="center" class="img-circle" ng-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
         </div>
-        <a ng-href="#!/user/{{model.userId}}/profile-edit"><h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.user.username}}    <i class="fa fa-pencil " aria-hidden="true"></i></h4></a>
+        <a ng-href="#!/profileEdit"><h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.user.username}}    <i class="fa fa-pencil " aria-hidden="true"></i></h4></a>
         <br>
         <div class="row">
             <div align="right" class="col-xs-5">
                 <i class="fa fa-users fa-4x" aria-hidden="true"></i>
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/user/{{model.userId}}/follower"><h4>Followers</h4> </a>
+                <a ng-href="#!/follower"><h4>Followers</h4> </a>
             </div>
         </div>
         <div class="row">
@@ -58,7 +58,7 @@
                 <i class="fa fa-th-list fa-4x" aria-hidden="true"></i>
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/user/{{model.userId}}/wishList"><h4>Wish List</h4></a>
+                <a ng-href="#!/wishList"><h4>Wish List</h4></a>
             </div>
         </div>
         <div class="row">
@@ -66,7 +66,7 @@
                 <i class="fa fa-list-alt fa-4x"></i>
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/user/{{model.userId}}/watchList"><h4>Watched List</h4></a>
+                <a ng-href="#!/watchList"><h4>Watched List</h4></a>
             </div>
         </div>
         <div class="row">
@@ -74,7 +74,7 @@
                 <i class="fa fa-comments fa-4x" aria-hidden="true"></i>
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/user/{{model.userId}}/comments"><h4>Comments</h4></a>
+                <a ng-href="#!/comments"><h4>Comments</h4></a>
             </div>
         </div>
         <div class="row">
@@ -90,7 +90,7 @@
                 <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/user/{{model.userId}}/activityfeed"><h4>Activity Feed</h4></a>
+                <a ng-href="#!/activityfeed"><h4>Activity Feed</h4></a>
             </div>
         </div>
         <div ng-if="model.user.role==='actor'" class="row">
@@ -98,7 +98,7 @@
                 <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
             </div>
             <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/user/{{model.userId}}/posts"><h4>Posts</h4></a>
+                <a ng-href="#!/posts"><h4>Posts</h4></a>
             </div>
         </div>
         <br>

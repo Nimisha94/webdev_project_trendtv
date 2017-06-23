@@ -3,19 +3,22 @@
         .module('TrendTv')
         .controller('UserSearchUserResultsController', UserSearchUserResultsController);
 
-    function UserSearchUserResultsController($routeParams,$route,userService,SeriesService, $location) {
+    function UserSearchUserResultsController($routeParams,$route,userService,SeriesService, $location, currentUser) {
 
         var model = this;
         var tmdbId = null;
         model.searchText = $routeParams['searchText'];
-        model.userId = $routeParams['userId'];
-        var role = $location.path().split('/')[3];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
+        console.log(model.userId);
+        //var role = $location.path().split('/')[3];
+        var role = $routeParams['searchRole'];
         //console.log(role);
 
-        if(role === 'searchUser') {
+        if(role === 'user') {
             searchUsers(model.searchText);
         }
-        else if (role === 'searchActor'){
+        else if (role === 'actor'){
             searchActors(model.searchText)
         }
         //event handlers
@@ -23,6 +26,7 @@
         model.redirectUser=redirectUser;
         model.unfollow=unfollow;
         model.follow=follow;
+        model.logout = logout;
 
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
@@ -111,6 +115,14 @@
             /*userService.findUserById(model.userId)
                 .then(renderUser, errorUser);*/
 
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
 
     }

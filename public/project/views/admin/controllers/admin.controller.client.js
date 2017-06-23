@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('AdminController', AdminController);
 
-    function AdminController($routeParams, userService, CommentsService, SeriesService, PostsService, $route) {
+    function AdminController($location, $routeParams, userService, CommentsService, SeriesService, PostsService, $route, currentUser) {
 
         var model=this;
         model.flag=false;
@@ -14,7 +14,8 @@
         model.commentusersArr=[];
         model.commentseriesArr=[];
         model.postactorsArr=[];
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.username='admin';
 
         function init() {
@@ -83,6 +84,8 @@
         model.getPost = getPost;
         model.updatePost = updatePost;
         model.deletePost = deletePost;
+
+        model.logout = logout;
 
         function deleteComment(commentId) {
             CommentsService.deleteComment(commentId)
@@ -208,6 +211,14 @@
                 }, function (err) {
                     model.err = 'Error creating the user';
                 });
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
     }
 

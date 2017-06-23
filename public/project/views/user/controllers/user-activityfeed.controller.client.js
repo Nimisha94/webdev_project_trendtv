@@ -3,15 +3,17 @@
         .module('TrendTv')
         .controller('ActivityFeedController', ActivityFeedController);
 
-    function ActivityFeedController($routeParams, $route, userService, PostsService) {
+    function ActivityFeedController($routeParams,$location, $route, userService, PostsService, currentUser) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.actors = [];
         model.posts = [];
 
         userService.findUserById(model.userId)
             .then(function (user) {
+                model.user = user;
                 var following = user.following;
                 for(var f in following)
                 {
@@ -36,6 +38,7 @@
         //event handlers
         model.like = like;
         model.dislike = dislike;
+        model.logout = logout;
 
         function like(postId) {
 
@@ -87,6 +90,14 @@
                     model.err = 'Error occured. Try again later! :('
                 });
 
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
     }
 })();

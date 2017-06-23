@@ -3,10 +3,11 @@
         .module('TrendTv')
         .controller('ViewSeriesController', ViewSeriesController);
 
-    function ViewSeriesController(userService, SeriesService, CommentsService, $routeParams, $location, $route) {
+    function ViewSeriesController(userService, SeriesService, CommentsService, $routeParams, $location, $route, currentUser) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.seriesId = $routeParams['seriesId'];
         model.comments=[];
         model.users=[];
@@ -47,20 +48,21 @@
         model.addedToWishList=addedToWishList;
         model.addedToWatchedList=addedToWatchedList;
         model.insertComment=insertComment;
+        model.logout = logout;
 
         function insertComment(comment) {
-            var c={
-                userId : model.userId,
-                seriesId : model.seriesId,
-                comment: comment
-            };
-            CommentsService.createComment(c)
-                .then(function (comment) {
-                    userService.addComment(model.userId,comment._id)
-                        .then(function (c) {
-                            $route.reload();
-                        });
-                });
+                var c={
+                    userId : model.userId,
+                    seriesId : model.seriesId,
+                    comment: comment
+                };
+                CommentsService.createComment(c)
+                    .then(function (comment) {
+                        userService.addComment(model.userId,comment._id)
+                            .then(function (c) {
+                                $route.reload();
+                            });
+                    });
         }
 
         function addedToWatchedList() {
@@ -117,6 +119,14 @@
 
         function failSearchDetails() {
             //console.log('Failed search details')
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
     }
 })();

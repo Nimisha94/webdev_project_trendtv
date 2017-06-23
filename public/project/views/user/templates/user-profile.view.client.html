@@ -24,10 +24,10 @@
                 <div class="navbar-collapse  collapse">
 
                     <ul class="nav navbar-nav navbar-right scroll">
-                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li><a class="navbarhover" ng-href="#!/home">Trending</a></li>
-                        <li class="active"><a ng-href="#!/user/{{model.userId}}">Profile</a></li>
-                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.user.username}}</a></li>
+                        <li><a ng-href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" ng-href="#!/">Trending</a></li>
+                        <li class="active"><a ng-href="#!/profileEdit">Profile</a></li>
+                        <li><a class="navbarhover" ng-click="model.logout()">Logout {{model.user.username}}</a></li>
                     </ul>
                 </div>
 
@@ -52,7 +52,7 @@
                 <div class="proj-text-color-white" ng-repeat="show in model.wishlistshows">
                     <div class="row">
                         <div class="col-xs-12">
-                            <a ng-href="#!/user/{{model.userId}}/series/{{show.id}}">
+                            <a ng-href="#!/series/{{show.id}}">
                                 <img align="center" ng-src="https://image.tmdb.org/t/p/w150{{model.wishlistimages[$index].poster_path}}">
                             </a>
                         </div>
@@ -68,7 +68,7 @@
                 <div class="proj-text-color-white" ng-repeat="show in model.watchedlistshows">
                     <div class="row">
                         <div class="col-xs-12">
-                            <a ng-href="#!/user/{{model.userId}}/series/{{show.id}}">
+                            <a ng-href="#!/series/{{show.id}}">
                                 <img align="center" ng-src="https://image.tmdb.org/t/p/w150{{model.watchedlistimages[$index].poster_path}}">
                             </a>
                         </div>

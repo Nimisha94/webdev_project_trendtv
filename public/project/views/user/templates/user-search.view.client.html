@@ -24,10 +24,13 @@
                 <div class="navbar-collapse  collapse">
 
                     <ul class="nav navbar-nav navbar-right scroll">
-                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li><a class="navbarhover" ng-href="#!/home/user/{{model.userId}}">Trending</a></li>
-                        <li class="active"><a ng-href="#!/user/{{model.userId}}">Profile</a></li>
-                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.user.username}}</a></li>
+                        <li><a ng-href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
+                        <li><a class="navbarhover" ng-href="#!/">Trending</a></li>
+                        <li ng-if="model.userId" class="active"><a ng-href="#!/profileEdit">Profile</a></li>
+                        <li ng-if="model.userId"><a class="navbarhover" ng-click="model.logout()">Logout {{model.user.username}}</a></li>
+                        <li ng-if="!model.userId"><a class="navbarhover" href="#!/register">Register</a></li>
+                        <li ng-if="!model.userId"><a class="navbarhover" href="#!/login">Login</a></li>
+                        <li ng-if="!model.userId"><a class="navbarhover" href="#contact">Contact</a></li>
                     </ul>
                 </div>
 
@@ -46,7 +49,7 @@
 
         </div><!-- /input-group -->
         <br>
-        <div class="row" ng-init="model.search='tvseries'">
+        <div ng-if="model.userId" class="row" ng-init="model.search='tvseries'">
             <label class="radio-inline"><input ng-model="model.search" ng-value="'tvseries'" type="radio" name="searchtype"><h4>TV Series</h4></label>
             <label class="radio-inline"><input ng-model="model.search" ng-value="'user'" type="radio" name="searchtype"><h4>User</h4></label>
             <label class="radio-inline"><input ng-model="model.search" ng-value="'actor'" type="radio" name="searchtype"><h4>Actor</h4></label>

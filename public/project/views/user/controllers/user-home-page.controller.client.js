@@ -25,16 +25,34 @@
         SeriesService.getTrendingSeriesIds()
             .then(getTrendingsImages);
 
-        //event handler
+        //event handlers
         model.getSeriesbyName = getSeriesbyName;
+        model.logout = logout;
 
         function getTrendingsImages(ids) {
+            var index = ids.indexOf(4551);
+            if(index !== -1)
+            {
+                ids.splice(index,1);
+            }
+            else
+            {
+                ids.splice(ids.length-1, 1);
+            }
             var obj = SeriesService.getTrendingImages(ids);
             model.images=obj;
         }
 
         function getSeriesbyName(searchText) {
             $location.url('/search/'+searchText);
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
 
 

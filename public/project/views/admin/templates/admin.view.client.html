@@ -25,10 +25,9 @@
                 <div class="navbar-collapse  collapse">
 
                     <ul class="nav navbar-nav navbar-right scroll">
-                        <li><a ng-href="#!/user/{{model.userId}}/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li class="active"><a ng-href="#!/">Admin Dashboard</a></li>
-                        <li><a class="navbarhover" ng-href="#!/user/{{model.userId}}/profile-edit">Profile</a></li>
-                        <li><a class="navbarhover" ng-href="#!/login">Logout {{model.username}}</a></li>
+                        <li class="active"><a ng-href="#!/admin">Admin Dashboard</a></li>
+                        <li><a class="navbarhover" ng-href="#!/profileEdit">Profile</a></li>
+                        <li><a class="navbarhover" ng-click="model.logout()">Logout {{model.username}}</a></li>
                     </ul>
                 </div>
 

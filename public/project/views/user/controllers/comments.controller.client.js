@@ -3,14 +3,18 @@
         .module('TrendTv')
         .controller('CommentsController', CommentsController);
 
-    function CommentsController(userService, CommentsService, SeriesService, $location, $routeParams) {
+    function CommentsController(userService, CommentsService, SeriesService, $location, $routeParams, currentUser) {
 
         var model = this;
         model.comments=[];
 
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         userService.findUserById(model.userId)
             .then(renderUser, error);
+
+        //event handlers
+        model.logout = logout;
 
         function renderUser(user) {
             model.user=user;
@@ -33,6 +37,14 @@
 
         function error() {
             model.message="Oops! Something went wrong :("
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
     }
 })();

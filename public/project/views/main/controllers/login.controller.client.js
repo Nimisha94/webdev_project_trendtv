@@ -62,13 +62,13 @@
                 }
                 else if(user.role === 'user') {
                     //$location.url('/home/user/' + user._id);
-                    $location.url('/home');
+                    $location.url('/');
                 }
                 else if(user.role === 'admin') {
-                    $location.url('/user/'+user._id+'/admin');
+                    $location.url('/admin');
                 }
                 else if(user.role === 'actor'){
-                    $location.url('/home');
+                    $location.url('/');
                 }
             }
 

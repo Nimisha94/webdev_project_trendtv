@@ -3,12 +3,13 @@
         .module('TrendTv')
         .controller('WatchListController', WatchListController);
 
-    function WatchListController(userService,SeriesService, $location, $routeParams,$route) {
+    function WatchListController(userService,SeriesService, $location, $routeParams,$route, currentUser) {
 
         var model = this;
         var tmdbId = null;
         //model.searchText = $routeParams['searchText'];
         model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.watchedlistshows =[];
 
 
@@ -34,7 +35,7 @@
         model.searchSeries = searchSeries;
         model.getSeriesDetailsById=getSeriesDetailsById;
         model.deleteWatchlistById = deleteWatchlistById;
-
+        model.logout = logout;
 
         function deleteWatchlistById(seriesId) {
             userService.deleteWatchlistById(model.userId,seriesId)
@@ -63,7 +64,7 @@
 
 
         function getSeriesDetailsById(index){
-            $location.url('/user/'+model.userId+'/series/'+model.watchedlistshows[index].id);
+            $location.url('/series/'+model.watchedlistshows[index].id);
 
         }
 
@@ -75,6 +76,14 @@
         }
         function failSearch() {
             console.log('search failure');
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
 
     }

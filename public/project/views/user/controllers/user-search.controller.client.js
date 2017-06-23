@@ -3,17 +3,23 @@
         .module('TrendTv')
         .controller('UserSearchController', UserSearchController);
 
-    function UserSearchController(userService, $location, $routeParams) {
+    function UserSearchController(userService, $location, $routeParams, currentUser) {
 
         var model=this;
-        model.userId=$routeParams['userId'];
+        //model.userId=$routeParams['userId']
+        model.userId=currentUser._id;
 
 
-        userService.findUserById(model.userId)
-            .then(renderUser);
+
+        if(model.userId)
+        {
+            userService.findUserById(model.userId)
+                .then(renderUser);
+        }
 
         //event handlers
         model.redirectToSearchResults=redirectToSearchResults;
+        model.logout = logout;
 
         function renderUser(user) {
             model.user=user;
@@ -21,17 +27,29 @@
 
         function redirectToSearchResults(searchText) {
             console.log(model.search);
-            if(model.search === 'user'){
-                $location.url('/user/' + model.userId + '/searchUser/' + searchText);
+            if(typeof model.search === 'undefined')
+            {
+                $location.url('/search/' + searchText);
             }
-            if(model.search === 'actor'){
-                $location.url('/user/' + model.userId + '/searchActor/' + searchText);
+            else if(model.search === 'user' || model.search === 'actor'){
+                $location.url('/search/'+model.search+'/'+searchText);
             }
+            /*else if(model.search === 'actor'){
+                $location.url('/searchUser/' + searchText);
+            }*/
             else if(model.search === 'tvseries') {
-                $location.url('/user/' + model.userId + '/search/' + searchText);
+                $location.url('/search/' + searchText);
             }
 
-    }
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
+        }
 
 
     }

@@ -7,6 +7,74 @@ passport.use(new LocalStrategy(localStrategy));
 passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
+/*var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+};*/
+
+
+var facebookConfig = {
+    clientID     : '923932384413434',
+    clientSecret : '6c63834bf92129c34bce3cdfd498c2cf',
+    callbackURL  : 'http://localhost:4000/auth/facebook/callback',
+    profileFields: ['id', 'email', 'gender', 'displayName', 'name']
+};
+
+var FacebookStrategy = require('passport-facebook').Strategy;
+passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+
+app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/project/#!/',
+        failureRedirect: '/project/#!/login'
+    }));
+
+function facebookStrategy(token, refreshToken, profile, done) {
+    userModel.findUserByFacebookId(profile.id)
+        .then(
+            function(user) {
+                console.log(profile._json);
+                if(user) {
+                    return done(null, user);
+                } else {
+                    console.log('fb');
+                    console.log(profile._json);
+                    //var email = profile.emails[0].value;
+                    var email = profile._json.email;
+                    //var emailParts = email.split("@");
+                    var newFacebookUser = {
+                        username:  email,
+                        firstName: profile._json.first_name,
+                        lastName:  profile._json.last_name,
+                        email:     email,
+                        facebook: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newFacebookUser);
+                }
+            },
+            function(err) {
+                if (err) { return done(err); }
+            }
+        )
+        .then(
+            function(user){
+                return done(null, user);
+            },
+            function(err){
+                if (err) { return done(err); }
+            }
+        );
+}
+
+
+
 /*var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "",
         imageUrl:"", watchedList:['1668'], wishList: ['1425','1424', '1423'], followers: [], following: ['234'], comments:[] },

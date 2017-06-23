@@ -3,11 +3,12 @@
         .module('TrendTv')
         .controller('PostsController', PostsController);
 
-    function PostsController(PostsService, userService, $routeParams, $route) {
+    function PostsController(PostsService, userService, $routeParams, $route, currentUser, $location) {
 
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        //model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         userService.findUserById(model.userId)
             .then(function (user) {
@@ -25,6 +26,7 @@
         model.createPost = createPost;
         model.showLikes = showLikes;
         model.showDislikes = showDislikes;
+        model.logout = logout;
 
         function createPost(title, post) {
             var p ={
@@ -73,6 +75,14 @@
                     //console.log(users);
                 });
             //console.log(users);
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
     }
 })();

@@ -11,7 +11,9 @@
         CommentsService.getCommentById(model.commentId)
             .then(renderComment, error);
 
+        //event handlers
         model.updateComment=updateComment;
+        model.logout = logout;
 
         function updateComment() {
             var c={
@@ -22,7 +24,7 @@
             }
             CommentsService.updateComment(c)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/comments');
+                    $location.url('/comments');
                 });
 
         }
@@ -40,6 +42,14 @@
 
         function error() {
             model.message="Oops! Something went wrong :("
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
     }
 })();

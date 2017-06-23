@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('UserProfileController', UserProfileController);
 
-    function UserProfileController(userService, SeriesService, $route, $routeParams, currentUser) {
+    function UserProfileController(userService, SeriesService, $route, $routeParams, $location, currentUser) {
 
         var model = this;
 
@@ -16,6 +16,7 @@
         //event handlers
         model.unfollow=unfollow;
         model.follow=follow;
+        model.logout = logout;
 
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
@@ -81,6 +82,14 @@
                             $route.reload();
                         });
                 });
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('/login');
+                })
         }
     }
 })();
