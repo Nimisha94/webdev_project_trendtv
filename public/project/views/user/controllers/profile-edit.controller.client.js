@@ -28,7 +28,7 @@
             }
             userService.updateUser(model.user)
                 .then(function (user) {
-                    $location.url('/user/'+model.userId);
+                    $location.url('/profileEdit');
                 }, function (err) {
                     model.err='Error updating the profile';
                 });

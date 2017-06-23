@@ -115,7 +115,7 @@
 
                             function userCreated(user) {
 
-                                $location.url('/user/' + user._id);
+                                $location.url('/profileEdit');
                             }
                         }
                         else {

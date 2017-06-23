@@ -1,4 +1,6 @@
 var app = require("../../express");
+var multer = require('multer'); // npm install multer --save
+var upload = multer({ dest: __dirname+'/../../public/project/uploads' });
 var userModel=require("../model/user/user.model.server");
 var bcrypt = require("bcrypt-nodejs");
 var passport = require('passport');
@@ -87,6 +89,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
 ];*/
 
 app.get('/api/project/user', findUser );
+app.post ("/api/upload", upload.single('myFile'), uploadImage);
 app.post('/api/project/user', createUser);
 app.get('/api/project/user/:userId', findUserById );
 app.put('/api/project/user/:userId', updateUser);
@@ -552,4 +555,40 @@ function register(req, res) {
                 res.send(status)
             });
         })
+}
+
+function uploadImage(req, res) {
+
+    var myFile        = req.file;
+
+    var userId = req.body.userId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+
+    var user = null;
+    /*for(var w in widgets) {
+     if (widgets[w]._id === widgetId) {
+     widget = widgets[w];
+     break;
+     }
+     }*/
+    user=userModel.findUserById(userId);
+
+    //widget.url = '/assignment/uploads/'+filename;
+
+    var u={
+        _id:userId,
+        imageUrl:'/project/uploads/'+filename
+    };
+
+    userModel.updateUser(userId,u)
+        .then(function(){
+            var callbackUrl   = "/project/#!/profileEdit";
+            res.redirect(callbackUrl);
+        });
 }

@@ -41,7 +41,7 @@
     <div style="padding-top: 80px" class="col-lg-3 hidden-xs">
         <br>
         <div align="center" class="row">
-            <img align="center" class="img-circle" ng-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
+            <img align="center" class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
         </div>
         <a ng-href="#!/profileEdit"><h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.user.username}}    <i class="fa fa-pencil " aria-hidden="true"></i></h4></a>
         <br>
@@ -117,8 +117,8 @@
                         <div class="row">
 
                                 <div class="col-lg-6" align="center" >
-                                    <img class="img-responsive img-circle"
-                                         ng-src="https://image.tmdb123.org/t/p/w185/{{f.imageUrl}}"
+                                    <img class="img-circle"
+                                         ng-src="{{f.imageUrl}}"
                                          err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
                                 </div>
 

@@ -7,7 +7,7 @@ var userSchema = mongoose.Schema(
         firstName : String,
         lastName : String,
         email : String,
-        imageUrl: {type: String, default : ""},
+        imageUrl: {type: String, default : "https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png"},
         watchedList: [{type : String}],
         wishList : [{type : String}],
         followers : [{type : mongoose.Schema.Types.ObjectId, ref : "UserModel"}],

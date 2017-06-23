@@ -37,6 +37,8 @@ outline: none !important;
 
 .img-circle {
 	border-radius: 50%;
+	width:155px;
+	height: 155px;
 }
 
 .profile-view
