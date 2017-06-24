@@ -64,7 +64,7 @@
 
 
         function getSeriesDetailsById(index){
-            $location.url('/series/'+model.watchedlistshows[index].id);
+            $location.url('/comment/'+model.watchedlistshows[index].id);
 
         }
 

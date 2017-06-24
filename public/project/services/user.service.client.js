@@ -61,7 +61,7 @@
         }
 
         function addToWatchedList(userId, seriesId) {
-            var url = '/api/project/user/'+userId+'/watchedlist/series/'+seriesId;
+            var url = '/api/project/user/'+userId+'/watchedlist/comment/'+seriesId;
 
             return $http.put(url)
                 .then(function (response) {
@@ -70,7 +70,7 @@
         }
 
         function addToWishList(userId, seriesId) {
-            var url = '/api/project/user/'+userId+'/wishlist/series/'+seriesId;
+            var url = '/api/project/user/'+userId+'/wishlist/comment/'+seriesId;
 
             return $http.put(url)
                 .then(function (response) {

@@ -1,14 +1,14 @@
-body {	color:#666;	font:300 15px/15px Roboto,Arial,Helvetica;background-color:#fff;-webkit-font-smoothing:antialiased;}
+body {	color:black;	font:300 15px/15px Roboto,Arial,Helvetica;background-color:#fff;-webkit-font-smoothing:antialiased;}
 
 
 .navbar-default {
 	background-color: black;
 	border-color: black;
-	opacity: 0.8;
+
 }
 
 
-a{color:#00a9c6; text-decoration:none;}
+a{color:#00a9c6; text-decoration:none; cursor: pointer; cursor: hand;}
 li a:hover{color:white; text-decoration: none;}
 a:hover{color:#666; text-decoration: none;}
 .navbarhover:hover{color: white !important;}
@@ -300,7 +300,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 }
 html,body {
 	height:100%;
-	background-color: black;
+	background-color: white;
 }
 
 #proj-whitesmoke-background {
@@ -313,6 +313,13 @@ html,body {
 	position: absolute;
 	padding: 2px;
 	right:30px;
+}
+
+.proj-edit-new
+{
+	position: absolute;
+	padding: 2px;
+	right:40px;
 }
 
 .proj-wishlist
@@ -334,7 +341,7 @@ html,body {
 {
 	color:whitesmoke;
 }
-.tabsdemoDynamicHeight md-content {
+/*.tabsdemoDynamicHeight md-content {
 	background-color: transparent !important; }
 .tabsdemoDynamicHeight md-content md-tabs {
 	background: #f6f6f6;
@@ -342,4 +349,30 @@ html,body {
 .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
 	background: white; }
 .tabsdemoDynamicHeight md-content h1:first-child {
-	margin-top: 0; }
+	margin-top: 0; }*/
+
+
+.card-1 {
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-1:hover {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-2 {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-3 {
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-4 {
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-5 {
+	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}

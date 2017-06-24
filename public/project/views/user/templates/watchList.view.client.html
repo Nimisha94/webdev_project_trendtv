@@ -106,13 +106,13 @@
 
     <div class="col-lg-9">
         <div id="works"  class=" clearfix grid">
-    <div class="container-fluid proj-background-black" >
+    <div class="container-fluid " >
         <br/><br/>
         <h2>Watched List</h2>
         <div class="row">
             <div ng-repeat="result in model.watchedlistshows">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail proj-background-black" ng-if ="model.user.watchedList.indexOf(result.id.toString())>-1">
+                <div class="col-sm-6 col-md-6">
+                    <div class="thumbnail card-1" ng-if ="model.user.watchedList.indexOf(result.id.toString())>-1">
                         <div class="row">
                             <div align="right">
                                     <span class="input-group-btn" style="padding-right: 20px;">
@@ -123,7 +123,7 @@
                                 <div class="col-lg-6" align="center">
 
                                     <img class="img-responsive"
-                                         ng-src="https://image.tmdb.org/t/p/w150/{{result.poster_path}}"
+                                         ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
                                          err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
                                 </div>
 

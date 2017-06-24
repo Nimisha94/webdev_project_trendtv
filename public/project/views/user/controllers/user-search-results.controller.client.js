@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('UserSearchResultsController', UserSearchResultsController);
 
-    function UserSearchResultsController($routeParams,SeriesService, $location, currentUser) {
+    function UserSearchResultsController($routeParams,SeriesService, $location, currentUser, userService) {
 
         var model = this;
         var tmdbId = null;
@@ -11,6 +11,11 @@
         //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         searchSeries(model.searchText);
+
+        userService.findUserById(model.userId)
+            .then(function (user) {
+                model.user = user
+            });
 
         //event handlers
         model.searchSeries = searchSeries;
@@ -26,7 +31,7 @@
             //var seriesId =
             //console.log(index);
             //console.log(model.searchResults[index].id);
-            $location.url('/series/'+model.searchResults[index].id);
+            $location.url('/comment/'+model.searchResults[index].id);
         }
         function successSearch(searchResultsArr) {
             console.log(searchResultsArr);

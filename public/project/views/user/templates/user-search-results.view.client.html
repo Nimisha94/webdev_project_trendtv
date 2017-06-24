@@ -39,12 +39,14 @@
 </div>
 
 <div id="works"  class=" clearfix grid">
-    <div class="container-fluid proj-background-black" >
+    <div class="container-fluid " >
         <br/><br/>
         <div class="row">
+            <h2 class=""><strong>Search Results</strong></h2>
             <div ng-repeat="result in model.searchResults">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail proj-background-black">
+                <div class="col-sm-6 col-md-6">
+                    <div class="thumbnail card-1" >
+
                         <div class="row">
                             <a ng-click="model.getSeriesDetailsbyId($index)">
                                 <div class="col-lg-6" align="center">
@@ -54,16 +56,17 @@
                                 </div>
                                 <div class="col-lg-6" align="left">
 
-                                    <h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3>
-
+                                    <!--<h3 >{{result.name.split(' ')[0].length>10 ? (result.name.split(' ')[0] | limitTo:8) : result.name}}{{result.name.split(' ')[0].length > 8 ? "..." : ""}}</h3>-->
+                                    <h3>{{result.name | limitTo:30}}{{result.name.length > 30 ? "..." : ""}}</h3>
                                 </div>
                             </a>
-                            <div class="caption">
-                                <h5 class="proj-text-color-white">{{result.description | limitTo:100}}{{result.description.length > 100 ? "..." :
+                            <!--<div class="caption">
+                                <h5 >{{result.description | limitTo:50}}{{result.description.length > 50 ? "..." :
                                     ""}}</h5>
-                            </div>
+                            </div>-->
 
                         </div>
+
                     </div>
                 </div>
                 <!--<br/><br/>-->

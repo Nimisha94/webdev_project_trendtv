@@ -29,7 +29,7 @@
                         <li class="active"><a ng-href="#!/">Trending</a></li>
                         <li ng-show="model.userId"><a class="navbarhover" ng-href="#!/profileEdit">Profile</a></li>
                         <li ng-show="!model.userId"><a class="navbarhover" href="#!/login">Login</a></li>
-                        <li ng-show="!model.userId"><a class="navbarhover" href="#/register">Register</a></li>
+                        <li ng-show="!model.userId"><a class="navbarhover" href="#!/register">Register</a></li>
                         <li ng-show="model.userId"><a class="navbarhover" ng-click="model.logout()">Logout {{model.user.username}}</a></li>
                     </ul>
                 </div>
@@ -52,6 +52,7 @@
         </figcaption>
     </figure>
 </div>
+
 
 <!-- Footer Starts -->
 <div class="footer text-center spacer">

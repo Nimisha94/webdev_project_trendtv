@@ -108,20 +108,97 @@
     <div class="col-lg-9">
         <div class="clearfix grid">
 
-<div id="works" class="container-fluid proj-background-black no-scroll-div">
-    <h2 class="proj-text-color-white"><strong>Comments</strong></h2>
-    <ul class="list-group">
+<div id="works" class="container-fluid  ">
+    <h2 class=""><strong>Comments</strong></h2>
+    <!--<ul class="list-group">-->
         <br>
-        <li class="proj-text-color-white proj-background-black list-group-item" ng-repeat="comment in model.comments">
-            <div class="proj-edit">
-                <!--<a ng-href="#!/user/{{model.userId}}/edit-comment/{{comment._id}}" class="btn btn-danger">Edit</a>-->
+
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <div flex-xs flex-gt-xs="" layout="column">
+                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Card with image</span>
+                            <span class="md-subhead">Large</span>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-lg card-media"></div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button>Action 1</md-button>
+                        <md-button>Action 2</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>
+
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <div flex-xs flex-gt-xs="" layout="column">
+                <md-card class="card-1" ng-repeat="comment in model.comments" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <a ng-href="#!/series/{{comment.seriesId}}">
+                                <span class="md-headline">{{comment.seriesName}}</span>
+                            </a>
+                            <!--<span class="md-subhead">Large</span>-->
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-lg card-media">
+                                <img ng-src="https://image.tmdb.org/t/p/w185/{{comment.posterPath}}">
+                            </div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-content>
+                        <h2>
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            {{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
+                            <i class="fa fa-quote-right" aria-hidden="true"></i>
+                        </h2>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button ng-href="#!/edit-comment/{{comment._id}}"><span class="glyphicon glyphicon-pencil"></span></md-button>
+                        <!--<md-button>Action 2</md-button>-->
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>
+
+    <div class="row ">
+        <h2 class=""><strong>Comments</strong></h2>
+        <div ng-repeat="comment in model.comments">
+
+            <div class="col-xs-12 col-md-12" id="x">
+                <div   class="thumbnail card-1 ">
+
+                        <div align="right">
+                            <a href="#!/edit-comment/{{comment._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </div>
+
+
+                        <h2>You commented on <b><a ng-href="#!/series/{{comment.seriesId}}">{{comment.seriesName}}</a></b></h2>
+                        <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
+                            <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+       <!-- <li class="list-group-item thumbnail card-1" ng-repeat="comment in model.comments">
+            <div class="proj-edit  ">
+                &lt;!&ndash;<a ng-href="#!/user/{{model.userId}}/edit-comment/{{comment._id}}" class="btn btn-danger">Edit</a>&ndash;&gt;
                 <a href="#!/edit-comment/{{comment._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
             </div>
             <h2>You commented on <b><a ng-href="#!/series/{{comment.seriesId}}">{{comment.seriesName}}</a></b></h2>
             <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
                 <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
+
         </li>
-    </ul>
+
+    </ul>-->
 
 </div>
 

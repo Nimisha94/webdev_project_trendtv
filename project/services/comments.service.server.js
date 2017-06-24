@@ -8,7 +8,7 @@ var commentModel=require("../model/comment/comment.model.server");
 
 app.get('/api/project/comment/:commentId', getCommentById);
 app.put('/api/project/comment/:commentId', updateComment);
-app.get('/api/project/comment/series/:seriesId', getCommentsBySeriesId);
+app.get('/api/project/comment/comment/:seriesId', getCommentsBySeriesId);
 app.post('/api/project/comment', createComment);
 app.get('/api/project/comments', findAllComments);
 app.delete('/api/project/comment/:commentId', deleteComment);

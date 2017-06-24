@@ -46,7 +46,7 @@
        }
 
        function getCommentsBySeriesId(seriesId) {
-           var url = '/api/project/comment/series/'+seriesId;
+           var url = '/api/project/comment/comment/'+seriesId;
            return $http.get(url)
                .then(function (response) {
                    var comments = response.data;

@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('TrendTv',['ngRoute'])
+        .module('TrendTv',['ngRoute', 'ngMaterial'])
 
     .directive('errSrc', function() {
         return {

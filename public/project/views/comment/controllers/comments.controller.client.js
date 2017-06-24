@@ -29,6 +29,7 @@
             SeriesService.getSearchDetailsById(comment.seriesId)
                 .then(function (series) {
                     comment.seriesName=series.name;
+                    comment.poster = series.posterPath
                     model.comments.push(comment);
                 })
 
