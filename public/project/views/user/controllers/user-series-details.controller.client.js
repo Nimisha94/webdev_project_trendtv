@@ -11,6 +11,7 @@
         model.seriesId = $routeParams['seriesId'];
         model.comments=[];
         model.users=[];
+        model.userIds=[];
         model.wishlistflag=false;
         model.watchedlistflag=false;
 

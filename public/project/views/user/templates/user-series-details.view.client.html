@@ -52,7 +52,7 @@
             <div class="col-lg-7">
                 <h3 align="left"><b>{{model.details.name}}</b>
                     <span ng-repeat="i in model.getNumber(model.details.vote_average/2)">
-                        <i style="color:greenyellow" class="fa fa-star" aria-hidden="true"></i>
+                        <i style="color:gold" class="fa fa-star" aria-hidden="true"></i>
                     </span>
                 </h3>
 
@@ -91,7 +91,9 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-10">
-                                <h4 align="left"><b>{{model.users[$index]}}:</b></h4>
+                                <a ng-if="c.userId!==model.userId && model.userId" ng-href="#!/finduser/{{c.userId}}"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></a>
+                                <h4  ng-if="!model.userId" align="left"><b>{{model.users[$index]}}:</b></h4>
+                                <a ng-if="c.userId==model.userId" ng-href="#!/profileEdit"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></a>
                                 <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment }}
                                     <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
                             </div>

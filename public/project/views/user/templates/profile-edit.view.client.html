@@ -230,9 +230,10 @@
             <br>
         </div>
 
-            <div ng-show="model.user.role === 'admin'" style="padding-top: 100px"  class="col-lg-12 hidden-xs">
-            <br><br>
-            <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+                <div ng-show="model.user.role === 'admin'" style="padding-top: 100px"  class="col-lg-9 hidden-xs">
+                <h2 class=""><strong>Profile</strong></h2>
+
+                <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
 
             <label for="adminusername" class="usernamelabelregister">Username</label>
             <input ng-model="model.user.username" id="adminusername" class="form-control">
@@ -255,8 +256,8 @@
 
             <a class="loginmargins btn btn-danger  btn-block"
                href="#!/">Cancel</a>
+                <br>
         </div>
-
         </div>
     </div>
 
