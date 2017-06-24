@@ -68,7 +68,8 @@
                 clickOutsideToClose:true,
                 fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
                 locals: {
-                    items: users
+                    items: users,
+                    flag: 'l'
                 }
 
             })
@@ -102,7 +103,8 @@
                 clickOutsideToClose:true,
                 fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
                 locals: {
-                    items: users
+                    items: users,
+                    flag: 'd'
                 }
 
             })
@@ -120,11 +122,13 @@
                 })
         }
 
-        function DialogController($mdDialog,items) {
+        function DialogController($mdDialog,items, flag) {
 
             var vm = this;
 
             vm.items = items;
+
+            vm.flag = flag;
 
             vm.hide = function() {
                 $mdDialog.hide();
