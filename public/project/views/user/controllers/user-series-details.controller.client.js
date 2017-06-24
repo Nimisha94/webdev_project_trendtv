@@ -48,7 +48,17 @@
         model.addedToWishList=addedToWishList;
         model.addedToWatchedList=addedToWatchedList;
         model.insertComment=insertComment;
+        model.getNumber = getNumber;
         model.logout = logout;
+
+        function getNumber(number) {
+            var arr = [];
+            for(var i=0;i<number;i++)
+            {
+                arr.push(i);
+            }
+            return arr;
+        }
 
         function insertComment(comment) {
                 var c={

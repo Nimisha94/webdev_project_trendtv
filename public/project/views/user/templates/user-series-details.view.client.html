@@ -36,64 +36,85 @@
 </div>
 
 <div  class="">
-    <div id ="works" class="container-fluid proj-text-color-white proj-background-black" style="padding-top: 6em">
+    <div id ="works" class="container-fluid " style="padding-top: 6em">
         <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
         <br/><br/>
-        <div align="middle">
-            <div ng-show="model.userId" class="proj-edit">
-                <a ng-show="!model.wishlistflag" ng-click="model.addToWishList()" ><i class="proj-wishlist fa fa-heart fa-2x" aria-hidden="true"></i></a>
-                <a ng-show="model.wishlistflag" ng-click="model.addedToWishList()" ><i class="proj-wishlist-star fa fa-star fa-2x" aria-hidden="true"></i></a>
-                <a ng-show="!model.watchedlistflag" ng-click="model.addToWatchedList()" ><i class="proj-watchedlist fa fa-list fa-2x" aria-hidden="true"></i></a>
-                <a ng-show="model.watchedlistflag" ng-click="model.addedToWatchedList()" ><i class="proj-check fa fa-check-square-o fa-2x" aria-hidden="true"></i></a>
+        <div class="row">
+            <div class="col-lg-5" align="middle">
+                <div ng-show="model.userId" class="proj-edit">
+                    <a ng-show="!model.wishlistflag" ng-click="model.addToWishList()" ><i class="proj-wishlist fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                    <a ng-show="model.wishlistflag" ng-click="model.addedToWishList()" ><i class="proj-wishlist-star fa fa-star fa-2x" aria-hidden="true"></i></a>
+                    <a ng-show="!model.watchedlistflag" ng-click="model.addToWatchedList()" ><i class="proj-watchedlist fa fa-list fa-2x" aria-hidden="true"></i></a>
+                    <a ng-show="model.watchedlistflag" ng-click="model.addedToWatchedList()" ><i class="proj-check fa fa-check-square-o fa-2x" aria-hidden="true"></i></a>
+                </div>
+                <img ng-src="https://image.tmdb.org/t/p/w300/{{model.details.poster_path}}" err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
             </div>
-            <img ng-src="https://image.tmdb.org/t/p/w300/{{model.details.poster_path}}" err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
-        </div>
-        <h3 align="center"><b>{{model.details.name}}</b></h3>
+            <div class="col-lg-7">
+                <h3 align="left"><b>{{model.details.name}}</b>
+                    <span ng-repeat="i in model.getNumber(model.details.vote_average/2)">
+                        <i style="color:greenyellow" class="fa fa-star" aria-hidden="true"></i>
+                    </span>
+                </h3>
 
-
-        <p><b>Genre:</b>
-        <span ng-repeat="genre in model.details.genres">
+                <p><b>Genre:</b>
+                    <span ng-repeat="genre in model.details.genres">
                     {{genre.name}},
                 </span>
-        </p>
-        <p><b>Seasons:</b>
-            <span>{{model.details.number_of_seasons}}</span>
-        </p>
-        <p><b>First Air Date:</b>
-            <span>{{model.details.first_air_date}}</span>
-        </p>
-        <p><b>Last Air Date:</b>
-            <span>{{model.details.last_air_date}}</span>
-        </p>
-        <b>Overview:</b>
-        <p>{{model.details.overview}}</p>
+                </p>
+                <p><b>Seasons:</b>
+                    <span>{{model.details.number_of_seasons}}</span>
+                </p>
+                <p><b>First Air Date:</b>
+                    <span>{{model.details.first_air_date}}</span>
+                </p>
+                <p><b>Last Air Date:</b>
+                    <span>{{model.details.last_air_date}}</span>
+                </p>
+                <p><b>Status:</b>
+                    <span>{{model.details.status}}</span>
+                </p>
+                <b>Overview:</b>
+                <p>{{model.details.overview}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <br>
+                <p>
+                <h3 align="left"><b>Comments</b></h3>
+                <div ng-repeat="c in model.comments">
+                    <em ng-show="model.comments.length === 0" >No Comments yet!</em>
+                    <div class="thumbnail card-1 ">
+                        <div ng-if="c.userId===model.userId" align="right">
+                            <a href="#!/edit-comment/{{c._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <h4 align="left"><b>{{model.users[$index]}}:</b></h4>
+                                <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment }}
+                                    <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
+                            </div>
+                        </div>
 
-        <p>
-            <b>Comments</b>
-            <ul class="list-group">
-                <em ng-show="model.comments.length === 0" >No Comments yet!</em>
-                <li class="proj-background-black list-group-item" ng-repeat="c in model.comments">
-                    <div ng-if="c.userId===model.userId" class="proj-edit">
-                        <a href="#!/edit-comment/{{c._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                     </div>
-                    <p><b>{{model.users[$index]}}:</b></p>
-                    <h5><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment}}
-                        <i class="fa fa-quote-right" aria-hidden="true"></i></em></h5>
-                </li>
-            </ul>
-            <form>
-                <div class="form-group">
+                </div>
+                <form>
+                    <div class="form-group">
                                 <textarea ng-disabled="!model.userId" class="form-control" rows="3" placeholder="Please enter the comment"
                                           ng-model="comment"></textarea>
-                </div>
-                <a class="btn btn-success"
-                   ng-click="model.insertComment(comment)"
-                   ng-show="model.userId"
-                   role="button">Submit</a>
-                <a ng-href="#!/login" class="btn btn-danger"
-                   ng-show="!model.userId"
-                   role="button">Login to comment</a>
-            </form>
-        </p>
+                    </div>
+                    <a class="btn btn-success"
+                       ng-click="model.insertComment(comment)"
+                       ng-show="model.userId"
+                       role="button">Submit</a>
+                    <a ng-href="#!/login" class="btn btn-danger"
+                       ng-show="!model.userId"
+                       role="button">Login to comment</a>
+                </form>
+                </p>
+            </div>
+        </div>
+
     </div>
 </div>
