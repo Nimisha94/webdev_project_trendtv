@@ -36,20 +36,39 @@
     </div>
 </div>
 
+
+
 <div class="login-view container-fluid">
 
 
     <div class="admindiv container">
-
         <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
 
-        <div class="col-lg-2">
+
+        <md-content class="md-padding">
+            <md-nav-bar
+                    md-selected-nav-item="model.currentNavItem"
+                    nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-click="model.showUsers()" name="users">
+                    Users
+                </md-nav-item>
+                <md-nav-item md-nav-click="model.showPosts()" name="posts">
+                    Posts
+                </md-nav-item>
+                <md-nav-item md-nav-click="model.showComments()" name="comments">
+                    Comments
+                </md-nav-item>
+            </md-nav-bar>
+
+
+
+       <!-- <div class="col-lg-2">
             <br><br>
             <a ng-click="model.showUsers()" class="btn btn-block btn-primary">Users</a>
             <a ng-click="model.showPosts()" class="btn btn-block btn-primary">Posts</a>
             <a ng-click="model.showComments()" class="btn btn-block btn-primary">Comments</a>
 
-        </div>
+        </div>-->
 
         <!--Manage Users-->
         <div ng-if="model.usersflag" class="col-lg-10"><br>

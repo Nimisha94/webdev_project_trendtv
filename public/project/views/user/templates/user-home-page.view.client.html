@@ -1,4 +1,5 @@
 
+
 <div class="topbar animated fadeInLeftBig"></div>
 <div class="navbar-wrapper">
     <div class="container-fluid">
@@ -38,6 +39,7 @@
         </div>
     </div>
 </div>
+<img class="spinner" ng-src="https://www.criminalwatchdog.com/images/assets/loading.gif " ng-show="model.loading"></img>
 
 
 <div id="works"  class=" clearfix grid">
@@ -55,7 +57,7 @@
 
 
 <!-- Footer Starts -->
-<div class="footer text-center spacer">
+<div ng-show="!model.loading" class="footer text-center spacer">
     <p class="wowload flipInX"><a href="#"><i class="fa fa-facebook fa-2x"></i></a> <a href="#"><i class="fa fa-instagram fa-2x"></i></a> <a href="#"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i class="fa fa-flickr fa-2x"></i></a> </p>
     Project for Web Development at Northeastern University.
 </div>
