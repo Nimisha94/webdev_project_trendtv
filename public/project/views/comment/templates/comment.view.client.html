@@ -130,58 +130,58 @@
         </div>
 
         <div class="col-lg-12">
-        <div class="clearfix grid">
+            <div class="clearfix grid">
 
-<div id="works" class="container-fluid  ">
+                <div id="works" class="container-fluid  ">
 
-    <div class="row ">
-        <h2 class="">Comments</h2>
-        <div ng-repeat="comment in model.comments">
+                    <div class="row ">
+                        <h2 class="">Comments</h2>
+                        <div ng-repeat="comment in model.comments">
 
-            <div class="col-xs-12 col-md-12" id="x">
-                <div class="thumbnail card-1 ">
-                        <div align="right">
-                            <a href="#!/edit-comment/{{comment._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </div>
-                    <div class="row">
-                        <!--<div class="col-lg-6" align="center">
+                            <div class="col-xs-12 col-md-12" id="x">
+                                <div class="thumbnail card-1 ">
+                                    <div align="right">
+                                        <a href="#!/edit-comment/{{comment._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    </div>
+                                    <div class="row">
+                                        <!--<div class="col-lg-6" align="center">
 
-                            <img class="img-responsive"
-                                 ng-src="https://image.tmdb.org/t/p/w185/{{comment.poster}}"
-                                 err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
-                        </div>-->
+                                            <img class="img-responsive"
+                                                 ng-src="https://image.tmdb.org/t/p/w185/{{comment.poster}}"
+                                                 err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
+                                        </div>-->
 
-                        <div class="col-lg-12">
-                            <p align="left">You commented on </p>
-                            <p style="font-size: x-large" align="left"><b><a ng-href="#!/series/{{comment.seriesId}}">{{comment.seriesName}}</a></b></p>
-                            <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
-                                <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
+                                        <div class="col-lg-12">
+                                            <p align="left">You commented on </p>
+                                            <p style="font-size: x-large" align="left"><b><a ng-href="#!/series/{{comment.seriesId}}">{{comment.seriesName}}</a></b></p>
+                                            <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
+                                                <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+
+                    <!-- <li class="list-group-item thumbnail card-1" ng-repeat="comment in model.comments">
+                         <div class="proj-edit  ">
+                             &lt;!&ndash;<a ng-href="#!/user/{{model.userId}}/edit-comment/{{comment._id}}" class="btn btn-danger">Edit</a>&ndash;&gt;
+                             <a href="#!/edit-comment/{{comment._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                         </div>
+                         <h2>You commented on <b><a ng-href="#!/series/{{comment.seriesId}}">{{comment.seriesName}}</a></b></h2>
+                         <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
+                             <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
+
+                     </li>
+
+                 </ul>-->
+
                 </div>
+
             </div>
         </div>
-    </div>
-
-
-       <!-- <li class="list-group-item thumbnail card-1" ng-repeat="comment in model.comments">
-            <div class="proj-edit  ">
-                &lt;!&ndash;<a ng-href="#!/user/{{model.userId}}/edit-comment/{{comment._id}}" class="btn btn-danger">Edit</a>&ndash;&gt;
-                <a href="#!/edit-comment/{{comment._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
-            </div>
-            <h2>You commented on <b><a ng-href="#!/series/{{comment.seriesId}}">{{comment.seriesName}}</a></b></h2>
-            <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{comment.comment | limitTo:90}}{{comment.comment.length > 100 ? "..." :""}}
-                <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
-
-        </li>
-
-    </ul>-->
-
-</div>
-
-</div>
-    </div>
     </div>
 
 </div>
