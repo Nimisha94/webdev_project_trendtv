@@ -2,7 +2,8 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Likes</h2>
+                <div ng-show="vm.flag === 'l'"><h2>Likes</h2></div>
+                <div ng-show="vm.flag === 'd'"><h2>Dislikes</h2></div>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
@@ -11,6 +12,7 @@
         </md-toolbar>
 
         <md-dialog-content>
+
             <div class="md-dialog-content row" ng-repeat="user in vm.items">
                 <a ng-href="#!/finduser/{{user._id}}" ng-click="vm.cancel()">
                     <div class="col-lg-3">
