@@ -125,10 +125,12 @@
 
         <ul class="list-group">
             <br>
-            <li class="proj-text-color-white proj-background-black list-group-item" ng-repeat="post in model.posts">
+
+            <li class="  list-group-item" ng-repeat="post in model.posts">
                 <div class="proj-edit">
-                    <a ng-click="model.showLikes(post._id)"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a>
-                    <a ng-click="model.showDislikes(post._id)"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a>
+
+                    <a ng-click="model.showLikes(post._id, $event)"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></a>
+                    <a ng-click="model.showDislikes(post._id,$event)"><i class="fa fa-thumbs-down fa-2x" aria-hidden="true"></i></a>
                     <a href="#!/edit-post/{{post._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
                 </div>
                 <h2>{{post.title}}</h2>

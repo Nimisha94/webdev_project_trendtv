@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('PostsController', PostsController);
 
-    function PostsController(PostsService, userService, $routeParams, $route, currentUser, $location) {
+    function PostsController(PostsService, userService, $routeParams, $route, currentUser, $location, $mdDialog) {
 
         var model = this;
 
@@ -43,7 +43,7 @@
                 });
         }
 
-        function showLikes(postId) {
+        function showLikes(postId, ev) {
             //console.log(postId);
             var users = [];
             PostsService.getPostById(postId)
@@ -55,12 +55,30 @@
                                 users.push(user);
                             });
                     }
+                    model.likeArr = users;
                     //console.log(users);
+                });
+
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vm',
+                templateUrl: 'views/post/templates/dialog1.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
+                locals: {
+                    items: users
+                }
+
+            })
+                .then(function(answer) {
+                    model.status = 'You said the information was "' + answer + '".';
                 });
             //console.log(users);
         }
 
-        function showDislikes(postId) {
+        function showDislikes(postId,ev) {
             //console.log(postId);
             var users = [];
             PostsService.getPostById(postId)
@@ -73,6 +91,23 @@
                             });
                     }
                     //console.log(users);
+                    model.disLikeArr = users;
+                });
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vm',
+                templateUrl: 'views/post/templates/dialog1.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
+                locals: {
+                    items: users
+                }
+
+            })
+                .then(function(answer) {
+                    model.status = 'You said the information was "' + answer + '".';
                 });
             //console.log(users);
         }
@@ -84,5 +119,25 @@
                     $location.url('/login');
                 })
         }
+
+        function DialogController($mdDialog,items) {
+
+            var vm = this;
+
+            vm.items = items;
+
+            vm.hide = function() {
+                $mdDialog.hide();
+            };
+
+            vm.cancel = function() {
+                $mdDialog.cancel();
+            };
+
+            vm.answer = function(answer) {
+                $mdDialog.hide(answer);
+            };
+        }
     }
+
 })();
