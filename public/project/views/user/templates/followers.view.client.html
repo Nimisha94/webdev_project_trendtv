@@ -36,121 +36,142 @@
     </div>
 </div>
 
-
 <div class="container-fluid">
-
-    <div style="padding-top: 80px" class="col-lg-3 hidden-xs">
-        <br>
-        <div align="center" class="row">
-            <img align="center" class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
-        </div>
-        <a ng-href="#!/profileEdit"><h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.user.username}}    <i class="fa fa-pencil " aria-hidden="true"></i></h4></a>
-        <br>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-users fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/follower"><h4>Followers</h4> </a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-th-list fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/wishList"><h4>Wish List</h4></a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-list-alt fa-4x"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/watchList"><h4>Watched List</h4></a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-comments fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/comments"><h4>Comments</h4></a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-users fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/following"><h4>Following</h4></a>
-            </div>
-        </div>
-        <div ng-if="!(model.user.role==='actor')" class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/activityfeed"><h4>Activity Feed</h4></a>
-            </div>
-        </div>
-        <div ng-if="model.user.role==='actor'" class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/posts"><h4>Posts</h4></a>
-            </div>
-        </div>
-        <br>
-    </div>
-
-    <div  class="col-lg-9">
-        <div class=" clearfix grid">
-        <div id = "works" class="container-fluid " >
-            <!--<br/><br/>-->
-            <div class="row ">
-                <h2 class=""><strong>Followers</strong></h2>
-                <div ng-repeat="f in model.followerList">
-
-                    <div class="col-sm-6 col-md-6" id="x">
-                        <div   class="thumbnail card-1 ">
-                            <div class="row">
-
-                                <div class="col-lg-6" align="center" >
-                                    <img class="img-responsive img-circle"
-                                         ng-src="{{f.imageUrl}}"
-                                         err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
-                                </div>
-
-                                <div class="col-lg-6"  align="left">
-
-                                    <a ng-if="f.role === 'user'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
-                                    <a ng-if="f.role === 'actor'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}&nbsp&nbsp&nbsp&nbsp<i class="fa fa-check-circle" aria-hidden="true"></i></h4></a>
-                                    <h5 class="">Following : {{f.followingCount}}</h5>
-                                    <h5 class="">Followers : {{f.followerCount}}</h5>
-                                    <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='user'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
-                                    <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='user'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>
-                                    <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='actor'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow  <i class="fa fa-star" aria-hidden="true"></i></a>
-                                    <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='actor'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow  <i class="fa fa-star" aria-hidden="true"></i></a>
-
-                                    <!--<a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
-                                    <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
-                                    <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
-                                    <a ng-if="model.user.following.indexOf(f._id)>-1" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
-                                    <a ng-if="!(model.user.following.indexOf(f._id)>-1)" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>-->
-                                </div>
-
-                            </div>
+    <div style="padding-top: 80px;" id="wrapper">
+        <div class="hidden-xs" id="sidebar-wrapper">
+            <ul  class="sidebar-nav">
+                <br>
+                <li style="padding-left: 45px">
+                    <img align="center" class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
+                </li>
+                <li>
+                    <a ng-href="#!/profileEdit"><h4 align="center">  {{model.user.username}}   <i style="color:black" class="fa fa-pencil " aria-hidden="true"></i></h4></a>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i style="color: black" class="fa fa-users fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/follower"><h4>Followers</h4> </a>
                         </div>
                     </div>
-
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-th-list fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/wishList"><h4>Wish List</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-list-alt fa-2x"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/watchList"><h4>Watched List</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/comments"><h4>Comments</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/following"><h4>Following</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="!(model.user.role==='actor')">
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/activityfeed"><h4>Activity Feed</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="model.user.role==='actor'">
+                    <div class="row">
+                        <div align="right" class="col-xs-5">
+                            <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-7">
+                            <a ng-href="#!/posts"><h4>Posts</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="true">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a ng-href="#!/posts"><h4 style="color:whitesmoke;">Posts</h4></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class=" clearfix grid">
+                <div id = "works" class="container-fluid " >
                     <!--<br/><br/>-->
+                    <div class="row ">
+                        <h2 class="">Followers</h2>
+                        <div ng-repeat="f in model.followerList">
+
+                            <div class="col-sm-6 col-md-6" id="x">
+                                <div  style="background-color: #E6E8F4;"  class="thumbnail card-1 ">
+                                    <div class="row">
+
+                                        <div class="col-lg-6" align="center" >
+                                            <img class="img-responsive img-circle"
+                                                 ng-src="{{f.imageUrl}}"
+                                                 err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
+                                        </div>
+
+                                        <div class="col-lg-6"  align="left">
+
+                                            <a ng-if="f.role === 'user'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                                            <a ng-if="f.role === 'actor'"ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}&nbsp&nbsp&nbsp&nbsp<i class="fa fa-check-circle" aria-hidden="true"></i></h4></a>
+                                            <h5 class="">Following : {{f.followingCount}}</h5>
+                                            <h5 class="">Followers : {{f.followerCount}}</h5>
+                                            <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='user'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
+                                            <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='user'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>
+                                            <a ng-if="model.user.following.indexOf(f._id)>-1 && f.role==='actor'" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow  <i class="fa fa-star" aria-hidden="true"></i></a>
+                                            <a ng-if="!(model.user.following.indexOf(f._id)>-1) && f.role==='actor'" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow  <i class="fa fa-star" aria-hidden="true"></i></a>
+
+                                            <!--<a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                                            <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
+                                            <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
+                                            <a ng-if="model.user.following.indexOf(f._id)>-1" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
+                                            <a ng-if="!(model.user.following.indexOf(f._id)>-1)" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>-->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<br/><br/>-->
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-
     </div>
-    </div>
-
 </div>

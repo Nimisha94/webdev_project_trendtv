@@ -37,72 +37,95 @@
 </div>
 
 <div class="container-fluid">
-
-    <div style="padding-top: 80px" class="col-lg-3 hidden-xs">
-        <br>
-        <div align="center" class="row">
-            <img align="center" class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
+    <div style="padding-top: 80px;" id="wrapper">
+        <div class="hidden-xs" id="sidebar-wrapper">
+            <ul  class="sidebar-nav">
+                <br>
+                <li style="padding-left: 45px">
+                    <img align="center" class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
+                </li>
+                <li>
+                    <a ng-href="#!/profileEdit"><h4 align="center">  {{model.user.username}}   <i style="color:black" class="fa fa-pencil " aria-hidden="true"></i></h4></a>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i style="color: black" class="fa fa-users fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/follower"><h4>Followers</h4> </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-th-list fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/wishList"><h4>Wish List</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-list-alt fa-2x"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/watchList"><h4>Watched List</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/comments"><h4>Comments</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/following"><h4>Following</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="!(model.user.role==='actor')">
+                    <div class="row">
+                        <div align="right" class="col-xs-4">
+                            <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-8">
+                            <a ng-href="#!/activityfeed"><h4>Activity Feed</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="model.user.role==='actor'">
+                    <div class="row">
+                        <div align="right" class="col-xs-5">
+                            <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div align="left" class="col-xs-7">
+                            <a ng-href="#!/posts"><h4>Posts</h4></a>
+                        </div>
+                    </div>
+                </li>
+                <li ng-if="true">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a ng-href="#!/posts"><h4 style="color:whitesmoke;">Posts</h4></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <a ng-href="#!/profileEdit"><h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.user.username}}    <i class="fa fa-pencil " aria-hidden="true"></i></h4></a>
-        <br>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-users fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/follower"><h4>Followers</h4> </a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-th-list fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/wishList"><h4>Wish List</h4></a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-list-alt fa-4x"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/watchList"><h4>Watched List</h4></a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-comments fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/comments"><h4>Comments</h4></a>
-            </div>
-        </div>
-        <div class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-users fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/following"><h4>Following</h4></a>
-            </div>
-        </div>
-        <div ng-if="!(model.user.role==='actor')" class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/activityfeed"><h4>Activity Feed</h4></a>
-            </div>
-        </div>
-        <div ng-if="model.user.role==='actor'" class="row">
-            <div align="right" class="col-xs-5">
-                <i class="fa fa-envelope-open fa-4x" aria-hidden="true"></i>
-            </div>
-            <div align="left" style="padding-top: 20px" class="col-xs-7">
-                <a ng-href="#!/posts"><h4>Posts</h4></a>
-            </div>
-        </div>
-        <br>
-    </div>
 
     <div class="col-lg-9">
         <div  class=" clearfix grid">
@@ -149,5 +172,5 @@
 
 </div>
     </div>
-
+    </div>
 </div>

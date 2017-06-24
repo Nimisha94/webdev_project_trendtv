@@ -9,7 +9,7 @@ body {	color:black;	font:300 15px/15px Roboto,Arial,Helvetica;background-color:#
 
 
 a{color:#00a9c6; text-decoration:none; cursor: pointer; cursor: hand;}
-li a:hover{color:white; text-decoration: none;}
+li a:hover{color:black; text-decoration: none;}
 a:hover{color:#666; text-decoration: none;}
 .navbarhover:hover{color: white !important;}
 
@@ -96,13 +96,13 @@ outline: none !important;
 .loginmargins
 {
 	margin-top:20px;
-	color:white;
+	color:black;
 }
 
 .usernamelabelregister
 {
 	margin-top: 10px;
-	color: white;
+	color: black;
 }
 
 h1,h2,h3,h4{margin: 0;line-height: 1em;}
@@ -283,7 +283,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 
 .no-scroll-div {
 	position: absolute;
-	width: 100%;
+	width: 30%;
 	height: 100%;
 	left: 0;
 	top: 0;
@@ -375,4 +375,55 @@ html,body {
 
 .card-5 {
 	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+#wrapper {
+	padding-left: 250px;
+	transition: all 0.4s ease 0s;
+}
+
+#sidebar-wrapper {
+	margin-left: -250px;
+	left: 250px;
+	width: 250px;
+	background: whitesmoke;
+	position: fixed;
+	height: 100%;
+	overflow-y: auto;
+	z-index: 1000;
+	transition: all 0.4s ease 0s;
+}
+
+#page-content-wrapper {
+	width: 100%;
+}
+.sidebar-nav {
+	position: absolute;
+	top: 0;
+	width: 250px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@media (max-width:767px) {
+
+	#wrapper {
+		padding-left: 0;
+	}
+
+	#sidebar-wrapper {
+		left: 0;
+	}
+
+	#wrapper.active {
+		position: relative;
+		left: 250px;
+	}
+
+	#wrapper.active #sidebar-wrapper {
+		left: 250px;
+		width: 250px;
+		transition: all 0.4s ease 0s;
+	}
+
 }
