@@ -17,6 +17,7 @@
         //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.username='admin';
+        model.currentNavItem = 'users';
 
         function init() {
             userService.findAllUsers()

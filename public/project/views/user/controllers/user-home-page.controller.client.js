@@ -6,6 +6,7 @@
     function UserHomeController(userService, SeriesService, $location, $routeParams, currentUser) {
 
         var model = this;
+        model.loading = true;
 
         //model.userId = $routeParams['userId'];
 
@@ -23,7 +24,9 @@
         }
 
         SeriesService.getTrendingSeriesIds()
-            .then(getTrendingsImages);
+            .then(getTrendingsImages).finally(function () {
+            model.loading = false;
+        });
 
         //event handlers
         model.getSeriesbyName = getSeriesbyName;
