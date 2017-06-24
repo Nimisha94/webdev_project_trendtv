@@ -427,6 +427,9 @@ html,body {
 	}
 
 }
+
+
+
 .spinner {
 	position: fixed; /* or absolute */
 	top: 50%;

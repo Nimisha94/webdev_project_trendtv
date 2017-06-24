@@ -40,14 +40,14 @@
 
     <div class="container-fluid">
         <div style="padding-top: 80px;" id="wrapper">
-            <div ng-show="model.user.role === 'user' || model.user.role === 'actor'" class="hidden-xs" id="sidebar-wrapper">
+            <div ng-show="model.user.role === 'user' || model.user.role === 'actor'"  id="sidebar-wrapper">
                 <ul  class="sidebar-nav">
                     <br>
                     <li style="padding-left: 45px">
                         <img align="center" class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
                     </li>
                     <li>
-                        <a ng-href="#!/profileEdit"><h4 align="center">  {{model.user.username}}   <i style="color:black" class="fa fa-pencil " aria-hidden="true"></i></h4></a>
+                        <a ng-href="#!/profileEdit"><h4 align="center">  {{model.user.username}}   <i style="color:black" class="fa fa-pencil hidden-lg hidden-md hidden-sm" aria-hidden="true"></i></h4></a>
                     </li>
                     <li>
                         <div class="row">
@@ -129,7 +129,70 @@
                 </ul>
             </div>
 
-            <div  ng-show="model.user.role === 'user' || model.user.role === 'actor'" id="works" class="col-lg-9">
+            <div align="center" style="background: whitesmoke" class="col-xs-12 visible-xs" ng-show="model.user.role === 'user' || model.user.role === 'actor'">
+                <div  class="row">
+                    <img class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
+                </div>
+                    <a ng-href="#!/profile-edit-mobile"><h3 align="center">  {{model.user.username}}   <i style="color:black" class="fa fa-pencil hidden-lg hidden-md hidden-sm" aria-hidden="true"></i></h3></a>
+                <div class="row">
+                    <div align="right" class="col-xs-5">
+                        <i style="color: black" class="fa fa-users fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div align="left" class="col-xs-7">
+                        <a ng-href="#!/follower"><h4>Followers</h4> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div align="right" class="col-xs-5">
+                        <i class="fa fa-th-list fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div align="left" class="col-xs-7">
+                        <a ng-href="#!/wishList"><h4>Wish List</h4></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div align="right" class="col-xs-5">
+                        <i class="fa fa-list-alt fa-2x"></i>
+                    </div>
+                    <div align="left" class="col-xs-7">
+                        <a ng-href="#!/watchList"><h4>Watched List</h4></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div align="right" class="col-xs-5">
+                        <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div align="left" class="col-xs-7">
+                        <a ng-href="#!/comments"><h4>Comments</h4></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div align="right" class="col-xs-5">
+                        <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div align="left" class="col-xs-7">
+                        <a ng-href="#!/following"><h4>Following</h4></a>
+                    </div>
+                </div>
+                <div ng-if="!(model.user.role==='actor')" class="row">
+                    <div align="right" class="col-xs-5">
+                        <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div align="left" class="col-xs-7">
+                        <a ng-href="#!/activityfeed"><h4>Activity Feed</h4></a>
+                    </div>
+                </div>
+                <div ng-if="model.user.role==='actor'" class="row">
+                    <div align="right" class="col-xs-5">
+                        <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div align="left" class="col-xs-7">
+                        <a ng-href="#!/posts"><h4>Posts</h4></a>
+                    </div>
+                </div>
+            </div>
+
+            <div  ng-show="model.user.role === 'user' || model.user.role === 'actor'" id="works" class="col-lg-9 hidden-xs">
                 <h2 class=""><strong>Profile</strong></h2>
 
                 <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
@@ -167,7 +230,7 @@
             <br>
         </div>
 
-            <div ng-show="model.user.role === 'admin'" style="padding-top: 100px"  class="col-lg-12">
+            <div ng-show="model.user.role === 'admin'" style="padding-top: 100px"  class="col-lg-12 hidden-xs">
             <br><br>
             <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
 

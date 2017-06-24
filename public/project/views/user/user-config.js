@@ -101,6 +101,14 @@
                     currentUser:checkLoggedIn
                 }
             })
+            .when('/profile-edit-mobile',{
+                templateUrl: 'views/user/templates/profile-edit-mobile.view.client.html',
+                controller: 'ProfileEditController',
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
+            })
     }
 
     function checkAdminLoggedIn(userService, $q,$location) {
