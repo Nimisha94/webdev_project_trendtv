@@ -41,13 +41,13 @@
 
 <div id= "works" class=" container-fluid">
     <div class="container">
-        <div class="input-group loginmargins row">
-            <input type="text" ng-model="searchText" class="form-control" placeholder="Search for...">
+        <form class="input-group loginmargins row">
+            <input type="text" ng-model="searchText" class="form-control" placeholder="Search for..." ng-keyup="$event.keyCode == 13 && model.redirectToSearchResults(searchText)">
             <span class="input-group-btn">
                 <a id="searchbutton" class="btn btn-default" ng-click="model.redirectToSearchResults(searchText)" type="button"><i class="fa fa-search"></i></a>
             </span>
 
-        </div><!-- /input-group -->
+        </form><!-- /input-group -->
         <br>
         <div ng-if="model.userId" class="row" ng-init="model.search='tvseries'">
             <label class="radio-inline"><input ng-model="model.search" ng-value="'tvseries'" type="radio" name="searchtype"><h4>TV Series</h4></label>
