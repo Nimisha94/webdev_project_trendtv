@@ -43,27 +43,30 @@
         <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
 
         <label for="username" class="usernamelabelregister">Username</label>
-        <input ng-model="username" id="username" class="form-control">
+        <input ng-model="username" id="username" class="form-control" placeholder="bob">
 
         <label for="password" class="loginmargins">Password</label>
-        <input ng-model="password" type="password" id="password" class="form-control">
+        <input ng-model="password" type="password" id="password" class="form-control" placeholder="bob123">
 
         <label for="verifypassword" class="loginmargins">Verify Password</label>
-        <input ng-model="verpwd" type="password" id="verifypassword" class="form-control">
+        <input ng-model="verpwd" type="password" id="verifypassword" class="form-control" placeholder="bob123">
 
         <label for="firstname" class="loginmargins">First Name</label>
-        <input ng-model="firstname" id="firstname" class="form-control">
+        <input ng-model="firstname" id="firstname" class="form-control" placeholder="Bob">
 
         <label for="lastname" class="loginmargins">Last Name</label>
-        <input ng-model="lastname" id="lastname" class="form-control">
+        <input ng-model="lastname" id="lastname" class="form-control" placeholder="Marley">
 
         <label for="emailid" class="loginmargins">Email address</label>
-        <input ng-model="email" type="email" id="emailid" class="form-control">
+        <input ng-model="email" type="email" id="emailid" class="form-control" placeholder="bob@gmail.com">
 
         <label class="loginmargins">Role</label>
         <br>
-        <label class="radio-inline"><input ng-model="model.role" ng-value="'user'" type="radio" name="userrole"><h4>User</h4></label>
-        <label class="radio-inline"><input ng-model="model.role" ng-value="'actor'" type="radio" name="userrole"><h4>Actor</h4></label>
+
+        <div class="loginmargins" ng-init="model.role='user'">
+            <label class="radio-inline"><input ng-model="model.role" ng-value="'user'" type="radio" name="userrole"><h4>User</h4></label>
+            <label class="radio-inline"><input ng-model="model.role" ng-value="'actor'" type="radio" name="userrole"><h4>Actor</h4></label>
+        </div>
 
         <a ng-click = "model.register(username,password,verpwd, email, firstname, lastname)"
            class="btn btn-primary btn-block">
