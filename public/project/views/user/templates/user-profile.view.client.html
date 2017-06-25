@@ -37,48 +37,151 @@
 </div>
 
 <div id="works"  class=" clearfix grid">
-    <div class="container-fluid proj-background-black" >
+    <div class="container-fluid" >
         <br/>
-        <div align="center" class="row">
-            <img align="center" class="img-circle" ng-src="{{model.otheruser.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
-        </div>
-        <h4 align="center" style="color: #00a9c6; margin-top: 20px">{{model.otheruser.username}}</h4>
-        <a ng-if="model.FollowingFlag!=-1" ng-click="model.unfollow()" class="btn btn-danger">Unfollow</a>
-        <a ng-if="model.FollowingFlag==-1" ng-click="model.follow()" class="btn btn-primary">Follow</a>
-        <br>
         <div class="row">
-            <div class="col-xs-6">
-                <h3 class="proj-text-color-white"><b>WishList</b></h3>
-                <div class="proj-text-color-white" ng-repeat="show in model.wishlistshows">
+            <div align="" class="col-lg-4">
+                <div class=" " id="x">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <a ng-href="#!/series/{{show.id}}">
-                                <img align="center" ng-src="https://image.tmdb.org/t/p/w150{{model.wishlistimages[$index].poster_path}}">
-                            </a>
+
+                        <div class="col-lg-4"  >
+                            <img align="center" class="img-circle" ng-src="{{model.otheruser.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
                         </div>
-                        <!--<div class="col-lg-7">
-                            <h4 align="left"><em>{{show.name}}</em></h4>
-                        </div>-->
-                    </div>
-                    <br>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <h3 class="proj-text-color-white"><b>WatchedList</b></h3>
-                <div class="proj-text-color-white" ng-repeat="show in model.watchedlistshows">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <a ng-href="#!/series/{{show.id}}">
-                                <img align="center" ng-src="https://image.tmdb.org/t/p/w150{{model.watchedlistimages[$index].poster_path}}">
-                            </a>
+
+                        <div class="col-lg-8" align="">
+
+                            <a ng-if="model.otheruser.role === 'user'"ng-click="model.redirectUser(model.otheruser._id)" ><h4>{{model.otheruser.firstName }} {{model.otheruser.lastName}}</h4></a>
+                            <a ng-if="model.otheruser.role === 'actor'"ng-click="model.redirectUser(model.otheruser._id)" ><h4>{{model.otheruser.firstName }} {{model.otheruser.lastName}}&nbsp&nbsp&nbsp&nbsp<i class="fa fa-check-circle" aria-hidden="true"></i></h4></a>
+                            <h5 class="">Wishlist : {{model.otheruser.wishList.length}}</h5>
+                            <h5 class="">Watchedlist : {{model.otheruser.watchedList.length}}</h5>
+
+                            <a ng-if="model.FollowingFlag!==-1 && model.otheruser.role !=='actor'" ng-click="model.unfollow()" class="btn btn-danger">Unfollow</a>
+                            <a ng-if="model.FollowingFlag==-1 && model.otheruser.role !=='actor'" ng-click="model.follow()" class="btn btn-primary">Follow</a>
+
+                            <a ng-if="model.FollowingFlag!=-1 && model.otheruser.role ==='actor'" ng-click="model.unfollow()" class="btn btn-danger">Unfollow</a>
+                            <a ng-if="model.FollowingFlag==-1 && model.otheruser.role ==='actor'" ng-click="model.follow()" class="btn btn-primary">Follow</a>
+
+                            <!--<a ng-click="model.redirectUser(f._id)" ><h4>{{f.firstName }} {{f.lastName}}</h4></a>
+                            <h5 class="proj-text-color-white">Following : {{f.followingCount}}</h5>
+                            <h5 class="proj-text-color-white">Followers : {{f.followerCount}}</h5>
+                            <a ng-if="model.user.following.indexOf(f._id)>-1" ng-click="model.unfollow(f._id)" class="btn btn-danger" >Unfollow</a>
+                            <a ng-if="!(model.user.following.indexOf(f._id)>-1)" ng-click="model.follow(f._id)" class="btn btn-primary" >Follow</a>-->
                         </div>
-                        <!--<div class="col-lg-7">
-                            <h4 style="font-family: 'Bookman Old Style'" align="left"><em>{{show.name}}</em></h4>
-                        </div>-->
+
                     </div>
-                    <br>
                 </div>
+
             </div>
         </div>
+        <br>
+
+        <md-content class="md-padding">
+            <md-nav-bar
+                    md-selected-nav-item="model.currentNavItem"
+                    nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-click="model.showWishlist()" name="wishlist">
+                    Wishlist
+                </md-nav-item>
+                <md-nav-item md-nav-click="model.showWatchedlist()" name="watchedlist">
+                    Watchedlist
+                </md-nav-item>
+
+            </md-nav-bar>
+        </md-content>
+
+
+        <div ng-if="model.WatchedlistFlag" ng-repeat="result in model.watchedlistshows">
+            <div class="col-sm-12 col-md-6">
+                <div class="thumbnail card-1">
+                    <div class="row">
+                        <a ng-href="#!/comment/{{result.id}}">
+                            <div class="col-lg-6" align="center">
+
+                                <img class="img-responsive"
+                                     ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
+                                     err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
+                            </div>
+
+                            <div class="col-lg-6" align="left">
+
+                                <a ng-href="#!/comment/{{result.id}}"><h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3></a>
+                                <span ng-repeat="i in model.getNumber(result.vote_average/2)">
+                                            <i style="color:gold" class="fa fa-star" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </a>
+                        <!--<div class="caption">-->
+                            <!--<h5 class="proj-text-color-white">{{result.overview | limitTo:50}}{{result.overview.length > 50 ? "..." :-->
+                                <!--""}}</h5>-->
+                        <!--</div>-->
+
+                    </div>
+                </div>
+            </div>
+            <!--<br/><br/>-->
+        </div>
+
+        <!--{{model.wishlistshows}}-->
+
+        <div ng-if="model.WishlistFlag" ng-repeat="result in model.wishlistshows">
+            <div class="col-sm-12 col-md-6">
+                <div class="thumbnail card-1">
+                    <div class="row">
+                        <a ng-href="#!/comment/{{result.id}}">
+                            <div class="col-lg-6" align="center">
+                                <img class="img-responsive"
+                                     ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
+                                     err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
+                            </div>
+                            <div class="col-lg-6" align="left">
+
+                                <a ng-href="#!/comment/{{result.id}}"><h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3></a>
+                                <span ng-repeat="i in model.getNumber(result.vote_average/2)">
+                                            <i style="color:gold" class="fa fa-star" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <!--<br/><br/>-->
+        </div>
+
+
+        <!--   <div class="row">
+               <div class="col-xs-6">
+                   <h3 class=""><b>WishList</b></h3>
+                   <div class="" ng-repeat="show in model.wishlistshows">
+                       <div class="row">
+                           <div class="col-xs-12">
+                               <a ng-href="#!/series/{{show.id}}">
+                                   <img align="center" ng-src="https://image.tmdb.org/t/p/w150{{model.wishlistimages[$index].poster_path}}">
+                               </a>
+                           </div>
+                           &lt;!&ndash;<div class="col-lg-7">
+                               <h4 align="left"><em>{{show.name}}</em></h4>
+                           </div>&ndash;&gt;
+                       </div>
+                       <br>
+                   </div>
+               </div>
+               <div class="col-xs-6">
+                   <h3 class=""><b>WatchedList</b></h3>
+                   <div class="" ng-repeat="show in model.watchedlistshows">
+                       <div class="row">
+                           <div class="col-xs-12">
+                               <a ng-href="#!/series/{{show.id}}">
+                                   <img align="center" ng-src="https://image.tmdb.org/t/p/w150{{model.watchedlistimages[$index].poster_path}}">
+                               </a>
+                           </div>
+                           &lt;!&ndash;<div class="col-lg-7">
+                               <h4 style="font-family: 'Bookman Old Style'" align="left"><em>{{show.name}}</em></h4>
+                           </div>&ndash;&gt;
+                       </div>
+                       <br>
+                   </div>
+               </div>
+           </div>-->
     </div>
 </div>

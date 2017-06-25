@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('ViewSeriesController', ViewSeriesController);
 
-    function ViewSeriesController(userService, SeriesService, CommentsService, $routeParams, $location, $route, currentUser) {
+    function ViewSeriesController(userService, SeriesService, CommentsService, $routeParams, $location, $route, currentUser, $mdDialog) {
 
         var model = this;
         //model.userId = $routeParams['userId'];
@@ -14,6 +14,7 @@
         model.userIds=[];
         model.wishlistflag=false;
         model.watchedlistflag=false;
+        model.disableFlag = false;
 
         userService.findUserById(model.userId)
             .then(renderUser);
@@ -51,6 +52,7 @@
         model.insertComment=insertComment;
         model.getNumber = getNumber;
         model.logout = logout;
+        model.editCommentBox = editCommentBox;
 
         function getNumber(number) {
             var arr = [];
@@ -139,5 +141,77 @@
                     $location.url('/login');
                 })
         }
+
+        function editCommentBox(comment, ev) {
+            console.log('yes');
+            model.disableFlag = true;
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vm',
+                templateUrl: 'views/comment/templates/comment-edit.view.client.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:false,
+                fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
+                locals: {
+                    comment: comment
+                }
+
+            })
+                .then(function(answer) {
+                    model.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    $route.reload();
+                });
+        }
+
+        function DialogController($mdDialog, comment, $route, CommentsService, SeriesService) {
+
+            var vm = this;
+
+            vm.comment = comment;
+
+            vm.hide = function() {
+                $mdDialog.hide();
+            };
+
+            vm.cancel = function() {
+                $mdDialog.cancel();
+                $route.reload();
+            };
+
+            vm.answer = function(answer) {
+                $mdDialog.hide(answer);
+                $route.reload();
+                console.log(answer);
+            };
+
+
+            SeriesService.getSearchDetailsById(comment.seriesId)
+                .then(function (series) {
+                    vm.seriesName=series.name;
+                });
+
+            function error() {
+                model.message="Oops! Something went wrong :("
+            }
+
+            vm.updateComment = function() {
+                var c={
+                    _id:vm.comment._id,
+                    userId:vm.comment.userId,
+                    seriesId:vm.comment.seriesId,
+                    comment:vm.comment.comment
+                }
+                CommentsService.updateComment(c)
+                    .then(function () {
+                        $mdDialog.hide(status);
+                        $route.reload();
+                        console.log(status);
+                    });
+
+            }
+        }
+
     }
 })();

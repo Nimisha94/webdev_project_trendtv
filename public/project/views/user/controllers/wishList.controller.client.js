@@ -16,6 +16,7 @@
         model.getSeriesDetailsById = getSeriesDetailsById;
         model.deleteWishlistById = deleteWishlistById;
         model.logout = logout;
+        model.getNumber = getNumber;
 
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
@@ -66,6 +67,15 @@
                 .then(function () {
                     $location.url('/login');
                 })
+        }
+
+        function getNumber(number) {
+            var arr = [];
+            for(var i=0;i<number;i++)
+            {
+                arr.push(i);
+            }
+            return arr;
         }
 
     }})();

@@ -130,38 +130,40 @@
 
         <div class="col-lg-12">
         <div id="works"  class=" clearfix grid">
-    <div class="container-fluid " >
-        <div class="row">
-            <h2>Wishlist</h2>
-            <div ng-repeat="result in model.watchedlistshows">
-                <div class="col-sm-12 col-md-6">
-                    <div class="thumbnail card-1" ng-if ="model.user.wishList.indexOf(result.id.toString())>-1">
-                        <div class="row">
-                            <div align="right">
-                                    <span class="input-group-btn" style="padding-right: 20px;" >
-                                    <a id="searchbutton" class="btn btn-danger" ng-click="model.deleteWishlistById(result.id)" type="button"><i class="fa fa-times"></i></a>
-                                </span>
+        <div class="container-fluid " >
+            <div class="row">
+                <h2>Wishlist</h2>
+                <div ng-repeat="result in model.watchedlistshows">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="thumbnail card-1" ng-if ="model.user.wishList.indexOf(result.id.toString())>-1">
+                            <div class="row">
+                                <div align="right">
+                                        <span class="input-group-btn" style="padding-right: 20px;" >
+                                        <a id="searchbutton" class="btn btn-danger" ng-click="model.deleteWishlistById(result.id)" type="button"><i class="fa fa-times"></i></a>
+                                    </span>
+                                </div>
+                                <a ng-click="model.getSeriesDetailsbyId($index)">
+                                    <div class="col-lg-6" align="center">
+                                        <img class="img-responsive"
+                                             ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
+                                             err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
+                                    </div>
+                                    <div class="col-lg-6" align="left">
+
+                                        <a ng-click="model.getSeriesDetailsById($index)"><h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3></a>
+                                        <span ng-repeat="i in model.getNumber(result.vote_average/2)">
+                                            <i style="color:gold" class="fa fa-star" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </a>
+
                             </div>
-                            <a ng-click="model.getSeriesDetailsbyId($index)">
-                                <div class="col-lg-6" align="center">
-                                    <img class="img-responsive"
-                                         ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
-                                         err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
-                                </div>
-                                <div class="col-lg-6" align="left">
-
-                                    <a ng-click="model.getSeriesDetailsById($index)"><h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3></a>
-
-                                </div>
-                            </a>
-
                         </div>
                     </div>
+                    <!--<br/><br/>-->
                 </div>
-                <!--<br/><br/>-->
             </div>
         </div>
-    </div>
 
 </div>
     </div>

@@ -1,14 +1,15 @@
 (function () {
     angular
         .module('TrendTv')
-        .controller('PostsController', PostsController);
+        .controller('PostsController', PostsController)
 
-    function PostsController(PostsService, userService, $routeParams, $route, currentUser, $location, $mdDialog) {
+    function PostsController(PostsService, userService, $routeParams, $route, currentUser, $location, $mdDialog, $mdSidenav) {
 
         var model = this;
 
         //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
+        model.disableFlag = false;
 
         userService.findUserById(model.userId)
             .then(function (user) {
@@ -27,6 +28,30 @@
         model.showLikes = showLikes;
         model.showDislikes = showDislikes;
         model.logout = logout;
+        model.showEditBox = showEditBox;
+
+        function showEditBox(post, ev) {
+            //console.log('yes');
+            model.disableFlag = true;
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vm',
+                templateUrl: 'views/post/templates/post-edit.view.client.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:false,
+                fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
+                locals: {
+                    items: [],
+                    flag: '',
+                    post: post
+                }
+
+            })
+            .then(function(answer) {
+                model.status = 'You said the information was "' + answer + '".';
+            });
+        }
 
         function createPost(title, post) {
             var p ={
@@ -45,6 +70,7 @@
 
         function showLikes(postId, ev) {
             //console.log(postId);
+            model.disableFlag = true;
             var users = [];
             PostsService.getPostById(postId)
                 .then(function (post) {
@@ -65,11 +91,12 @@
                 templateUrl: 'views/post/templates/dialog1.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:true,
+                clickOutsideToClose:false,
                 fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
                 locals: {
                     items: users,
-                    flag: 'l'
+                    flag: 'l',
+                    post: {}
                 }
 
             })
@@ -81,6 +108,7 @@
 
         function showDislikes(postId,ev) {
             //console.log(postId);
+            model.disableFlag = true;
             var users = [];
             PostsService.getPostById(postId)
                 .then(function (post) {
@@ -100,16 +128,22 @@
                 templateUrl: 'views/post/templates/dialog1.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:true,
                 fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
                 locals: {
                     items: users,
-                    flag: 'd'
+                    flag: 'd',
+                    post: {}
                 }
 
             })
                 .then(function(answer) {
                     model.status = 'You said the information was "' + answer + '".';
+                    console.log(answer);
+                    console.log(model.disableFlag);
+                    model.disableFlag = false;
+                    $route.reload();
+                }, function () {
+                    $route.reload();
                 });
             //console.log(users);
         }
@@ -122,7 +156,7 @@
                 })
         }
 
-        function DialogController($mdDialog,items, flag) {
+        function DialogController($mdDialog,items, flag, post, $route, PostsService) {
 
             var vm = this;
 
@@ -130,17 +164,33 @@
 
             vm.flag = flag;
 
+            vm.post = post;
+
             vm.hide = function() {
                 $mdDialog.hide();
             };
 
             vm.cancel = function() {
                 $mdDialog.cancel();
+                $route.reload();
             };
 
             vm.answer = function(answer) {
                 $mdDialog.hide(answer);
+                $route.reload();
+                console.log(answer);
             };
+
+            vm.updatePost = function() {
+                PostsService.updatePost(vm.post)
+                    .then(function (status) {
+                        $mdDialog.hide(status);
+                        $route.reload();
+                        console.log(status);
+                    }, function (err) {
+                        model.err = 'Error updating the post';
+                    });
+            }
         }
     }
 

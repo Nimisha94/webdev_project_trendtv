@@ -36,6 +36,7 @@
         model.getSeriesDetailsById=getSeriesDetailsById;
         model.deleteWatchlistById = deleteWatchlistById;
         model.logout = logout;
+        model.getNumber = getNumber;
 
         function deleteWatchlistById(seriesId) {
             userService.deleteWatchlistById(model.userId,seriesId)
@@ -84,6 +85,15 @@
                 .then(function () {
                     $location.url('/login');
                 })
+        }
+
+        function getNumber(number) {
+            var arr = [];
+            for(var i=0;i<number;i++)
+            {
+                arr.push(i);
+            }
+            return arr;
         }
 
     }

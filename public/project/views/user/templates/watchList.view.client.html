@@ -153,13 +153,15 @@
                                 <div class="col-lg-6" align="left">
 
                                     <a ng-click="model.getSeriesDetailsById($index)"><h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3></a>
-
+                                    <span ng-repeat="i in model.getNumber(result.vote_average/2)">
+                                            <i style="color:gold" class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
                                 </div>
                             </a>
-                            <div class="caption">
+                            <!--<div class="caption">
                                 <h5 class="proj-text-color-white">{{result.overview | limitTo:50}}{{result.overview.length > 50 ? "..." :
                                     ""}}</h5>
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>

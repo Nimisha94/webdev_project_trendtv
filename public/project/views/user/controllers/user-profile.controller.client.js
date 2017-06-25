@@ -12,11 +12,17 @@
         model.fId = $routeParams['fid'];
         model.wishlistshows=[];
         model.watchedlistshows=[];
+        model.currentNavItem = 'wishlist';
+        model.WishlistFlag =true;
+        model.WatchedlistFlag = false;
 
         //event handlers
         model.unfollow=unfollow;
         model.follow=follow;
         model.logout = logout;
+        model.showWishlist = showWishlist;
+        model.showWatchedlist = showWatchedlist;
+        model.getNumber = getNumber;
 
         userService.findUserById(model.userId)
             .then(renderUser, errorUser);
@@ -90,6 +96,25 @@
                 .then(function () {
                     $location.url('/login');
                 })
+        }
+
+        function showWatchedlist() {
+            model.WatchedlistFlag = true;
+            model.WishlistFlag = false;
+        }
+
+        function showWishlist() {
+            model.WatchedlistFlag = false;
+            model.WishlistFlag = true;
+        }
+
+        function getNumber(number) {
+            var arr = [];
+            for(var i=0;i<number;i++)
+            {
+                arr.push(i);
+            }
+            return arr;
         }
     }
 })();

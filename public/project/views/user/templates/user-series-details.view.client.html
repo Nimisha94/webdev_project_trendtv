@@ -40,42 +40,46 @@
         <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
         <br/><br/>
         <div class="row">
-            <div class="col-lg-5" align="middle">
-                <div ng-show="model.userId" class="proj-edit">
+            <div class="col-lg-12">
+                <div align="right" ng-show="model.userId" >
                     <a ng-show="!model.wishlistflag" ng-click="model.addToWishList()" ><i class="proj-wishlist fa fa-heart fa-2x" aria-hidden="true"></i></a>
                     <a ng-show="model.wishlistflag" ng-click="model.addedToWishList()" ><i class="proj-wishlist-star fa fa-star fa-2x" aria-hidden="true"></i></a>
-                    <a ng-show="!model.watchedlistflag" ng-click="model.addToWatchedList()" ><i class="proj-watchedlist fa fa-list fa-2x" aria-hidden="true"></i></a>
+                    <a ng-show="!model.watchedlistflag" ng-click="model.addToWatchedList()" ><i class="proj-watchedlist fa fa-bookmark fa-2x" aria-hidden="true"></i></i></a>
                     <a ng-show="model.watchedlistflag" ng-click="model.addedToWatchedList()" ><i class="proj-check fa fa-check-square-o fa-2x" aria-hidden="true"></i></a>
                 </div>
-                <img ng-src="https://image.tmdb.org/t/p/w300/{{model.details.poster_path}}" err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
             </div>
-            <div class="col-lg-7">
-                <h3 align="left"><b>{{model.details.name}}</b>
-                    <span ng-repeat="i in model.getNumber(model.details.vote_average/2)">
+        </div>
+        <div class="row">
+                <div class="col-lg-5" align="middle">
+                    <img ng-src="https://image.tmdb.org/t/p/w300/{{model.details.poster_path}}" err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
+                </div>
+                <div class="col-lg-7">
+                    <h3 align="left"><b>{{model.details.name}}</b>
+                        <span ng-repeat="i in model.getNumber(model.details.vote_average/2)">
                         <i style="color:gold" class="fa fa-star" aria-hidden="true"></i>
                     </span>
-                </h3>
+                    </h3>
 
-                <p><b>Genre:</b>
-                    <span ng-repeat="genre in model.details.genres">
+                    <p><b>Genre:</b>
+                        <span ng-repeat="genre in model.details.genres">
                     {{genre.name}},
                 </span>
-                </p>
-                <p><b>Seasons:</b>
-                    <span>{{model.details.number_of_seasons}}</span>
-                </p>
-                <p><b>First Air Date:</b>
-                    <span>{{model.details.first_air_date}}</span>
-                </p>
-                <p><b>Last Air Date:</b>
-                    <span>{{model.details.last_air_date}}</span>
-                </p>
-                <p><b>Status:</b>
-                    <span>{{model.details.status}}</span>
-                </p>
-                <b>Overview:</b>
-                <p>{{model.details.overview}}</p>
-            </div>
+                    </p>
+                    <p><b>Seasons:</b>
+                        <span>{{model.details.number_of_seasons}}</span>
+                    </p>
+                    <p><b>First Air Date:</b>
+                        <span>{{model.details.first_air_date}}</span>
+                    </p>
+                    <p><b>Last Air Date:</b>
+                        <span>{{model.details.last_air_date}}</span>
+                    </p>
+                    <p><b>Status:</b>
+                        <span>{{model.details.status}}</span>
+                    </p>
+                    <b>Overview:</b>
+                    <p>{{model.details.overview}}</p>
+                </div>
         </div>
         <div class="row">
             <div class="col-lg-1"></div>
@@ -87,7 +91,7 @@
                     <em ng-show="model.comments.length === 0" >No Comments yet!</em>
                     <div class="thumbnail card-1 ">
                         <div ng-if="c.userId===model.userId" align="right">
-                            <a href="#!/edit-comment/{{c._id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a ng-click="model.editCommentBox(c,$event)"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
                         </div>
                         <div class="row">
                             <div class="col-lg-10">

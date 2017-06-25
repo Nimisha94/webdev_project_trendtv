@@ -5,7 +5,7 @@
                 <div ng-show="vm.flag === 'l'"><h2>Likes</h2></div>
                 <div ng-show="vm.flag === 'd'"><h2>Dislikes</h2></div>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
@@ -15,12 +15,9 @@
 
             <div class="md-dialog-content row" ng-repeat="user in vm.items">
                 <a ng-href="#!/finduser/{{user._id}}" ng-click="vm.cancel()">
-                    <div class="col-lg-3">
-                        <img class="img-rounded img-responsive" ng-src="{{user.imageUrl}}">
-                    </div>
-                    <div class="col-lg-9">
-                        <h2>{{user.username}}</h2>
-                    </div>
+                    <!--<div class="col-lg-9">-->
+                        <h4>{{user.username}}</h4>
+                    <!--</div>-->
                 </a>
             </div>
         </md-dialog-content>

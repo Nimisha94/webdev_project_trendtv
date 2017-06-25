@@ -21,6 +21,7 @@
         model.searchSeries = searchSeries;
         model.getSeriesDetailsbyId=getSeriesDetailsbyId;
         model.logout = logout;
+        model.getNumber = getNumber;
 
         function searchSeries(searchText) {
             SeriesService.searchSeries(searchText)
@@ -54,6 +55,15 @@
                 .then(function () {
                     $location.url('/login');
                 })
+        }
+
+        function getNumber(number) {
+            var arr = [];
+            for(var i=0;i<number;i++)
+            {
+                arr.push(i);
+            }
+            return arr;
         }
 
     }
