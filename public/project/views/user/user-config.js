@@ -37,7 +37,7 @@
                     currentUser:checkLoggedIn
                 }
             })
-            .when('/comment/:seriesId', {
+            .when('/series/:seriesId', {
                 templateUrl: 'views/user/templates/user-series-details.view.client.html',
                 controller: 'ViewSeriesController',
                 controllerAs: 'model',

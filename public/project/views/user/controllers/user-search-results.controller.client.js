@@ -32,7 +32,7 @@
             //var seriesId =
             //console.log(index);
             //console.log(model.searchResults[index].id);
-            $location.url('/comment/'+model.searchResults[index].id);
+            $location.url('/series/'+model.searchResults[index].id);
         }
         function successSearch(searchResultsArr) {
             console.log(searchResultsArr);

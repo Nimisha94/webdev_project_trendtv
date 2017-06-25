@@ -42,6 +42,7 @@
             {
                 ids.splice(ids.length-1, 1);
             }
+            model.ids = ids;
             var obj = SeriesService.getTrendingImages(ids);
             model.images=obj;
         }

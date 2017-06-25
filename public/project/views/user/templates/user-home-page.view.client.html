@@ -44,14 +44,14 @@
 
 <div id="works"  class=" clearfix grid">
     <figure class="effect-oscar  wowload fadeIn" ng-repeat="image in model.images">
-        <img ng-src="https://image.tmdb.org/t/p/w500{{image.poster_path}}" alt="img01">
-        <figcaption>
+        <a ng-href="#!/series/{{model.ids[$index]}}"><img ng-src="https://image.tmdb.org/t/p/w500{{image.poster_path}}" alt="img01"></a>
+        <a ng-href="#!/series/{{model.ids[$index]}}"><figcaption>
 
             <p><b>{{image.name}}</b><br><br>
             <p>{{image.description}}</p><br><br>
             <p><b>Rating: {{image.rating}}</b></p><br>
-            <a href="https://image.tmdb.org/t/p/w500{{image.poster_path}}" title="1" data-gallery>View more</a></p>
-        </figcaption>
+            <!--<a href="https://image.tmdb.org/t/p/w500{{image.poster_path}}" data-gallery>View more</a>--></p>
+        </figcaption></a>
     </figure>
 </div>
 
