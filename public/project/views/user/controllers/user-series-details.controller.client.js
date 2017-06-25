@@ -89,7 +89,7 @@
         function addToWatchedList() {
             userService.addToWatchedList(model.userId, model.seriesId)
                 .then(function () {
-                    model.message="Added to WatchedList";
+                    //model.message="Added to WatchedList";
                     $route.reload();
                 }, function () {
                     model.message="Oops! Something went wrong :("
@@ -99,7 +99,7 @@
         function addToWishList() {
             userService.addToWishList(model.userId, model.seriesId)
                 .then(function () {
-                    model.message="Added to WishList";
+                    //model.message="Added to WishList";
                     $route.reload();
                 }, function () {
                     model.message="Oops! Something went wrong :("
