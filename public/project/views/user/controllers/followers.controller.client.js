@@ -71,7 +71,7 @@
         }
 
         function redirectUser(fId) {
-            var url = '/finduser/'+fId;
+            var url = '/finduser/followers/'+fId;
             $location.url(url);
         }
 

@@ -6,14 +6,14 @@
     function Config($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/user/templates/home-page-temp.view.client.html',
+                templateUrl: 'views/user/templates/user-home-page-temp.view.client.html',
                 controller: 'UserHomeController',
                 controllerAs: 'model',
                 resolve:{
                     currentUser:checkCurrentUser
                 }
             })
-            .when('/finduser/:fid', {
+            .when('/finduser/:routeFlag/:fid', {
                 templateUrl: 'views/user/templates/user-profile.view.client.html',
                 controller: 'UserProfileController',
                 controllerAs: 'model',
@@ -37,7 +37,7 @@
                     currentUser:checkLoggedIn
                 }
             })
-            .when('/series/:seriesId', {
+            .when('/series/:routeFlag/:seriesId', {
                 templateUrl: 'views/user/templates/user-series-details.view.client.html',
                 controller: 'ViewSeriesController',
                 controllerAs: 'model',

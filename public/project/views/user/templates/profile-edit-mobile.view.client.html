@@ -28,6 +28,7 @@
             <h2 class=""><strong>Profile</strong></h2>
 
             <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+            <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
 
             <label for="username" class="usernamelabelregister">Username</label>
             <input ng-model="model.user.username" id="username" class="form-control" placeholder="bob">

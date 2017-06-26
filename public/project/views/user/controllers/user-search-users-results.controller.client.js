@@ -36,7 +36,7 @@
         }
 
         function redirectUser(fId) {
-            var url = '/finduser/'+fId;
+            var url = '/finduser/search'+role+model.searchText+'/'+fId;
             $location.url(url);
         }
 

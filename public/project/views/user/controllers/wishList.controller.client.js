@@ -47,7 +47,7 @@
         }
 
         function getSeriesDetailsById(index){
-            $location.url('/series/'+model.watchedlistshows[index].id);
+            $location.url('/series/wishList/'+model.watchedlistshows[index].id);
 
         }
 

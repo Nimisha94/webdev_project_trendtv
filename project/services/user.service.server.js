@@ -16,7 +16,6 @@ var facebookConfig = {
     profileFields: ['id', 'email', 'gender', 'displayName', 'name']
  };
 
-
 /*var facebookConfig = {
     clientID     : '923932384413434',
     clientSecret : '6c63834bf92129c34bce3cdfd498c2cf',
@@ -125,6 +124,7 @@ function findAllUsers(req, res) {
 function updateUser(req, res) {
     var userId=req.params.userId;
     var user=req.body;
+    user.password = bcrypt.hashSync(user.password);
     userModel.updateUser(userId, user)
         .then(function (status) {
             res.sendStatus(200);

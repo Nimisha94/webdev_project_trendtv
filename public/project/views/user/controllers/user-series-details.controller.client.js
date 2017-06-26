@@ -14,6 +14,17 @@
         model.wishlistflag=false;
         model.watchedlistflag=false;
         model.disableFlag = false;
+        model.routeFlag = $routeParams['routeFlag'];
+        model.searchText = model.routeFlag;
+        var idx = model.routeFlag.indexOf('search');
+        if(idx !== -1)
+            model.searchText = model.routeFlag.substring(idx+6);
+        var idx = model.routeFlag.indexOf('profile');
+        if(idx !== -1)
+        {
+            model.searchRoute = model.routeFlag.substring(idx+7).split('-')[0];
+            model.uId = model.routeFlag.substring(idx+7).split('-')[1];
+        }
 
         function init() {
             userService.findUserById(model.userId)
@@ -28,8 +39,7 @@
 
             userService.getWishListByUserId(model.userId)
                 .then(function (wishlist) {
-                    //console.log(wishlist);
-                    if(wishlist.indexOf(model.seriesId)>=0)
+                    if(wishlist !== null && wishlist.indexOf(model.seriesId)>=0)
                     {
                         model.wishlistflag=true;
                     }
@@ -38,7 +48,7 @@
             userService.getWatchedListByUserId(model.userId)
                 .then(function (watchedlist) {
                     //console.log(watchedlist);
-                    if(watchedlist.indexOf(model.seriesId)>=0)
+                    if(watchedlist!==null && watchedlist.indexOf(model.seriesId)>=0)
                     {
                         model.watchedlistflag=true;
                     }

@@ -6,7 +6,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a ng-href="#!/" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a ng-href="#!/search/{{model.searchText}}" ng-if="model.routeFlag.indexOf('search')!==-1" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a ng-href="#!/wishList" ng-if="model.routeFlag === 'wishList'" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a ng-href="#!/watchList" ng-if="model.routeFlag === 'watchedList'" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a ng-href="#!/finduser/{{model.searchRoute}}/{{model.uId}}" ng-if="model.routeFlag.indexOf('profile')!==-1" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a ng-href="#!/comments" ng-if="model.routeFlag === 'comments'" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a ng-href="#!/" ng-if="model.routeFlag === 'home'" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
             <a class="navbar-brand proj-navbar-font proj-navbar-heading" ng-href="#!/" ><b>TrendTV</b></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -84,9 +89,9 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-10">
-                                <a ng-if="c.userId!==model.userId && model.userId" ng-href="#!/finduser/{{c.userId}}"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></a>
+                                <h4 ng-if="c.userId!==model.userId && model.userId"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></h4>
                                 <h4  ng-if="!model.userId" align="left"><b>{{model.users[$index]}}:</b></h4>
-                                <a ng-if="c.userId==model.userId" ng-href="#!/profileEdit"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></a>
+                                <!--<a ng-if="c.userId==model.userId" ng-href="#!/profileEdit"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></a>-->
                                 <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment }}
                                     <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
                             </div>

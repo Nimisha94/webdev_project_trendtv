@@ -33,7 +33,7 @@
         }
 
         function getSeriesDetailsbyId(index) {
-            $location.url('/series/'+model.searchResults[index].id);
+            $location.url('/series/search'+model.searchText+'/'+model.searchResults[index].id);
         }
         function successSearch(searchResultsArr) {
             console.log(searchResultsArr);

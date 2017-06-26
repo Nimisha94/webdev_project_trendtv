@@ -15,6 +15,24 @@
         model.currentNavItem = 'wishlist';
         model.WishlistFlag =true;
         model.WatchedlistFlag = false;
+        model.routeFlag = $routeParams['routeFlag'];
+        var idx = model.routeFlag.indexOf('search');
+        if(idx !== -1)
+        {
+            model.searchText = model.routeFlag.substring(idx+6);
+            if(model.searchText[0]==='a')
+            {
+                console.log(model.searchText);
+                model.searchRole = 'actor';
+                model.searchText = model.searchText.substring(5);
+            }
+            else if(model.searchText[0]==='u')
+            {
+                model.searchRole = 'user';
+                model.searchText = model.searchText.substring(4);
+            }
+
+        }
 
         function init() {
             userService.findUserById(model.userId)
