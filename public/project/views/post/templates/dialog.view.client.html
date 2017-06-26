@@ -13,12 +13,14 @@
 
         <md-dialog-content>
 
-            <div class="md-dialog-content row" ng-repeat="user in vm.items">
-                <a ng-href="#!/finduser/{{user._id}}" ng-click="vm.cancel()">
-                    <!--<div class="col-lg-9">-->
-                        <h4>{{user.username}}</h4>
-                    <!--</div>-->
-                </a>
+            <div class="container">
+                <div class="md-dialog-content row" ng-repeat="user in vm.items">
+                    <a ng-href="#!/finduser/posts/{{user._id}}" ng-click="vm.cancel()">
+                        <!--<div class="col-lg-9">-->
+                            <h4>{{user.username}}</h4>
+                        <!--</div>-->
+                    </a>
+                </div>
             </div>
         </md-dialog-content>
 

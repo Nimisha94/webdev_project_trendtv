@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-inverse" >
+<nav ng-show="!model.disableFlag" class="navbar navbar-fixed-top navbar-inverse" >
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,7 +27,7 @@
     </div>
 </nav>
 
-<div class="">
+<div ng-show="!model.disableFlag" class="">
     <div id ="works" class="container-fluid">
         <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
         <br/><br/>
