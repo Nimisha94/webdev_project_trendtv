@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(app.express.static(__dirname + '/public'));
 
 app.use(session({
-    secret: 'secret123'//process.env.SESSION_SECRET //'secret123'
+    secret: process.env.SESSION_SECRET //'secret123'
 }));
 app.use(cookieParser());
 app.use(passport.initialize());
