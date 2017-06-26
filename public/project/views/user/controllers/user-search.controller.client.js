@@ -3,11 +3,12 @@
         .module('TrendTv')
         .controller('UserSearchController', UserSearchController);
 
-    function UserSearchController(userService, $location, $routeParams, currentUser) {
+    function UserSearchController(userService, $location, $routeParams, currentUser, $location) {
 
         var model=this;
         //model.userId=$routeParams['userId']
         model.userId=currentUser._id;
+        model.searchText = $location.search().searchText;
 
         function init() {
             if(model.userId)

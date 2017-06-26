@@ -6,12 +6,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a ng-href="#!/search" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a ng-href="#!/search?searchText={{model.searchText}}" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
             <a class="navbar-brand proj-navbar-font proj-navbar-heading" ng-href="#!/" ><b>TrendTV</b></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a ng-href="#!/search" class="glyphicon glyphicon-search"></a></li>
+                <li class="active"><a ng-href="#!/search?searchText=" class="glyphicon glyphicon-search"></a></li>
                 <li ><a href="#!/"><b class="proj-navbar-font proj-navbar-color">Trending </b></a></li>
                 <li class="proj-navbar-heading" ng-show="model.userId"><a href="#!/profileEdit"> <b class="proj-navbar-color proj-navbar-font">Profile </b> </a></li>
                 <li ng-show="!model.userId"><a href="#!/login"> <b class="proj-navbar-color proj-navbar-font ">Login </b> </a></li>
