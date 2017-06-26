@@ -122,11 +122,8 @@
             model.comments=comments;
             for(var c in comments)
             {
-                console.log(comments[c].userId);
                 userService.findUserById(comments[c].userId)
                     .then(function (user) {
-                        console.log('lll');
-                        console.log(user);
                         model.users.push(user.username);
                     });
             }

@@ -89,9 +89,9 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-10">
-                                <h4 ng-if="c.userId!==model.userId && model.userId"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></h4>
-                                <h4  ng-if="!model.userId" align="left"><b>{{model.users[$index]}}:</b></h4>
-                                <!--<a ng-if="c.userId==model.userId" ng-href="#!/profileEdit"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></a>-->
+                                <!--<h4 ng-if="c.userId!==model.userId && model.userId"><h4 align="left"><b>{{model.users[$index]}}:</b></h4></h4>-->
+                                <h4  align="left"><b>{{model.users[$index]}}:</b></h4>
+                                <a ng-if="c.userId==model.userId" ng-href="#!/profileEdit"></a>
                                 <h4><em><i class="fa fa-quote-left" aria-hidden="true"></i>{{c.comment }}
                                     <i class="fa fa-quote-right" aria-hidden="true"></i></em></h4>
                             </div>

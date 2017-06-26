@@ -31,6 +31,7 @@
                         imgpath.push(obj);
                     })
             }
+            console.log(imgpath);
             return imgpath;
         }
 
@@ -53,6 +54,7 @@
             {
                 ids.push(objarr[i].show.ids.tmdb);
             }
+            console.log(ids);
             return ids;
         }
 
