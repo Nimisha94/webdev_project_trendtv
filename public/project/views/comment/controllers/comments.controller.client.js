@@ -8,11 +8,14 @@
         var model = this;
         model.comments=[];
         model.disableFlag = false;
-
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
-        userService.findUserById(model.userId)
-            .then(renderUser, error);
+
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser, error);
+        }
+
+        init();
 
         //event handlers
         model.logout = logout;
@@ -36,7 +39,6 @@
                 })
 
         }
-
 
         function error() {
             model.message="Oops! Something went wrong :("
@@ -110,7 +112,7 @@
                     userId:vm.comment.userId,
                     seriesId:vm.comment.seriesId,
                     comment:vm.comment.comment
-                }
+                };
                 CommentsService.updateComment(c)
                     .then(function () {
                         $mdDialog.hide(status);

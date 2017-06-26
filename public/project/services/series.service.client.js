@@ -10,7 +10,6 @@
             getSearchDetailsById:getSearchDetailsById,
             getTrendingSeriesIds : getTrendingSeriesIds,
             getTrendingImages : getTrendingImages,
-            //getTracktIdbySeriesName: getTracktIdbySeriesName
             getSeriesDetailsById :getSeriesDetailsById
         };
 
@@ -31,10 +30,7 @@
                         };
                         imgpath.push(obj);
                     })
-                //console.log(details);
             }
-            //console.log('hai');
-            //console.log(imgpath);
             return imgpath;
         }
 
@@ -65,17 +61,8 @@
             var urlTmdb = 'https://api.themoviedb.org/3/search/tv?api_key=5a57d87cef01b95a12c3ca8862bf24f7&language=en-US&query='+searchText;
             var url2 = 'https://api.trakt.tv/search/show?query=tron&trakt-api-key=8ffe7e12ccdefbb0864f59a0a49faae085121ca35c09b6eb663cd4072788e509&trakt-api-version=2&Content-Type=application/json';
             var url3 = 'https://api.trakt.tv/search/show?query='+searchText;
-            /*return $http({method: 'GET', url:url3, headers: {'trakt-api-key':'8ffe7e12ccdefbb0864f59a0a49faae085121ca35c09b6eb663cd4072788e509', 'trakt-api-version':2, 'Content-Type': 'application/json'}})
-                .then(function (response) {
-                    return response.data;
-                })*/
             return $http.get(urlTmdb)
                 .then(renderSearch);
-                    /*function (response) {
-                    console.log(response.data);
-                    renderSearch(response.data);
-                    return response.data;
-                })*/
         }
 
         function getSeriesDetailsById(tmdbId) {
@@ -83,18 +70,6 @@
             console.log('jj');
             return $http.get(url)
                 .then(renderSearch);
-        }
-
-        function getSeriesbyName(searchText) {
-
-            /*var url = 'https://api.trakt.tv/search/show?query='+searchText;
-            return $http({method: 'GET', url:url, headers: {'trakt-api-key':'8ffe7e12ccdefbb0864f59a0a49faae085121ca35c09b6eb663cd4072788e509', 'trakt-api-version':2, 'Content-Type': 'application/json'}})
-                .then(function (response) {
-                    console.log(response.data)
-                    return response.data;
-            })*/
-
-
         }
 
         function renderSearch(response) {

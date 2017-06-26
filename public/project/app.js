@@ -12,20 +12,6 @@
                 });
             }
         }
-    })
-    .directive("removeMe", function($rootScope) {
-        return {
-            link:function(scope,element,attrs)
-            {
-                element.bind("click",function(index) {
-                    var i = $(this).index();
-                    //element.remove();
-                    $('#x'+(index+1)).hide();
-
-                });
-            }
-        }
-
     });
 
 }) ();

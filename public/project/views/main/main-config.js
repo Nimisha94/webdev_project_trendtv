@@ -42,8 +42,6 @@
                 else if(user === '0'){
                     console.log(user);
                     deferred.resolve({});
-                    //$location.url('/login')
-
                 }
             });
 
@@ -69,8 +67,6 @@
                 else if(user === '0'){
                     console.log(user);
                     deferred.resolve({});
-                    //$location.url('/login')
-
                 }
             });
 

@@ -6,16 +6,19 @@
     function ProfileEditController($routeParams, userService, $location, currentUser) {
         var model=this;
 
-        //model.userId=$routeParams['userId'];
         model.userId=currentUser._id;
 
-        userService.findUserById(model.userId)
-            .then(function (user) {
-                model.user=user;
+        function init() {
+            userService.findUserById(model.userId)
+                .then(function (user) {
+                    model.user=user;
 
-            }, function (err) {
-                model.err='Error occured. Try again later :(';
-            });
+                }, function (err) {
+                    model.err='Error occured. Try again later :(';
+                });
+        }
+
+        init();
 
         //event handlers
         model.update=update;

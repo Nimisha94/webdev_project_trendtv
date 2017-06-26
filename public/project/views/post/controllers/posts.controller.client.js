@@ -6,22 +6,24 @@
     function PostsController(PostsService, userService, $routeParams, $route, currentUser, $location, $mdDialog, $mdSidenav) {
 
         var model = this;
-
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.disableFlag = false;
 
-        userService.findUserById(model.userId)
-            .then(function (user) {
-                model.user = user;
-            });
+        function init() {
+            userService.findUserById(model.userId)
+                .then(function (user) {
+                    model.user = user;
+                });
 
-        PostsService.getPostsByActorId(model.userId)
-            .then(function (posts) {
-                model.posts = posts;
-            }, function (err) {
-                model.err = 'Error fetching the posts';
-            });
+            PostsService.getPostsByActorId(model.userId)
+                .then(function (posts) {
+                    model.posts = posts;
+                }, function (err) {
+                    model.err = 'Error fetching the posts';
+                });
+        }
+
+        init();
 
         //event handlers
         model.createPost = createPost;
@@ -31,7 +33,6 @@
         model.showEditBox = showEditBox;
 
         function showEditBox(post, ev) {
-            //console.log('yes');
             model.disableFlag = true;
             $mdDialog.show({
                 controller: DialogController,
@@ -69,7 +70,6 @@
         }
 
         function showLikes(postId, ev) {
-            //console.log(postId);
             model.disableFlag = true;
             var users = [];
             PostsService.getPostById(postId)
@@ -82,13 +82,12 @@
                             });
                     }
                     model.likeArr = users;
-                    //console.log(users);
                 });
 
             $mdDialog.show({
                 controller: DialogController,
                 controllerAs: 'vm',
-                templateUrl: 'views/post/templates/dialog1.tmpl.html',
+                templateUrl: 'views/post/templates/dialog.view.client.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:false,
@@ -103,7 +102,6 @@
                 .then(function(answer) {
                     model.status = 'You said the information was "' + answer + '".';
                 });
-            //console.log(users);
         }
 
         function showDislikes(postId,ev) {
@@ -119,13 +117,12 @@
                                 users.push(user);
                             });
                     }
-                    //console.log(users);
                     model.disLikeArr = users;
                 });
             $mdDialog.show({
                 controller: DialogController,
                 controllerAs: 'vm',
-                templateUrl: 'views/post/templates/dialog1.tmpl.html',
+                templateUrl: 'views/post/templates/dialog.view.client.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 fullscreen: model.customFullscreen, // Only for -xs, -sm breakpoints.
@@ -145,7 +142,6 @@
                 }, function () {
                     $route.reload();
                 });
-            //console.log(users);
         }
 
         function logout() {

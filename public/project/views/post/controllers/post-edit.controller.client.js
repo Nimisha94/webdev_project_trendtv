@@ -6,16 +6,19 @@
     function EditPostController($routeParams, $location, PostsService, currentUser) {
 
         var model = this;
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.postId = $routeParams['postId'];
 
-        PostsService.getPostById(model.postId)
-            .then(function (post) {
-                model.post = post;
-            }, function (err) {
-                model.err = 'Error editing the post';
-            });
+        function init() {
+            PostsService.getPostById(model.postId)
+                .then(function (post) {
+                    model.post = post;
+                }, function (err) {
+                    model.err = 'Error editing the post';
+                });
+        }
+
+        init();
 
         //event handlers
         model.updatePost = updatePost;

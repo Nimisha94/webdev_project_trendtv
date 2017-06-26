@@ -8,8 +8,13 @@
         var model = this;
         model.userId =$routeParams['userId'];
         model.commentId = $routeParams['commentId'];
-        CommentsService.getCommentById(model.commentId)
-            .then(renderComment, error);
+
+        function init() {
+            CommentsService.getCommentById(model.commentId)
+                .then(renderComment, error);
+        }
+
+        init();
 
         //event handlers
         model.updateComment=updateComment;

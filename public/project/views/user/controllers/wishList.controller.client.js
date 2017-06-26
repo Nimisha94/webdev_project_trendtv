@@ -8,9 +8,27 @@
         var model = this;
         var tmdbId = null;
         model.searchText = $routeParams['searchText'];
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.watchedlistshows = [];
+
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
+
+            userService.getWishListByUserId(model.userId)
+                .then(function (watchedlist) {
+                    for (var w in watchedlist) {
+                        SeriesService.getSearchDetailsById(watchedlist[w])
+                            .then(function (show) {
+                                console.log(typeof show.id);
+                                model.watchedlistshows.push(show);
+                            })
+                    }
+
+                });
+        }
+
+        init();
 
         //event handlers
         model.getSeriesDetailsById = getSeriesDetailsById;
@@ -18,20 +36,7 @@
         model.logout = logout;
         model.getNumber = getNumber;
 
-        userService.findUserById(model.userId)
-            .then(renderUser, errorUser);
 
-        userService.getWishListByUserId(model.userId)
-            .then(function (watchedlist) {
-                for (var w in watchedlist) {
-                    SeriesService.getSearchDetailsById(watchedlist[w])
-                        .then(function (show) {
-                            console.log(typeof show.id);
-                            model.watchedlistshows.push(show);
-                        })
-                }
-
-            });
         function renderUser(user) {
 
             model.user = user;
@@ -52,8 +57,6 @@
         }
 
         function redirectUser(status) {
-            //var url = "/user/"+model.userId+"/wishList";
-            //$location.url(url);
             $route.reload();
         }
 

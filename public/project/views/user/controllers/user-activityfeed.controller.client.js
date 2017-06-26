@@ -6,34 +6,38 @@
     function ActivityFeedController($routeParams,$location, $route, userService, PostsService, currentUser) {
 
         var model = this;
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.actors = [];
         model.posts = [];
 
-        userService.findUserById(model.userId)
-            .then(function (user) {
-                model.user = user;
-                var following = user.following;
-                for(var f in following)
-                {
-                    PostsService.getPostsByActorId(following[f])
-                        .then(function (posts) {
-                            for(var p in posts)
-                            {
-                                model.posts.push(posts[p]);
-                                userService.findUserById(posts[p].actorId)
-                                    .then(function (user) {
-                                        model.actors.push(user.username);
-                                    });
-                            }
-                        });
+        function init() {
+            userService.findUserById(model.userId)
+                .then(function (user) {
+                    model.user = user;
+                    var following = user.following;
+                    for(var f in following)
+                    {
+                        PostsService.getPostsByActorId(following[f])
+                            .then(function (posts) {
+                                for(var p in posts)
+                                {
+                                    model.posts.push(posts[p]);
+                                    userService.findUserById(posts[p].actorId)
+                                        .then(function (user) {
+                                            model.actors.push(user.username);
+                                        });
+                                }
+                            });
 
-                }
-                console.log(model.actors);
-            }, function (err) {
-                model.err = 'Error fetching posts';
-            });
+                    }
+                    console.log(model.actors);
+                }, function (err) {
+                    model.err = 'Error fetching posts';
+                });
+
+        }
+
+        init();
 
         //event handlers
         model.like = like;

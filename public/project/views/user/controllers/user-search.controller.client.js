@@ -9,13 +9,15 @@
         //model.userId=$routeParams['userId']
         model.userId=currentUser._id;
 
-
-
-        if(model.userId)
-        {
-            userService.findUserById(model.userId)
-                .then(renderUser);
+        function init() {
+            if(model.userId)
+            {
+                userService.findUserById(model.userId)
+                    .then(renderUser);
+            }
         }
+
+        init();
 
         //event handlers
         model.redirectToSearchResults=redirectToSearchResults;
@@ -34,9 +36,6 @@
             else if(model.search === 'user' || model.search === 'actor'){
                 $location.url('/search/'+model.search+'/'+searchText);
             }
-            /*else if(model.search === 'actor'){
-                $location.url('/searchUser/' + searchText);
-            }*/
             else if(model.search === 'tvseries') {
                 $location.url('/search/' + searchText);
             }

@@ -16,6 +16,42 @@
         model.WishlistFlag =true;
         model.WatchedlistFlag = false;
 
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
+
+            userService.findUserById(model.fId)
+                .then(renderOtherUser, errorUser);
+
+            userService.getWishListByUserId(model.fId)
+                .then(function (wishlist) {
+                    for(var w in wishlist)
+                    {
+                        SeriesService.getSearchDetailsById(wishlist[w])
+                            .then(function (show) {
+                                model.wishlistshows.push(show);
+                            })
+                    }
+                    model.wishlistimages=SeriesService.getTrendingImages(wishlist);
+
+                });
+
+            userService.getWatchedListByUserId(model.fId)
+                .then(function (watchedlist) {
+                    for(var w in watchedlist)
+                    {
+                        SeriesService.getSearchDetailsById(watchedlist[w])
+                            .then(function (show) {
+                                model.watchedlistshows.push(show);
+                            })
+                    }
+                    model.watchedlistimages=SeriesService.getTrendingImages(watchedlist);
+
+                });
+        }
+
+        init();
+
         //event handlers
         model.unfollow=unfollow;
         model.follow=follow;
@@ -23,38 +59,6 @@
         model.showWishlist = showWishlist;
         model.showWatchedlist = showWatchedlist;
         model.getNumber = getNumber;
-
-        userService.findUserById(model.userId)
-            .then(renderUser, errorUser);
-
-        userService.findUserById(model.fId)
-            .then(renderOtherUser, errorUser);
-
-        userService.getWishListByUserId(model.fId)
-            .then(function (wishlist) {
-                for(var w in wishlist)
-                {
-                    SeriesService.getSearchDetailsById(wishlist[w])
-                        .then(function (show) {
-                            model.wishlistshows.push(show);
-                        })
-                }
-                model.wishlistimages=SeriesService.getTrendingImages(wishlist);
-
-            })
-
-        userService.getWatchedListByUserId(model.fId)
-            .then(function (watchedlist) {
-                for(var w in watchedlist)
-                {
-                    SeriesService.getSearchDetailsById(watchedlist[w])
-                        .then(function (show) {
-                            model.watchedlistshows.push(show);
-                        })
-                }
-                model.watchedlistimages=SeriesService.getTrendingImages(watchedlist);
-
-            })
 
         function renderUser(user) {
 

@@ -3,7 +3,7 @@
         .module('TrendTv')
         .controller('AdminController', AdminController);
 
-    function AdminController($location, $routeParams, userService, CommentsService, SeriesService, PostsService, $route, currentUser) {
+    function AdminController($location, userService, CommentsService, SeriesService, PostsService, $route, currentUser) {
 
         var model=this;
         model.flag=false;
@@ -14,7 +14,6 @@
         model.commentusersArr=[];
         model.commentseriesArr=[];
         model.postactorsArr=[];
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.username='admin';
         model.currentNavItem = 'users';
@@ -92,7 +91,6 @@
             CommentsService.deleteComment(commentId)
                 .then(function (status) {
                     init();
-                    // $route.reload();
                 }, function (err) {
                     model.err = 'Error deleting comment';
                 });
@@ -102,7 +100,6 @@
             PostsService.deletePost(postId)
                 .then(function (status) {
                     init();
-                    // $route.reload();
                 }, function (err) {
                     model.err = 'Error deleting comment';
                 });
@@ -118,7 +115,6 @@
             };
             CommentsService.updateComment(c)
                 .then(function (status) {
-                    //init();
                     $route.reload();
                 }, function (err) {
                     model.err = 'Error updating comment';
@@ -135,7 +131,6 @@
             };
             PostsService.updatePost(c)
                 .then(function (status) {
-                    //init();
                     $route.reload();
                 }, function (err) {
                     model.err = 'Error updating comment';
@@ -206,12 +201,20 @@
         }
 
         function createUser() {
-            userService.createUser(model.user)
-                .then(function (user) {
-                    $route.reload();
-                }, function (err) {
-                    model.err = 'Error creating the user';
-                });
+            console.log(model.user);
+            if(model.user.username && model.user.firstName && model.user.email && model.user.password && model.user.role)
+            {
+                userService.createUser(model.user)
+                    .then(function (user) {
+                        $route.reload();
+                    }, function (err) {
+                        model.err = 'Error creating the user';
+                    });
+            }
+            else
+            {
+                model.err = 'Enter all the fields';
+            }
         }
 
         function logout() {

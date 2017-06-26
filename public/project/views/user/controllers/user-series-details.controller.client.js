@@ -6,7 +6,6 @@
     function ViewSeriesController(userService, SeriesService, CommentsService, $routeParams, $location, $route, currentUser, $mdDialog) {
 
         var model = this;
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.seriesId = $routeParams['seriesId'];
         model.comments=[];
@@ -16,33 +15,37 @@
         model.watchedlistflag=false;
         model.disableFlag = false;
 
-        userService.findUserById(model.userId)
-            .then(renderUser);
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser);
 
 
-        SeriesService.getSearchDetailsById(model.seriesId)
-            .then(successSearchDetails, failSearchDetails);
+            SeriesService.getSearchDetailsById(model.seriesId)
+                .then(successSearchDetails, failSearchDetails);
 
-        CommentsService.getCommentsBySeriesId(model.seriesId)
-            .then(renderComments);
+            CommentsService.getCommentsBySeriesId(model.seriesId)
+                .then(renderComments);
 
-        userService.getWishListByUserId(model.userId)
-            .then(function (wishlist) {
-                //console.log(wishlist);
-                if(wishlist.indexOf(model.seriesId)>=0)
-                {
-                    model.wishlistflag=true;
-                }
-            });
+            userService.getWishListByUserId(model.userId)
+                .then(function (wishlist) {
+                    //console.log(wishlist);
+                    if(wishlist.indexOf(model.seriesId)>=0)
+                    {
+                        model.wishlistflag=true;
+                    }
+                });
 
-        userService.getWatchedListByUserId(model.userId)
-            .then(function (watchedlist) {
-                //console.log(watchedlist);
-                if(watchedlist.indexOf(model.seriesId)>=0)
-                {
-                    model.watchedlistflag=true;
-                }
-            });
+            userService.getWatchedListByUserId(model.userId)
+                .then(function (watchedlist) {
+                    //console.log(watchedlist);
+                    if(watchedlist.indexOf(model.seriesId)>=0)
+                    {
+                        model.watchedlistflag=true;
+                    }
+                });
+        }
+
+        init();
 
         //event handlers
         model.addToWishList=addToWishList;
@@ -89,7 +92,6 @@
         function addToWatchedList() {
             userService.addToWatchedList(model.userId, model.seriesId)
                 .then(function () {
-                    //model.message="Added to WatchedList";
                     $route.reload();
                 }, function () {
                     model.message="Oops! Something went wrong :("
@@ -99,7 +101,6 @@
         function addToWishList() {
             userService.addToWishList(model.userId, model.seriesId)
                 .then(function () {
-                    //model.message="Added to WishList";
                     $route.reload();
                 }, function () {
                     model.message="Oops! Something went wrong :("
@@ -127,11 +128,9 @@
 
         function successSearchDetails(details) {
             model.details = details;
-            ///console.log(model.details);
         }
 
         function failSearchDetails() {
-            //console.log('Failed search details')
         }
 
         function logout() {

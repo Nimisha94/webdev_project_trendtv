@@ -8,36 +8,34 @@
         var model = this;
         var tmdbId = null;
         model.searchText = $routeParams['searchText'];
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
-        console.log(model.userId);
-        //var role = $location.path().split('/')[3];
         var role = $routeParams['searchRole'];
-        //console.log(role);
 
-        if(role === 'user') {
-            searchUsers(model.searchText);
+        function init() {
+            if(role === 'user') {
+                searchUsers(model.searchText);
+            }
+            else if (role === 'actor'){
+                searchActors(model.searchText)
+            }
+
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
         }
-        else if (role === 'actor'){
-            searchActors(model.searchText)
-        }
+
+        init();
+
         //event handlers
-        model.searchUsers = searchUsers;
         model.redirectUser=redirectUser;
         model.unfollow=unfollow;
         model.follow=follow;
         model.logout = logout;
-
-        userService.findUserById(model.userId)
-            .then(renderUser, errorUser);
 
         function renderUser(user) {
             model.user=user;
         }
 
         function redirectUser(fId) {
-            //userService.findUserById(fId)
-            //    .then(renderUser, errorUser);
             var url = '/finduser/'+fId;
             $location.url(url);
         }
@@ -51,12 +49,7 @@
                 .then(successSearch, failSearch);
         }
 
-        /*function getSeriesDetailsbyId(index) {
-            //var seriesId =
-            //console.log(index);
-            //console.log(model.searchResults[index].id);
-            $location.url('/user/'+model.userId+'/comment/'+model.searchResults[index].id);
-        }*/
+
         function successSearch(searchResultsArr) {
             console.log(searchResultsArr);
             var index = -1;
@@ -111,10 +104,6 @@
 
         function reRenderUser() {
             $route.reload();
-            //var url = '/user/'+model.userId+'/following';
-            /*userService.findUserById(model.userId)
-                .then(renderUser, errorUser);*/
-
         }
 
         function logout() {

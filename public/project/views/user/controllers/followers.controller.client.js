@@ -8,14 +8,19 @@
         var model = this;
         model.userId = currentUser._id;
 
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
+        }
+
+        init();
+
         //event handlers
         model.unfollow = unfollow;
         model.logout = logout;
         model.follow = follow;
         model.redirectUser = redirectUser;
 
-        userService.findUserById(model.userId)
-            .then(renderUser, errorUser);
 
         function unfollow(fid){
             var index = model.user.following.indexOf(fid);
@@ -33,16 +38,6 @@
         }
 
         function follow(fId){
-            //var index = model.user.following.indexOf(fid);
-
-            /*for(var i=0;i<model.user.followers.length;i++){
-                if(model.user.following[i]===fid){
-
-                    userService.deleteFollowingById(model.userId,fid)
-                        .then(reRenderUser, errorUser);
-                }
-            }*/
-
             userService.addToFollower(fId, model.userId)
                 .then(function () {
                     userService.addToFollowingById(model.userId, fId)
@@ -51,10 +46,8 @@
         }
 
         function renderUser(user) {
-
             model.user=user;
             var follower = [];
-            //console.log(model.user.followers.length);
             for(var i =0; i<model.user.followers.length;i++) {
 
                 userService.findUserById(model.user.followers[i])
@@ -72,15 +65,12 @@
         }
 
         function reRenderUser() {
-            //var url = '/user/'+model.userId+'/following';
             userService.findUserById(model.userId)
                 .then(renderUser, errorUser);
 
         }
 
         function redirectUser(fId) {
-            //userService.findUserById(fId)
-            //    .then(renderUser, errorUser);
             var url = '/finduser/'+fId;
             $location.url(url);
         }

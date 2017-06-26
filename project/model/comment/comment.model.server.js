@@ -26,10 +26,7 @@ function getCommentsBySeriesId(seriesId) {
 }
 
 function createComment(comment) {
-    return commentModel.create(comment)
-        /*.then(function (comment) {
-            return userModel.addComment(comment.userId,comment._id);*/
-        //});
+    return commentModel.create(comment);
 }
 
 function findAllComments() {

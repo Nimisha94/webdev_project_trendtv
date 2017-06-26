@@ -1,16 +1,6 @@
 var app = require("../../express");
 var postModel=require("../model/post/post.model.server");
 
-/*var comments = [
- {_id: "656", userId: "123", seriesId: "1425", "comment": "11Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." },
- {_id: "989",userId: "234", seriesId: "1425", "comment": "22Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." }
- ];*/
-
-/*var posts=[
-    {_id:21314, actorId:"999", userId:"123", title:"First Post", body:"This is the body of the post",
-        likes:["123", "345"], dislikes: ["456", "678"]}
-]*/
-
 app.get('/api/project/actor/post/:actorId', getPostsByActorId);
 app.post('/api/project/post', createPost);
 app.get('/api/project/post/:postId', getPostById);

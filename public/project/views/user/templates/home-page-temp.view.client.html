@@ -1,0 +1,39 @@
+
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<a class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>-->
+            <a class="navbar-brand proj-navbar-font proj-navbar-heading" ng-href="#!/" ><b>TrendTV</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-href="#!/search" class="glyphicon glyphicon-search proj-navbar-color"></a></li>
+                <li class="active proj-navbar-heading"><a href="#!/"><b class="proj-navbar-font">Trending </b></a></li>
+                <li ng-show="model.userId"><a href="#!/profileEdit"> <b class="proj-navbar-color proj-navbar-font">Profile </b> </a></li>
+                <li ng-show="!model.userId"><a href="#!/login"> <b class="proj-navbar-color proj-navbar-font">Login </b> </a></li>
+                <li ng-show="!model.userId"><a href="#!/register"> <b class="proj-navbar-color proj-navbar-font">Register </b> </a></li>
+                <li ng-show="model.userId"><a  ng-click="model.logout()"> <b class=" proj-navbar-color proj-navbar-font">Logout </b></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<img class="spinner" ng-src="https://www.criminalwatchdog.com/images/assets/loading.gif " ng-show="model.loading"></img>
+
+<div id="works" class="proj-homepage-black clearfix grid">
+    <figure ng-repeat="image in model.images">
+        <a ng-href="#!/series/{{model.ids[$index]}}"><img ng-src="https://image.tmdb.org/t/p/w500{{image.poster_path}}" alt="img01"></a>
+        <a ng-href="#!/series/{{model.ids[$index]}}"></a>
+    </figure>
+</div>
+
+<nav  class="navbar navbar-fixed-bottom">
+    <div ng-show="!model.loading" class="footer text-center spacer">
+        Project for Web Development at Northeastern University.
+    </div>
+</nav>
+

@@ -1,44 +1,25 @@
-
-<div class="topbar animated fadeInLeftBig"></div>
-<div class="navbar-wrapper">
+<nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- Logo Starts -->
-                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
-                    <!-- #Logo Ends -->
-                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
-
-
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-
-
-                <!-- Nav Starts -->
-                <div class="navbar-collapse  collapse">
-
-                    <ul class="nav navbar-nav navbar-right scroll">
-                        <li class="active"><a ng-href="#!/admin">Admin Dashboard</a></li>
-                        <li><a class="navbarhover" ng-href="#!/profileEdit">Profile</a></li>
-                        <li><a class="navbarhover" ng-click="model.logout()">Logout {{model.username}}</a></li>
-                    </ul>
-                </div>
-
-            </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand proj-navbar-font proj-navbar-heading"><b>TrendTV</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active proj-navbar-heading" ng-show="model.userId"><a href="#!/admin"> <b class="proj-navbar-font">Admin Dashboard </b> </a></li>
+                <li class="proj-navbar-heading" ng-show="model.userId"><a href="#!/profileEdit"> <b class="proj-navbar-color proj-navbar-font">Profile </b> </a></li>
+                <li ng-show="model.userId"><a  ng-click="model.logout()"> <b class=" proj-navbar-color proj-navbar-font">Logout </b></a></li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
 
 
-
-<div class="login-view container-fluid">
+<div class="container-fluid">
 
 
     <div class="admindiv container">
@@ -72,13 +53,12 @@
         </div>-->
 
         <!--Manage Users-->
-        <div ng-if="model.usersflag" class="col-lg-10"><br>
+        <div ng-if="model.usersflag" class="col-lg-12"><br>
             <h4><b>Users</b></h4>
-                <table style="color:black" class="table table-striped">
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="hidden-xs hidden-sm ">First Name</th>
-                            <th class="hidden-xs hidden-sm ">Last Name</th>
+                            <th class="hidden-xs hidden-sm ">Name</th>
                             <th>Username</th>
                             <th class="hidden-xs hidden-sm ">Email</th>
                             <th class="hidden-xs hidden-sm ">Password</th>
@@ -88,8 +68,7 @@
                     </thead>
                     <tbody>
                         <tr class="hidden-xs hidden-sm ">
-                            <td class="hidden-xs hidden-sm "><input ng-model="model.user.firstName" placeholder="First Name"></td>
-                            <td class="hidden-xs hidden-sm "><input ng-model="model.user.lastName" placeholder="Last Name"></td>
+                            <td class="hidden-xs hidden-sm "><input ng-model="model.user.firstName" placeholder="Name"></td>
                             <td class="hidden-xs hidden-sm "><input  ng-model="model.user.username"placeholder="Username"></td>
                             <td class="hidden-xs hidden-sm "><input ng-model="model.user.email" placeholder="Email"></td>
                             <td class="hidden-xs hidden-sm "><input type="password" ng-model="model.user.password" placeholder="Password"></td>
@@ -100,7 +79,6 @@
                         </tr>
                         <tr ng-repeat="user in model.users">
                             <td class="hidden-xs hidden-sm ">{{user.firstName}}</td>
-                            <td class="hidden-xs hidden-sm ">{{user.lastName}}</td>
                             <td>{{user.username}}</td>
                             <td class="hidden-xs hidden-sm ">{{user.email}}</td>
                             <td class="hidden-xs hidden-sm ">&nbsp;</td>
@@ -117,7 +95,7 @@
         <!--Manage Comments-->
         <div ng-if="model.commentsflag" class="col-lg-10"><br>
             <h4><b>Comments</b></h4>
-            <table style="color:black" class="table table-striped">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>Username</th>
@@ -148,7 +126,7 @@
         <!--Manage Posts-->
         <div ng-if="model.postsflag" class="col-lg-10"><br>
             <h4><b>Posts</b></h4>
-            <table style="color:black" class="table table-striped">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>Actor name</th>

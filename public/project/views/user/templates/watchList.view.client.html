@@ -1,57 +1,44 @@
-<div class="topbar animated fadeInLeftBig"></div>
-<div class="navbar-wrapper">
+<nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- Logo Starts -->
-                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
-                    <!-- #Logo Ends -->
-                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
-
-
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-
-
-                <!-- Nav Starts -->
-                <div class="navbar-collapse  collapse">
-
-                    <ul class="nav navbar-nav navbar-right scroll">
-                        <li><a href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li><a class="navbarhover" href="#!/">Trending</a></li>
-                        <li class="active"><a href="#works">Profile</a></li>
-                        <li><a class="navbarhover" ng-click="model.logout()">Logout {{model.user.username}}</a></li>
-                    </ul>
-                </div>
-
-            </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a ng-href="#!/" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a class="navbar-brand proj-navbar-font proj-navbar-heading" ng-href="#!/" ><b>TrendTV</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-href="#!/search" class="glyphicon glyphicon-search proj-navbar-color"></a></li>
+                <li><a href="#!/"><b class="proj-navbar-color proj-navbar-font">Trending </b></a></li>
+                <li class="active proj-navbar-heading" ng-show="model.userId"><a href="#!/profileEdit"> <b class="proj-navbar-font">Profile </b> </a></li>
+                <li ng-show="!model.userId"><a href="#!/login"> <b class="proj-navbar-color proj-navbar-font">Login </b> </a></li>
+                <li ng-show="!model.userId"><a href="#!/register"> <b class="proj-navbar-color proj-navbar-font">Register </b> </a></li>
+                <li ng-show="model.userId"><a  ng-click="model.logout()"> <b class=" proj-navbar-color proj-navbar-font">Logout </b></a></li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
 
 <div class="container-fluid">
 
-    <div style="padding-top: 80px;" id="wrapper">
+    <div class="proj-sidebar" id="wrapper">
+
         <div class="hidden-xs" id="sidebar-wrapper">
             <ul  class="sidebar-nav">
                 <br>
-                <li style="padding-left: 45px">
+                <li class="proj-sidebar-list">
                     <img align="center" class="img-circle" ng-src="{{model.user.imageUrl}}" err-src="https://kurs.com.ua/uploads/set_resources_2/84c1e40ea0e759e3f1505eb1788ddf3c_default_photo.png">
                 </li>
                 <li>
-                    <a ng-href="#!/profileEdit"><h4 align="center">  {{model.user.username}}   <i style="color:black" class="fa fa-pencil " aria-hidden="true"></i></h4></a>
+                    <a ng-href="#!/profileEdit"><h4 class="proj-sidenavbar-profilename">  {{model.user.firstName}}   <i class="proj-pencil fa fa-pencil " aria-hidden="true"></i></h4></a>
                 </li>
                 <li>
                     <div class="row">
                         <div align="right" class="col-xs-4">
-                            <i style="color: black" class="fa fa-users fa-2x" aria-hidden="true"></i>
+                            <i class="proj-pencil fa fa-users fa-2x" aria-hidden="true"></i>
                         </div>
                         <div align="left" class="col-xs-8">
                             <a ng-href="#!/follower"><h4>Followers</h4> </a>
@@ -61,7 +48,7 @@
                 <li>
                     <div class="row">
                         <div align="right" class="col-xs-4">
-                            <i class="fa fa-th-list fa-2x" aria-hidden="true"></i>
+                            <i class="proj-pencil fa fa-th-list fa-2x" aria-hidden="true"></i>
                         </div>
                         <div align="left" class="col-xs-8">
                             <a ng-href="#!/wishList"><h4>Wish List</h4></a>
@@ -71,7 +58,7 @@
                 <li>
                     <div class="row">
                         <div align="right" class="col-xs-4">
-                            <i class="fa fa-list-alt fa-2x"></i>
+                            <i class="proj-pencil fa fa-list-alt fa-2x"></i>
                         </div>
                         <div align="left" class="col-xs-8">
                             <a ng-href="#!/watchList"><h4>Watched List</h4></a>
@@ -81,7 +68,7 @@
                 <li>
                     <div class="row">
                         <div align="right" class="col-xs-4">
-                            <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                            <i class="proj-pencil fa fa-comments fa-2x" aria-hidden="true"></i>
                         </div>
                         <div align="left" class="col-xs-8">
                             <a ng-href="#!/comments"><h4>Comments</h4></a>
@@ -91,7 +78,7 @@
                 <li>
                     <div class="row">
                         <div align="right" class="col-xs-4">
-                            <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                            <i class="proj-pencil fa fa-users fa-2x" aria-hidden="true"></i>
                         </div>
                         <div align="left" class="col-xs-8">
                             <a ng-href="#!/following"><h4>Following</h4></a>
@@ -101,7 +88,7 @@
                 <li ng-if="!(model.user.role==='actor')">
                     <div class="row">
                         <div align="right" class="col-xs-4">
-                            <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                            <i class="proj-pencil fa fa-envelope-open fa-2x" aria-hidden="true"></i>
                         </div>
                         <div align="left" class="col-xs-8">
                             <a ng-href="#!/activityfeed"><h4>Activity Feed</h4></a>
@@ -111,7 +98,7 @@
                 <li ng-if="model.user.role==='actor'">
                     <div class="row">
                         <div align="right" class="col-xs-4">
-                            <i class="fa fa-envelope-open fa-2x" aria-hidden="true"></i>
+                            <i class="proj-pencil fa fa-envelope-open fa-2x" aria-hidden="true"></i>
                         </div>
                         <div align="left" class="col-xs-8">
                             <a ng-href="#!/posts"><h4>Posts</h4></a>
@@ -119,59 +106,54 @@
                     </div>
                 </li>
                 <li ng-if="true">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <a ng-href="#!/posts"><h4 style="color:whitesmoke;">Posts</h4></a>
-                        </div>
-                    </div>
+                    <br><br><br><br><br>
                 </li>
             </ul>
         </div>
 
         <div class="col-lg-12">
-        <div id="works"  class=" clearfix grid">
-    <div class="container-fluid " >
-        <div class="row">
-            <h2>Watched List</h2>
-            <div ng-repeat="result in model.watchedlistshows">
-                <div class="col-sm-12 col-md-6">
-                    <div class="thumbnail card-1" ng-if ="model.user.watchedList.indexOf(result.id.toString())>-1">
-                        <div class="row">
-                            <div align="right">
-                                    <span class="input-group-btn" style="padding-right: 20px;">
-                                    <a id="searchbutton" class="btn btn-danger" ng-click="model.deleteWatchlistById(result.id)" type="button"><i class="fa fa-times"></i></a>
-                                </span>
-                            </div>
-                            <a ng-click="model.getSeriesDetailsbyId($index)">
-                                <div class="col-lg-6" align="center">
+            <div id="works"  class=" clearfix grid">
 
-                                    <img class="img-responsive"
-                                         ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
-                                         err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
-                                </div>
-
-                                <div class="col-lg-6" align="left">
-
-                                    <a ng-click="model.getSeriesDetailsById($index)"><h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3></a>
-                                    <span ng-repeat="i in model.getNumber(result.vote_average/2)">
-                                            <i style="color:gold" class="fa fa-star" aria-hidden="true"></i>
+                <div class="container-fluid " >
+            <div class="row">
+                <h2>Watched List</h2>
+                <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+                <div ng-repeat="result in model.watchedlistshows">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="thumbnail card-1" ng-if ="model.user.watchedList.indexOf(result.id.toString())>-1">
+                            <div class="row">
+                                <div align="right">
+                                        <span class="input-group-btn proj-wishlist-delete">
+                                        <a id="searchbutton" class="btn btn-danger" ng-click="model.deleteWatchlistById(result.id)" type="button"><i class="fa fa-times"></i></a>
                                     </span>
                                 </div>
-                            </a>
-                            <!--<div class="caption">
-                                <h5 class="proj-text-color-white">{{result.overview | limitTo:50}}{{result.overview.length > 50 ? "..." :
-                                    ""}}</h5>
-                            </div>-->
+                                <a ng-click="model.getSeriesDetailsbyId($index)">
+                                    <div class="col-lg-6" align="center">
 
+                                        <img class="img-responsive"
+                                             ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
+                                             err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
+                                    </div>
+
+                                    <div class="col-lg-6" align="left">
+
+                                        <a ng-click="model.getSeriesDetailsById($index)"><h3>{{result.name | limitTo:15}}{{result.name.length > 15 ? "..." : ""}}</h3></a>
+                                        <span ng-repeat="i in model.getNumber(result.vote_average/2)">
+                                                <i class="proj-star fa fa-star" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    <!--<br/><br/>-->
                 </div>
-                <!--<br/><br/>-->
             </div>
         </div>
+
+            </div>
+        </div>
+
     </div>
 
-</div>
-    </div>
-    </div>
 </div>

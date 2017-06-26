@@ -8,25 +8,20 @@
         var model = this;
         model.loading = true;
 
-        //model.userId = $routeParams['userId'];
-
         model.userId = currentUser._id;
 
-        userService.findUserById(model.userId)
-            .then(renderUser, errorUser);
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
 
-        function renderUser(user) {
-            model.user=user;
+            SeriesService.getTrendingSeriesIds()
+                .then(getTrendingsImages)
+                .finally(function () {
+                model.loading = false;
+            });
         }
 
-        function errorUser(user) {
-            model.message="Oops! Something went wrong :("
-        }
-
-        SeriesService.getTrendingSeriesIds()
-            .then(getTrendingsImages).finally(function () {
-            model.loading = false;
-        });
+        init();
 
         //event handlers
         model.getSeriesbyName = getSeriesbyName;
@@ -49,6 +44,14 @@
 
         function getSeriesbyName(searchText) {
             $location.url('/search/'+searchText);
+        }
+
+        function renderUser(user) {
+            model.user=user;
+        }
+
+        function errorUser(user) {
+            model.message="Oops! Something went wrong :("
         }
 
         function logout() {

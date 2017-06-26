@@ -1,44 +1,27 @@
-<div class="topbar animated fadeInLeftBig"></div>
-<div class="navbar-wrapper">
+<nav class="navbar navbar-fixed-top navbar-inverse" >
     <div class="container-fluid">
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav">
-            <div class="container">
-                <div class="navbar-header">
-                    <!-- Logo Starts -->
-                    <!--<a class="navbar-brand" href="#home"><img src="images/logo.png" alt="logo"></a>-->
-                    <!-- #Logo Ends -->
-                    <a class="navbar-brand navbar-left pull-left" style="color: #1BC0DC; padding-top: 30px">Trend TV</a>
-
-
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-
-
-                <!-- Nav Starts -->
-                <div class="navbar-collapse  collapse">
-
-                    <ul class="nav navbar-nav navbar-right scroll">
-                        <li><a ng-href="#!/search" class="navbarhover glyphicon glyphicon-search"></a></li>
-                        <li ><a ng-href="#!/">Trending</a></li>
-                        <li ng-show="model.userId"><a class="navbarhover" ng-href="#!/profileEdit">Profile</a></li>
-                        <li class="active" ng-show="!model.userId"><a class="navbarhover" href="#!/login">Login</a></li>
-                        <li ng-show="!model.userId"><a class="navbarhover" href="#!/register">Register</a></li>
-                        <li ng-show="model.userId"><a class="navbarhover" ng-click="model.logout()">Logout {{model.user.username}}</a></li>
-                    </ul>
-                </div>
-
-            </div>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a ng-href="#!/" class="navbar-brand proj-navbar-font proj-navbar-heading"><b class="proj-navbar-font"> <span class="glyphicon glyphicon-chevron-left" ></span></b></a>
+            <a class="navbar-brand proj-navbar-font proj-navbar-heading" ng-href="#!/" ><b>TrendTV</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-href="#!/search" class="glyphicon glyphicon-search proj-navbar-color"></a></li>
+                <li ><a href="#!/"><b class="proj-navbar-font proj-navbar-color">Trending </b></a></li>
+                <li ng-show="!model.userId"><a href="#!/login"> <b class="proj-navbar-color proj-navbar-font ">Login </b> </a></li>
+                <li ng-show="!model.userId" class="active"><a href="#!/register"> <b class=" proj-navbar-font">Register </b> </a></li>
+                <li ng-show="model.userId"><a  ng-click="model.logout()"> <b class=" proj-navbar-color proj-navbar-font">Logout </b></a></li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
 
-    <div class="logindiv container">
+    <div id= "works"  class="container-fluid">
         <br>
         <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
 
@@ -74,5 +57,7 @@
 
         <a class="btn btn-danger  btn-block"
            href="#!/login">Cancel</a>
+
+        <br>
 
     </div>

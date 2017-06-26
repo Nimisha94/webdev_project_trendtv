@@ -8,14 +8,18 @@
         var model = this;
         var tmdbId = null;
         model.searchText = $routeParams['searchText'];
-        //model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
-        searchSeries(model.searchText);
 
-        userService.findUserById(model.userId)
-            .then(function (user) {
-                model.user = user
-            });
+        function init() {
+            searchSeries(model.searchText);
+
+            userService.findUserById(model.userId)
+                .then(function (user) {
+                    model.user = user;
+                });
+        }
+
+        init();
 
         //event handlers
         model.searchSeries = searchSeries;
@@ -29,20 +33,11 @@
         }
 
         function getSeriesDetailsbyId(index) {
-            //var seriesId =
-            //console.log(index);
-            //console.log(model.searchResults[index].id);
             $location.url('/series/'+model.searchResults[index].id);
         }
         function successSearch(searchResultsArr) {
             console.log(searchResultsArr);
             model.searchResults = searchResultsArr;
-            //$location.url('/search');
-            //var tracktObj = JSON.parse(tracktJson);
-            //console.log(tracktJson[0].show.title)
-            //tmdbId = tracktJson[0].show.ids.tmdb;
-            //var tmdbObj = parsedJson.results[0].original_name;
-            //console.log(tmdbObj)
         }
 
         function failSearch() {

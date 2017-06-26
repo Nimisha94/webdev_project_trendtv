@@ -7,29 +7,29 @@
 
         var model = this;
         var tmdbId = null;
-        //model.searchText = $routeParams['searchText'];
         model.userId = $routeParams['userId'];
         model.userId = currentUser._id;
         model.watchedlistshows =[];
 
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
 
-        userService.findUserById(model.userId)
-            .then(renderUser, errorUser);
+            userService.getWatchedListByUserId(model.userId)
+                .then(function (watchedlist) {
+                    for(var w in watchedlist)
+                    {
+                        SeriesService.getSearchDetailsById(watchedlist[w])
+                            .then(function (show) {
+                                console.log(show);
+                                model.watchedlistshows.push(show);
+                            })
+                    }
 
-        userService.getWatchedListByUserId(model.userId)
-            .then(function (watchedlist) {
-                for(var w in watchedlist)
-                {
-                    SeriesService.getSearchDetailsById(watchedlist[w])
-                        .then(function (show) {
-                            console.log(show);
-                            model.watchedlistshows.push(show);
-                        })
-                }
+                });
+        }
 
-            });
-
-        //searchSeries(model.searchText);
+        init();
 
         //event handlers
         model.searchSeries = searchSeries;
@@ -49,8 +49,6 @@
         }
 
         function redirectUser(status) {
-            //var url = "/user/"+model.userId+"/wishList";
-            //$location.url(url);
             $route.reload();
         }
 
@@ -71,12 +69,11 @@
 
 
         function successSearch(searchResultsArr) {
-            console.log(searchResultsArr);
             model.searchResults = searchResultsArr;
 
         }
         function failSearch() {
-            console.log('search failure');
+            model.err = 'search failure';
         }
 
         function logout() {
@@ -97,10 +94,4 @@
         }
 
     }
-
-
-
-
-
-
 })();

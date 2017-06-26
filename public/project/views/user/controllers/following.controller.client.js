@@ -6,16 +6,19 @@
     function FollowingController(userService, $location, $routeParams, currentUser) {
 
         var model = this;
+        model.userId = currentUser._id;
+
+        function init() {
+            userService.findUserById(model.userId)
+                .then(renderUser, errorUser);
+        }
+
+        init();
 
         //event handlers
         model.unfollow = unfollow;
         model.redirectUser = redirectUser;
         model.logout = logout;
-
-        //model.userId = $routeParams['userId'];
-        model.userId = currentUser._id;
-        userService.findUserById(model.userId)
-            .then(renderUser, errorUser);
 
         function unfollow(fid){
             var index = model.user.following.indexOf(fid);
@@ -52,15 +55,12 @@
         }
         
         function reRenderUser() {
-            //var url = '/user/'+model.userId+'/following';
             userService.findUserById(model.userId)
                 .then(renderUser, errorUser);
 
         }
 
         function redirectUser(fId) {
-            //userService.findUserById(fId)
-            //    .then(renderUser, errorUser);
             var url = '/finduser/'+fId;
             $location.url(url);
         }
