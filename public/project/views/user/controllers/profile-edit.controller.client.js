@@ -25,7 +25,7 @@
         model.logout = logout;
 
         function update() {
-            if(model.password!=='' || typeof model.password!=='undefined')
+            if(model.password!=='' && typeof model.password!=='undefined')
             {
                 model.user.password = model.password;
             }

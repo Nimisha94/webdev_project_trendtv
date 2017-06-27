@@ -181,7 +181,7 @@
                 <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
                 <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
             <label for="username" class="usernamelabelregister">Username</label>
-            <input ng-model="model.user.username" id="username" class="form-control">
+            <input readonly ng-model="model.user.username" id="username" class="form-control">
 
             <label for="password" class="loginmargins">Change Password</label>
             <input ng-model="model.password" type="password" id="password" class="form-control" placeholder="bob123">
@@ -221,7 +221,7 @@
         <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
 
         <label for="adminusername" class="usernamelabelregister">Username</label>
-        <input ng-model="model.user.username" id="adminusername" class="form-control" placeholder="bob123">
+        <input readonly ng-model="model.user.username" id="adminusername" class="form-control" placeholder="bob123">
 
         <label for="adminpassword" class="loginmargins">Change Password</label>
         <input ng-model="model.password" type="password" id="adminpassword" class="form-control" placeholder="bob123">

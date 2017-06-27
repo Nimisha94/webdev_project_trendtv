@@ -124,13 +124,22 @@ function findAllUsers(req, res) {
 function updateUser(req, res) {
     var userId=req.params.userId;
     var user=req.body;
-    user.password = bcrypt.hashSync(user.password);
-    userModel.updateUser(userId, user)
-        .then(function (status) {
-            res.sendStatus(200);
+    userModel.findUserById(user._id)
+        .then(function (userObj) {
+            if(user.password !== userObj.password)
+            {
+                user.password = bcrypt.hashSync(user.password);
+            }
+            userModel.updateUser(userId, user)
+                .then(function (status) {
+                    res.sendStatus(200);
+                }, function (err) {
+                    res.sendStatus(404);
+                });
         }, function (err) {
-            res.sendStatus(404);
+            console.log(err);
         });
+
 }
 
 function getWatchedListByUserId(req, res) {

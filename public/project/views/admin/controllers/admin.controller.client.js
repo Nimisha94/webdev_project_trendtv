@@ -192,6 +192,10 @@
         }
 
         function updateUser() {
+            if(model.password!=='' && typeof model.password !== 'undefined')
+            {
+                model.user.password = model.password;
+            }
             userService.updateUser(model.user)
                 .then(function (st) {
                     $route.reload();
