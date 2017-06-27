@@ -332,24 +332,8 @@ function findActorsByText(req, res) {
 
 function localStrategy(username, password, done) {
     userModel.findUserByUsername(username)
-        .then(function (u) {
-            if(u && bcrypt.compareSync(password, u.password)){
-                var user = {
-                    _id: u._id,
-                    username: u.username,
-                    password: u.password,
-                    email: u.email,
-                    firstName: u.firstName,
-                    lastName: u.lastName,
-                    comments: u.comments,
-                    role: u.role,
-                    following: u.following,
-                    followers: u.followers,
-                    wishList: u.wishList,
-                    watchedList: u.watchedList,
-                    imageUrl: u.imageUrl,
-                    pageUrl: ''
-                };
+        .then(function (user) {
+            if(user && bcrypt.compareSync(password, user.password)){
                 done(null, user);
             }
             else{

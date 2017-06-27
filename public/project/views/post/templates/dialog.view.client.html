@@ -13,11 +13,15 @@
 
         <md-dialog-content>
 
+            <div class="md-dialog-content">
+                <em ng-show= "vm.items.length=== 0 && vm.flag === 'l'" >No Likes yet!</em>
+                <em ng-show= "vm.items.length=== 0 && vm.flag === 'd'" >No Dislikes yet!</em>
+            </div>
             <div class="container">
                 <div class="md-dialog-content row" ng-repeat="user in vm.items">
                     <a ng-href="#!/finduser/posts/{{user._id}}" ng-click="vm.cancel()">
                         <!--<div class="col-lg-9">-->
-                            <h4>{{user.username}}</h4>
+                            <h4>{{user.firstName}}</h4>
                         <!--</div>-->
                     </a>
                 </div>

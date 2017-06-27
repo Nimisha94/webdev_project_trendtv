@@ -28,6 +28,7 @@
         <div class="row">
             <h2 class=""><strong>Search Results</strong></h2>
 
+            <em ng-show="model.searchResults.length === 0" >No TV series found matching {{model.searchText}}. Try again..</em>
             <div ng-repeat="result in model.searchResults">
                 <div class="col-sm-6 col-md-6">
                     <div class="thumbnail card-1" >
@@ -35,7 +36,7 @@
                         <div class="row">
                             <a ng-click="model.getSeriesDetailsbyId($index)">
                                 <div class="col-lg-6" align="center">
-                                    <img class="img-responsive"
+                                    <img class="img-responsive img-dim"
                                          ng-src="https://image.tmdb.org/t/p/w185/{{result.posterPath}}"
                                          err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
                                 </div>

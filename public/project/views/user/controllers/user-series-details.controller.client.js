@@ -124,7 +124,7 @@
             {
                 userService.findUserById(comments[c].userId)
                     .then(function (user) {
-                        model.users.push(user.username);
+                        model.users.push(user.firstName);
                     });
             }
         }

@@ -118,19 +118,20 @@
             <div class="row">
                 <h2>Watched List</h2>
                 <div ng-show="model.err" class="alert alert-danger">{{model.err}}</div>
+                <em ng-show="model.watchedlistshows.length === 0" >Nothing added to Watched list..</em>
                 <div ng-repeat="result in model.watchedlistshows">
                     <div class="col-sm-12 col-md-6">
                         <div class="thumbnail card-1" ng-if ="model.user.watchedList.indexOf(result.id.toString())>-1">
                             <div class="row">
                                 <div align="right">
                                         <span class="input-group-btn proj-wishlist-delete">
-                                        <a id="searchbutton" class="btn btn-danger" ng-click="model.deleteWatchlistById(result.id)" type="button"><i class="fa fa-times"></i></a>
+                                        <a id="searchbutton" class="card-1 btn btn-danger" ng-click="model.deleteWatchlistById(result.id)" type="button"><i class="fa fa-times"></i></a>
                                     </span>
                                 </div>
                                 <a ng-click="model.getSeriesDetailsbyId($index)">
                                     <div class="col-lg-6" align="center">
 
-                                        <img class="img-responsive"
+                                        <img class="img-responsive img-dim"
                                              ng-src="https://image.tmdb.org/t/p/w185/{{result.poster_path}}"
                                              err-src="https://www.themoviedb.org/assets/static_cache/7f29bd8b3370c71dd379b0e8b570887c/images/no-poster-w185-v2.png">
                                     </div>

@@ -119,6 +119,11 @@ outline: none !important;
 	height: 155px;
 }
 
+.img-dim {
+	width:150px;
+	height: 200px;
+}
+
 .profile-view
 {
 	/*background-color: black;*/

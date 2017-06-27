@@ -34,10 +34,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div align="right" ng-show="model.userId" >
-                    <a ng-show="!model.wishlistflag" ng-click="model.addToWishList()" ><i class="proj-wishlist fa fa-heart fa-2x" aria-hidden="true"></i></a>
-                    <a ng-show="model.wishlistflag" ng-click="model.addedToWishList()" ><i class="proj-wishlist-star fa fa-star fa-2x" aria-hidden="true"></i></a>
-                    <a ng-show="!model.watchedlistflag" ng-click="model.addToWatchedList()" ><i class="proj-watchedlist fa fa-bookmark fa-2x" aria-hidden="true"></i></i></a>
-                    <a ng-show="model.watchedlistflag" ng-click="model.addedToWatchedList()" ><i class="proj-check fa fa-check-square-o fa-2x" aria-hidden="true"></i></a>
+                    <a data-toggle="tooltip" title="Add To WishList" ng-show="!model.wishlistflag" ng-click="model.addToWishList()" ><i class="proj-wishlist fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                    <a data-toggle="tooltip" title="Added To WishList" ng-show="model.wishlistflag" ng-click="model.addedToWishList()" ><i class="proj-wishlist-star fa fa-star fa-2x" aria-hidden="true"></i></a>
+                    <a data-toggle="tooltip" title="Add To WatchedList" ng-show="!model.watchedlistflag" ng-click="model.addToWatchedList()" ><i class="proj-watchedlist fa fa-bookmark fa-2x" aria-hidden="true"></i></i></a>
+                    <a data-toggle="tooltip" title="Added To WatchedList" ng-show="model.watchedlistflag" ng-click="model.addedToWatchedList()" ><i class="proj-check fa fa-check-square-o fa-2x" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -85,7 +85,7 @@
                     <em ng-show="model.comments.length === 0" >No Comments yet!</em>
                     <div class="thumbnail card-1 ">
                         <div ng-if="c.userId===model.userId" align="right">
-                            <a ng-click="model.editCommentBox(c,$event)"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+                            <a data-toggle="tooltip" title="Edit Comment" ng-click="model.editCommentBox(c,$event)"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
                         </div>
                         <div class="row">
                             <div class="col-lg-10">
@@ -104,11 +104,11 @@
                                 <textarea ng-disabled="!model.userId" class="form-control" rows="3" placeholder="Please enter the comment"
                                           ng-model="comment"></textarea>
                     </div>
-                    <a class="btn btn-success"
+                    <a class="card-1 btn btn-success"
                        ng-click="model.insertComment(comment)"
                        ng-show="model.userId"
                        role="button">Submit</a>
-                    <a ng-href="#!/login" class="btn btn-danger"
+                    <a ng-href="#!/login" class="card-1 btn btn-danger"
                        ng-show="!model.userId"
                        role="button">Login to comment</a>
                 </form>

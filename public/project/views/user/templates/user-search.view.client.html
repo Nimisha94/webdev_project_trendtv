@@ -27,12 +27,12 @@
         <form class="input-group loginmargins row">
             <input type="text" ng-show="!model.searchText" ng-model="searchText"  class="form-control" placeholder="Search for..." ng-keyup="$event.keyCode == 13 && model.redirectToSearchResults(searchText)">
             <span ng-show="!model.searchText" class="input-group-btn">
-                <a ng-show="!model.searchText" id="searchbutton" class="btn btn-default" ng-click="model.redirectToSearchResults(searchText)" type="button"><i class="fa fa-search"></i></a>
+                <a ng-show="!model.searchText" id="searchbutton" class="card-1 btn btn-default" ng-click="model.redirectToSearchResults(searchText)" type="button"><i class="fa fa-search"></i></a>
             </span>
 
             <input type="text" ng-show="model.searchText" ng-model="model.searchText"  class="form-control" placeholder="Search for..." ng-keyup="$event.keyCode == 13 && model.redirectToSearchResults(model.searchText)">
             <span ng-show="model.searchText"class="input-group-btn">
-                <a ng-show="model.searchText" id="searchbutton1" class="btn btn-default" ng-click="model.redirectToSearchResults(model.searchText)" type="button"><i class="fa fa-search"></i></a>
+                <a ng-show="model.searchText" id="searchbutton1" class="card-1 btn btn-default" ng-click="model.redirectToSearchResults(model.searchText)" type="button"><i class="fa fa-search"></i></a>
             </span>
 
         </form><!-- /input-group -->

@@ -77,6 +77,7 @@
                             <td class="hidden-xs hidden-sm "><a ng-click="model.createUser()"><i ng-if="!model.flag" class="fa fa-plus" aria-hidden="true"></i></a></td>
                             <td></td>
                         </tr>
+                        <em ng-show="model.users.length === 0" >No registered users to show..</em>
                         <tr ng-repeat="user in model.users">
                             <td class="hidden-xs hidden-sm ">{{user.firstName}}</td>
                             <td>{{user.username}}</td>
@@ -112,6 +113,7 @@
                     <td class="hidden-xs hidden-sm "><a ng-click="model.updateComment()"><i ng-if="model.cflag" class="fa fa-check" aria-hidden="true"></i></a></td>
                     <td></td>
                 </tr>
+                <em ng-show="model.comments.length === 0" >No Comments to show..</em>
                 <tr ng-repeat="comment in model.comments">
                     <td>{{model.commentusersArr[$index]}}</td>
                     <td class="hidden-xs hidden-sm ">{{model.commentseriesArr[$index]}}</td>
@@ -143,6 +145,7 @@
                     <td class="hidden-xs hidden-sm "><a ng-click="model.updatePost()"><i ng-if="model.pflag" class="fa fa-check" aria-hidden="true"></i></a></td>
                     <td></td>
                 </tr>
+                <em ng-show="model.posts.length === 0" >No Posts to show..</em>
                 <tr ng-repeat="post in model.posts">
                     <td>{{model.postactorsArr[$index]}}</td>
                     <td>{{post.title}}</td>

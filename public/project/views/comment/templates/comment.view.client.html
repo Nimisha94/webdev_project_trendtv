@@ -118,12 +118,13 @@
 
                     <div class="row ">
                         <h2 class="">Comments</h2>
+                        <em ng-show="model.comments.length === 0" >Looks like you have not commented on any TV series!</em>
                         <div ng-repeat="comment in model.comments">
 
                             <div class="col-xs-12 col-md-12" id="x">
                                 <div class="thumbnail card-1 ">
                                     <div align="right">
-                                        <a ng-click="model.EditCommentBox(comment, $event)"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
+                                        <a data-toggle="tooltip" title="Edit Comment" ng-click="model.EditCommentBox(comment, $event)"><span class="glyphicon glyphicon-pencil fa-2x"></span></a>
                                     </div>
                                     <div class="row">
                                         <!--<div class="col-lg-6" align="center">
